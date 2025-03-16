@@ -1,0 +1,26 @@
+.div_header{
+    background-color: #d58a24;
+    color: #fff;
+    height: 5vw;
+}
+
+header{
+    height: 100%;
+}
+
+main{
+    min-height: 80vh;
+}
+
+.insert_email{
+    border: solid 2px #d58a24;
+    border-radius: 10px;
+}
+
+button{
+    border: solid #fff;
+    border-radius: 10px;
+
+    background-color: #d58a24;
+    color: #fff;
+}
