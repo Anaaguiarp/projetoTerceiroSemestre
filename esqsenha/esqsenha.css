@@ -1,7 +1,9 @@
 .div_header{
-    background-color: #d58a24;
+    background-color: #ffc107;
     color: #fff;
     height: 5vw;
+    position: fixed;
+    width: 100vw;
 }
 
 header{
@@ -9,11 +11,12 @@ header{
 }
 
 main{
-    min-height: 80vh;
+    height: 100vh;
+    background-color: #fefae8;
 }
 
 .insert_email{
-    border: solid 2px #d58a24;
+    border: solid 2px #ffdf1b;
     border-radius: 10px;
 }
 
@@ -21,6 +24,6 @@ button{
     border: solid #fff;
     border-radius: 10px;
 
-    background-color: #d58a24;
+    background-color: #ffdf1b;
     color: #fff;
 }
