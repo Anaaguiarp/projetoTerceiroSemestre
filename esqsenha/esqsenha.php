@@ -18,9 +18,9 @@ $usuario = "Completo Estranho";
             <h3>Projeto sem nome</h3>
             <nav>
                 <ul class="d-flex justify-content-between mb-0 list-unstyled">
-                    <li class="mx-3"><a href=# class="text-decoration-none text-reset fw-bold">Home</a></li>
-                    <li class="mx-3"><a href=# class="text-decoration-none text-reset fw-bold">Perfil</a></li>
-                    <li class="mx-3"><a href=# class="text-decoration-none text-reset fw-bold">Sobre nós</a></li>
+                    <li class="mx-3"><a href="../home_page/index.php" class="text-decoration-none text-reset fw-bold">Home</a></li>
+                    <li class="mx-3"><a href="#" class="text-decoration-none text-reset fw-bold">Perfil</a></li>
+                    <li class="mx-3"><a href="#" class="text-decoration-none text-reset fw-bold">Sobre nós</a></li>
                 </ul>
             </nav>
         </header>

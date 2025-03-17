@@ -1,5 +1,5 @@
 .div_header{
-    background-color: #d58a24;
+    background-color: #ffc107;
     color: #fff;
     height: 5vw;
 }
@@ -8,22 +8,26 @@ header{
     height: 100%;
 }
 
-.row{
-    width: 100vw;
-}
-
-.list_more{
-    background-color: #b26c18;
+.nav_lateral{
+    background-color: #e29400;
     color: #fff;
-    position: fixed;
-    height: 100vh;
-    width: 13%;
+    height: 90vh;
 }
 
-.main_content{
-    margin-left: 14%; 
+main{
+    background-color: #fefae8;
+}
+
+.welcome_text, .welcome_text_extra{
+    font-size: 24px;
+}
+
+.welcome_text_extra{
+    color: #e29400;
 }
 
 .img_inicial{
-    width: 10px;
+    width: 90%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
