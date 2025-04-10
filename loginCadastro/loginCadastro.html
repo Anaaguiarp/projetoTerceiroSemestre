@@ -10,7 +10,7 @@
 <body>
     <header>
         <nav>
-            <div class="p-3 d-flex justify-content-between card-header">
+            <div class="p-3 d-flex justify-content-between card-header text-primary">
                 <p class="m-0">Faça login ou cadastre-se</p>
                 <p class="m-0">Sobre nós</p>
             </div>
@@ -23,7 +23,7 @@
                 <div class="mb-3 mt-5">
                     <h2>Faça login</h2>
                 </div>
-                <form action="pagHome.php" method="post"> <!--Em análise-->
+                <form action="pagHome.php" method="post"> <!--pag demonstrativa-->
                     <div class="mb-2">
                         <label for="email_login" class="form-label">Email</label>
                         <input type="email" class="form-control" maxlength="100" id="email_login" name="email_login">
@@ -37,14 +37,14 @@
                     </div>
                     <div>
                         <p>
-                            <a href="teste">Esqueceu sua senha?</a>
+                            <a href="esqSenha.php">Esqueceu sua senha?</a><!--pag demonstrativa-->
                         </p>
                     </div>
                 </form>
                     <div class="mb-3">
                         <h2>Cadastre-se</h2>
                     </div>
-                <form>
+                <form action="perfil.php">
                     <div class="mb-2">
                         <label for="nome_cadastro" class="form-label">Nome</label>
                         <input type="text" class="form-control" maxlength="100" name="nome_cadastro" id="nome_cadastro">
@@ -64,7 +64,6 @@
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </div>
-                    
                 </form>
             </div>
             <div class="col"></div>
