@@ -10,9 +10,9 @@
 <body>
     <header>
         <nav>
-            <div class="d-flex justify-content-between card-header">
-                <p>Faça login ou cadastre-se</p>
-                <p>Sobre nós</p>
+            <div class="p-3 d-flex justify-content-between card-header">
+                <p class="m-0">Faça login ou cadastre-se</p>
+                <p class="m-0">Sobre nós</p>
             </div>
         </nav>
     </header>
@@ -23,14 +23,14 @@
                 <div class="mb-3 mt-5">
                     <h2>Faça login</h2>
                 </div>
-                <form action="home.php" method="post"> <!--Em análise-->
+                <form action="pagHome.php" method="post"> <!--Em análise-->
                     <div class="mb-2">
                         <label for="email_login" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email_login" name="email_login">
+                        <input type="email" class="form-control" maxlength="100" id="email_login" name="email_login">
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-3">
                         <label for="senha_login" class="form-label">Senha</label>
-                        <input type="password" class="form-control" name="senha_login" id="senha_login">
+                        <input type="password" class="form-control" maxlength="10" name="senha_login" id="senha_login">
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Entrar</button>
@@ -47,19 +47,19 @@
                 <form>
                     <div class="mb-2">
                         <label for="nome_cadastro" class="form-label">Nome</label>
-                        <input type="text" class="form-control" name="nome_cadastro" id="nome_cadastro">
+                        <input type="text" class="form-control" maxlength="100" name="nome_cadastro" id="nome_cadastro">
                     </div>
                     <div class="mb-2">
                         <label for="email_cadastro" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email_cadastro" id="email_cadastro">
+                        <input type="email" class="form-control" maxlength="100" name="email_cadastro" id="email_cadastro">
                     </div>
                     <div class="mb-2">
                         <label for="senha_cadastro" class="form-label">Senha</label>
-                        <input type="password" class="form-control" name="senha_cadastro" id="senha_cadastro">
+                        <input type="password" class="form-control" maxlength="10" name="senha_cadastro" id="senha_cadastro">
                     </div>
                     <div class="mb-3">
                         <label for="senha_confirmacao" class="form-label">Confirme sua senha</label>
-                        <input type="password" class="form-control" name="senha_confirmacao" id="senha_confirmacao">
+                        <input type="password" class="form-control" maxlength="10" name="senha_confirmacao" id="senha_confirmacao">
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -70,6 +70,5 @@
             <div class="col"></div>
         </div>
     </div>
-    
 </body>
 </html>
