@@ -55,14 +55,13 @@
                 </p>
             </div>
         </div>
-            <div class="mt-5">
-                <footer id="bordaHome" >
-                    <?php
-                        require_once ('../footer/footer.php');
-                    ?>
-                </footer>
-            </div>
+        <div class="mt-5">
+            <footer>
+                <?php
+                    require_once ('../footer/footer.php');
+                ?>
+            </footer>
+        </div>
     </div>
-   
 </body>
 </html>
