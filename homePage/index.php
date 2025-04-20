@@ -39,7 +39,7 @@
                 Esse tipo de cuidado pode ser oferecido em qualquer fase da doença, junto a outros tratamentos, e envolve uma equipe multidisciplinar que inclui médicos, enfermeiros, psicólogos e assistentes sociais.
                 </p>
             </div>
-            <img src="../img/4.jpg" alt="Homem sendo vacinado no braço por uma enfermeira feliz" class="ms-5 img-fluid rounded-start" style="width: 40%; box-shadow: 10px 8px 10px #777777;">
+            <img src="../img/4.jpg" alt="Homem sendo vacinado no braço por uma enfermeira feliz" class="ms-5 img-fluid rounded-start" style="width: 40%; box-shadow: 0 5px 10px #777777;">
         </div>
         <div class="mt-5 p-5 container-fluid p-3 text-center text-white" style="background-color: #47639C;">
             <h2>Nosso objetivo</h2>
@@ -58,7 +58,7 @@
         <div class="mt-5">
             <footer>
                 <?php
-                    require_once ('../footer/footer.php');
+                    require_once('../footer/footer.php');
                 ?>
             </footer>
         </div>
