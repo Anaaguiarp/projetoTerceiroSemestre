@@ -1,3 +1,38 @@
-#bordaHome{
-    background-color: #47639C;
+body{
+    font-family: "Lexend Giga", sans-serif;
 }
+
+.container-header-img{
+    background-image: url("../img/3.2.jpg");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 450px;
+    color: #47639C;
+}
+
+.titulo{
+    font-size: 60px;
+    font-weight: bolder;
+
+    text-shadow: 1px 2px 5px black;
+}
+
+.container-nav{
+    background-color: #47639C;
+
+    color: #FFF;
+    font-weight: bolder;
+}
+
+.container-definicao{
+    border-left: 5px solid #131C63;
+
+    color: #131C63;
+
+}
+
