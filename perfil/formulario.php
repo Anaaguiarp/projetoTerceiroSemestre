@@ -11,6 +11,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
         echo "Campo nome é obrigatório";
     }
-}
+} # CRIAR OBJETO PESSOA E ALIMENTAR COM INFORMAÇÕES VINDAS DO FORMULÁRIO
 
 ?>
