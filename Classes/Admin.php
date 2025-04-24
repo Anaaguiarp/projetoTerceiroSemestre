@@ -5,6 +5,13 @@
         private $formacao;
         private $especialidade;
 
+        public function __construct($nome, $email, $senha, $data_nascimento, $genero, $ultimoLogin, $formacao, $especialidade){
+            parent::__construct($nome, $email, $senha, $data_nascimento, $genero);
+            $this->ultimoLogin = $ultimoLogin;
+            $this->formacao = $formacao;
+            $this->especialidade = $especialidade;
+        }
+
         public function getUltimoLogin(){
             return $this->ultimoLogin;
         }
