@@ -28,10 +28,10 @@
                         <p class="label-genero">Gênero</p>
                         <div class="d-flex justify-content-between">
                             <div class="form-check">
-                            <input class="form-check-input" type="radio" name="genero" value="F">
-                            <label class="form-check-label" for="genero">
-                                Feminino
-                            </label>
+                                <input class="form-check-input" type="radio" name="genero" value="F">
+                                <label class="form-check-label" for="genero">
+                                    Feminino
+                                </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="genero" value="M">
