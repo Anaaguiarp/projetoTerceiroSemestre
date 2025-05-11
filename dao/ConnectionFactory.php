@@ -6,7 +6,7 @@ class ConnectionFactory{ // padrão singleton
     public static function getConnection(){
         if(!isset($connection)){
             $host = "localhost";
-            $dbName = "teste";
+            $dbName = "usuarios";
             $user = "root";
             $pass = "";
             #$port = 3307; # para PC da Universidade

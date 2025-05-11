@@ -1,7 +1,7 @@
 <?php
     class Admin extends Pessoa {
         private $ultimoLogin;
-        //private $numCIP; ------------------------------>  EM ANALISE
+        private $documento;
         private $formacao;
         private $especialidade;
 
@@ -18,6 +18,14 @@
 
         public function setUmtimoLogin($ultimoLogin){
             $this->ultimoLogin = $ultimoLogin;
+        }
+
+        public function getDocumento(){
+            return $this->documento;
+        }
+
+        public function setDocumento($documento){
+            $this->documento = $documento;
         }
 
         public function getFormacao(){
