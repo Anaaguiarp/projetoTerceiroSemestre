@@ -10,9 +10,6 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3">
-                <img src="/img/perfil.jpg" alt="Imagem de perfil do usuário">
-            </div>
             <div class="col">
                 <h2>Informações Pessoais</h2>
                 <form action="formulario.php" method="get">

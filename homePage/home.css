@@ -7,17 +7,6 @@ li{
     list-style: none;
 }
 
-.nav-login{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    background-color: rgb(255, 255, 255, 0.5);
-    color: #131C63;
-    
-}
-
 .container-header-img{
     background-image: url("../img/3.2.jpg");
     background-size: cover;
@@ -43,8 +32,4 @@ li{
 
     color: #FFF;
     font-weight: bolder;
-}
-
-.nav-footer{
-    background-color: #131C63;
 }

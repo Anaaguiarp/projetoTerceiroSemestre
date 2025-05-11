@@ -12,12 +12,8 @@
 </head>
 <body>
     <div class="container-fluid p-0">
-        <header>
-            <?php
-                require_once ('../header/header.php');
-            ?>
-        </header>
         <div class="container-header-img">
+            <header><?php require '../header/header.php' ?> </header>
             <h1 class="titulo m-0">Cuidados paliativos</h1>
         </div>
         <div class="container-nav p-3">
@@ -55,13 +51,7 @@
                 </p>
             </div>
         </div>
-        <div class="mt-5">
-            <footer>
-                <?php
-                    require_once('../footer/footer.php');
-                ?>
-            </footer>
-        </div>
+        <footer><?php require '../footer/footer.php'?></footer>
     </div>
 </body>
 </html>

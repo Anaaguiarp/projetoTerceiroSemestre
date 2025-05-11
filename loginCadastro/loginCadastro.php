@@ -9,64 +9,33 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="p-3 d-flex justify-content-between card-header text-primary">
-                <p class="m-0">Faça login ou cadastre-se</p>
-                <p class="m-0">Sobre nós</p>
-            </div>
-        </nav>
+        <?php
+            require_once ('../header/header.php');
+        ?>
     </header>
-    <div class="container">
-        <div class="row">
-            <div class="col"></div>
-            <div class="col">
-                <div class="mb-3 mt-5">
-                    <h2>Faça login</h2>
-                </div>
-                <form action="pagHome.php" method="post"> <!--pag demonstrativa-->
-                    <div class="mb-2">
-                        <label for="email_login" class="form-label">Email</label>
-                        <input type="email" class="form-control" maxlength="100" id="email_login" name="email_login">
-                    </div>
-                    <div class="mb-3">
-                        <label for="senha_login" class="form-label">Senha</label>
-                        <input type="password" class="form-control" maxlength="10" name="senha_login" id="senha_login">
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Entrar</button>
-                    </div>
-                    <div>
-                        <p>
-                            <a href="esqSenha.php">Esqueceu sua senha?</a><!--pag demonstrativa-->
-                        </p>
-                    </div>
-                </form>
-                    <div class="mb-3">
-                        <h2>Cadastre-se</h2>
-                    </div>
-                <form action="perfil.php">
-                    <div class="mb-2">
-                        <label for="nome_cadastro" class="form-label">Nome</label>
-                        <input type="text" class="form-control" maxlength="100" name="nome_cadastro" id="nome_cadastro">
-                    </div>
-                    <div class="mb-2">
-                        <label for="email_cadastro" class="form-label">Email</label>
-                        <input type="email" class="form-control" maxlength="100" name="email_cadastro" id="email_cadastro">
-                    </div>
-                    <div class="mb-2">
-                        <label for="senha_cadastro" class="form-label">Senha</label>
-                        <input type="password" class="form-control" maxlength="10" name="senha_cadastro" id="senha_cadastro">
-                    </div>
-                    <div class="mb-3">
-                        <label for="senha_confirmacao" class="form-label">Confirme sua senha</label>
-                        <input type="password" class="form-control" maxlength="10" name="senha_confirmacao" id="senha_confirmacao">
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    </div>
-                </form>
+    <div class="container" style="width: 50%;">
+        <div class="mb-3 mt-5">
+            <h2>Faça login</h2>
+        </div>
+        <form action="pagHome.php" method="post"> <!--pag demonstrativa-->
+            <div class="mb-2">
+                <label for="email_login" class="form-label">Email</label>
+                <input type="email" class="form-control" maxlength="100" id="email_login" name="email_login">
             </div>
-            <div class="col"></div>
+            <div class="mb-3">
+                <label for="senha_login" class="form-label">Senha</label>
+                <input type="password" class="form-control" maxlength="10" name="senha_login" id="senha_login">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+            <div>
+                <p><a href="esqSenha.php">Esqueceu sua senha?</a><!--pag demonstrativa--></p>
+            </div>
+        </form>
+        <h3>ou</h3>
+        <div class="mb-3">
+            <h2><a href="../perfil/perfil.php">Cadastre-se<i class="fi fi-br-arrow-right"></i></a></h2>
         </div>
     </div>
 </body>
