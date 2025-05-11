@@ -18,7 +18,23 @@
                 <form action="formulario.php" method="get">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" name="nome" placeholder="Seu nome completo" maxlength="100">
+                        <input type="text" class="form-control" name="nome" placeholder="Seu nome completo" maxlength="100" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome_social" class="form-label">Nome Social</label>
+                        <input type="text" class="form-control" name="nome_social" placeholder="Apelido ou nome social" maxlength="100">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" name="email" placeholder="Seu email" maxlength="120" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Sua senha</label>
+                        <input type="password" class="form-control" name="senha" placeholder="Crie uma senha" maxlength="30" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirma_senha" class="form-label">Confirme sua senha</label>
+                        <input type="text" class="form-control" name="confirma_senha" placeholder="Confirme sua senha" maxlength="30" required>
                     </div>
                     <div class="mb-3">
                         <label for="data_nascimento" class="form-label">Data de Nascimento</label>
