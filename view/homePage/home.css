@@ -3,8 +3,12 @@ body{
     font-size: 20px;
 }
 
-li{
-    list-style: none;
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 .container-header-img{

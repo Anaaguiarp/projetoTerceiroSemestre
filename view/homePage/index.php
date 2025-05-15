@@ -51,7 +51,7 @@
                 </p>
             </div>
         </div>
-        <footer><?php require '../footer/footer.php'?></footer>
+        <footer><?php require '../footer/footer.php' ?></footer>
     </div>
 </body>
 </html>

@@ -1,14 +1,18 @@
 <style>
-    .container_footer {
+    .container-footer {
         font-family: "Lexend Giga", sans-serif;
         font-size: 16px;
         color: #131C63;
     }
-    .nav_footer{
+
+    .nav-footer{
         background-color: #131C63;
+        color: #FFF;
     }
+
 </style>
-<div class="container_footer">
+
+<div class="container-footer mt-5">
     <div class="nav-footer d-flex justify-content-between p-4">
         <nav class="px-5 text-white w-100 d-flex justify-content-between">
             <div>

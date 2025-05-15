@@ -1,20 +1,19 @@
 <style>
     .nav-login{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-
+    
     font-family: "Lexend Giga", sans-serif;
     font-size: 20px;
 
-    background-color: rgb(255, 255, 255, 0.5);
+    background-color: rgb(217, 217, 217, 0.5);
 }
 
 a{
     text-decoration: none;
     color: #131C63;
+}
+
+ul{
+    list-style: none;
 }
 </style>
 

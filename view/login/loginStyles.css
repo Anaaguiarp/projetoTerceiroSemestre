@@ -1,0 +1,18 @@
+body{
+    font-family: "Lexend Giga", sans-serif;
+    font-size: 20px;
+}
+
+section{
+    width: 20%;;
+}
+
+h1, .forgetPass{
+    color: black;
+    font-weight: 1000;
+}
+
+.botao{
+    background-color: #47639C;
+    color: #fff;
+}
