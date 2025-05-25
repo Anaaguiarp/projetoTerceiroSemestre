@@ -1,3 +1,9 @@
-label, .label-genero{
-    font-weight: bold;
+body{
+    font-family: "Lexend Giga", sans-serif;
+    font-size: 20px;
+}
+
+h1{
+    color: black;
+    font-weight: 1000;
 }
