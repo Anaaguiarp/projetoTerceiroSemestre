@@ -3,23 +3,13 @@
     class Pessoa{
         private $id;
         private $nome;
+        private $nome_social;
         private $email;
         private $senha;
         private $data_nascimento;
         private $genero;
 
-        public function __construct(){};
-
-        public function __construct($id, $nome, $email, $senha, $data_nascimento, $genero){
-            $this->id = $id;
-            $this->nome = $nome;
-            $this->email = $email;
-            $this->senha = $senha;
-            $this->data_nascimento = $data_nascimento;
-            $this->genero = $genero;
-        }
-
-         public function getId(){
+        public function getId(){
             return $this->id;
         }
 
@@ -33,6 +23,14 @@
 
         public function setNome($nome){
             $this->nome = $nome;
+        }
+
+        public function getNomeSocial(){
+            return $this->nome_social;
+        }
+
+        public function setNomeSocial($nome_social){
+            $this->nome_social = $nome_social;
         }
 
         public function getEmail(){

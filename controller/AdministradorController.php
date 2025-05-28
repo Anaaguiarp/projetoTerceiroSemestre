@@ -1,23 +1,37 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-require '../dao/ConnectionFactory.php';
-require '../model/Admin.php';
-require '../dao/AdministradorDao.php';
+require __DIR__ . '/../dao/ConnectionFactory.php';
+require __DIR__ . '/../model/Admin.php';
+require __DIR__ . '/../dao/AdministradorDao.php';
 
-$administrador = new Admin();
-$administradorDao = new AdministradorDao();
-if(isset($_POST['cadastrar'])){
-    $paciente->setNome($_POST['nome']);
-    $paciente->setEmail($_POST['email']);
-    $paciente->setSenha($_POST['senha']);
-    $paciente->setDataNascimento($_POST['data_nascimento']);
-    $paciente->setGenero($_POST['genero']);
-    $paciente->setEstado($_POST['estado']);
-    $paciente->setCidade($_POST['cidade']);
-    $paciente->setMedicacao($_POST['medicacao']);
-    $paciente->setDoenca($_POST['doenca']);
-    $pacienteDao->inserir($paciente);
-    header("Location: ../loginCadastro.php");
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
+    $administradorDao = new AdministradorDao();
+
+    $administrador = new Admin();
+    $administrador->setNome($_POST['nome']);
+    $administrador->setNomeSocial($_POST['nome_social']);
+    $administrador->setEmail($_POST['email']);
+    $administrador->setSenha($_POST['senha']);
+    $administrador->setDataNascimento($_POST['data_nascimento']);
+    $administrador->setGenero($_POST['genero']);
+    $administrador->setUltimoLogin($_POST['ultimoLogin']);
+    $administrador->setDocumento($_POST['documento']);
+    $administrador->setFormacao($_POST['formacao']);
+    $administrador->setEspecialidade($_POST['especialidade']);
+
+    $resultado = $administradorDao->inserir($administrador);
+
+    if ($resultado) {
+        echo "Administrador inserido com sucesso!";
+    } else {
+        echo "Falha na inserção.";
+    }
+
+    // Redirecionamento após inserção
+    header('Location: ../view/homePage/index.php');
+    exit();
 }
-
 ?>

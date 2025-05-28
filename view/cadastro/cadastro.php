@@ -14,10 +14,17 @@
     <div class="container-fluid p-0">
         <header><?php require_once ('../header/header.php'); ?></header>
         <main class="mt-5">
+            <?php
+                session_start();
+                if (isset($_SESSION['erro'])) {
+                    echo '<div class="alert alert-danger text-center w-50 mx-auto">' . $_SESSION['erro'] . '</div>';
+                    unset($_SESSION['erro']); // limpar após exibir
+                }
+            ?>
             <section class="d-flex flex-column justify-content-center w-50 mx-auto">
                 <h1 class="my-5 text-center">Informações Pessoais</h1>
                 <div class="border rounded p-4">
-                    <form action="../../controller/pacienteController.php" method="post">
+                    <form action="../../controller/PacienteController.php" method="post">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome Completo</label>
                             <input type="text" class="form-control" name="nome" placeholder="Seu nome completo" maxlength="100" required>
@@ -36,7 +43,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="confirma_senha" class="form-label">Confirme sua senha</label>
-                            <input type="text" class="form-control" name="confirma_senha" placeholder="Confirme sua senha" maxlength="30" required>
+                            <input type="password" class="form-control" name="confirma_senha" placeholder="Confirme sua senha" maxlength="30" required>
                         </div>
                         <div class="mb-3">
                             <label for="data_nascimento" class="form-label">Data de Nascimento</label>
@@ -48,8 +55,8 @@
                                 <input type="text" class="form-control" name="estado" maxlength="25">
                             </div>
                             <div class="mb-3 mx-3">
-                                <label for="estado" class="form-label">Cidade</label>
-                                <input type="text" class="form-control" name="estado" maxlength="30">
+                                <label for="cidade" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" name="cidade" maxlength="30">
                             </div>
                         </div>
                         
@@ -80,52 +87,52 @@
                             <p class="label-genero">Tipo sanguíneo</p>
                             <div class="d-flex justify-content-around">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="A+">
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="A+">
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         A+
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="B+">
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="B+">
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         B+
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="AB+" checked>
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="AB+" checked>
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         AB+
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="O+" checked>
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="O+" checked>
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         O+
                                     </label>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-around">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="A-">
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="A-">
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         A-
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="B-">
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="B-">
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         B-
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="AB-" checked>
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="AB-" checked>
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         AB-
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sangue" value="O-" checked>
-                                    <label class="form-check-label" for="sangue">
+                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="O-" checked>
+                                    <label class="form-check-label" for="tipo_sanguineo">
                                         O-
                                     </label>
                                 </div>
@@ -139,11 +146,12 @@
                             <label for="doenca" class="form-label">Doenças ou Condições de Saúde</label>
                             <textarea class="form-control" name="doenca" placeholder="Informe suas condições de saúde" rows="5" maxlength="500"></textarea>
                         </div>
-                        <button class="btn btn-primary">Salvar informações</button>
+                        <input type="submit" name="cadastrar" value="Salvar">
                     </form>
                 </div>
             </section>
-        </main> 
+        </main>
+        <?php require '../footer/footer.php'?>
     </div>
 </body>
 </html>

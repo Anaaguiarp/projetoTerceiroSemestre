@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,7 +21,7 @@
             <section class="d-flex flex-column justify-content-center w-25 mx-auto">
                 <h1 class="my-5 text-center">Entrar</h1>
                 <div class="border rounded p-4">
-                    <form action="pagHome.php" method="post"> <!--pag demonstrativa-->
+                    <form action="../../controller/valida_login.php" method="post"> <!--pag demonstrativa-->
                         <div class="mb-3">
                             <label for="email_login" class="form-label">Email</label>
                             <input type="email" class="form-control" maxlength="100" id="email_login" name="email_login" placeholder="Digite seu e-mail">
@@ -27,7 +31,7 @@
                             <input type="password" class="form-control" maxlength="10" name="senha_login" id="senha_login" placeholder="Digite sua senha">
                         </div>
                             <button type="submit" class="botao btn w-100 my-4 fw-bold">Entrar</button>
-                            <p><u><a href="esqSenha.php">Esqueceu sua senha?</a><!--pag demonstrativa--></u></p>
+                            <p><u><a href="#">Esqueceu sua senha?</a><!--pag demonstrativa--></u></p>
                     </form>
                 </div>
                 <div class="text-center mt-5">
@@ -36,6 +40,7 @@
                 </div>        
             </section>
         </main>
+        <?php require '../footer/footer.php' ?>
     </div>
 </body>
 </html>

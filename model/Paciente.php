@@ -7,17 +7,6 @@
         private $doenca;
         private $tipo_sanguineo;
 
-        public function __construct(){};
-
-        public function __construct($id, $nome, $email, $senha, $data_nascimento, $genero, $estado, $cidade, $medicacao, $doenca, $tipo_sanguineo){
-            parent::__construct($id, $nome, $email, $senha, $data_nascimento, $genero);
-            $this->estado = $estado;
-            $this->cidade = $cidade;
-            $this->medicacao = $medicacao;
-            $this->doenca = $doenca;
-            $this->tipo_sanguineo = $tipo_sanguineo;
-        }
-
         public function setEstado($estado){
             $this->estado = $estado;
         }
