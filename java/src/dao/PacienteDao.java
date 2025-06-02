@@ -1,10 +1,10 @@
 package dao;
 
-import model.Paciente;
 import java.util.ArrayList;
 import java.util.List;
+import model.Paciente;
 
-public class PacienteDAO {
+public class PacienteDao {
 
     public void salvarPaciente(Paciente paciente) {
         if(paciente.getId() == 0){
@@ -34,7 +34,7 @@ public class PacienteDAO {
 
                 if(email.equals(storedEmail) && senha.equals(storedSenha)){
                     int id = Integer.parseInt(FileHandler.getValueFromInsert(line, "id"));
-                    String nome = FileHander.getValueFromInsert(line, "nome");
+                    String nome = FileHandler.getValueFromInsert(line, "nome");
                     return new Paciente(id, nome, storedEmail, storedSenha);
                 }
             }
@@ -58,6 +58,22 @@ public class PacienteDAO {
         return null;
     }
 
+    public Paciente buscarPorEmail(String email) {
+        List<String> linhas = FileHandler.readLines();
+        for (String linha : linhas) {
+            if (linha.startsWith("INSERT INTO Paciente")) {
+                String storedEmail = FileHandler.getValueFromInsert(linha, "email");
+                if (storedEmail != null && storedEmail.equals(email)) {
+                    int id = Integer.parseInt(FileHandler.getValueFromInsert(linha, "id"));
+                    String nome = FileHandler.getValueFromInsert(linha, "nome");
+                    String senha = FileHandler.getValueFromInsert(linha, "senha");
+                    return new Paciente(id, nome, storedEmail, senha);
+                }
+            }
+        }
+        return null;
+    }
+
     public List<Paciente> listarTodos() {
         List<String> linhas = FileHandler.readLines();
         List<Paciente> pacientes = new ArrayList<>();
@@ -68,8 +84,7 @@ public class PacienteDAO {
 
                 p.setId(Integer.parseInt(FileHandler.getValueFromInsert(linha, "id")));
                 p.setNome(FileHandler.getValueFromInsert(linha, "nome"));
-                p.setCpf(FileHandler.getValueFromInsert(linha, "cpf"));
-                p.setDataNascimento(FileHandler.getValueFromInsert(linha, "dataNascimento"));
+                p.setDataNascimento(FileHandler.getValueFromInsert(linha, "data_nascimento"));
                 p.setNomeSocial(FileHandler.getValueFromInsert(linha, "nome_social"));
                 p.setMedicacao(FileHandler.getValueFromInsert(linha, "medicacao"));
                 p.setDoenca(FileHandler.getValueFromInsert(linha, "doenca"));
