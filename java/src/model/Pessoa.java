@@ -10,13 +10,11 @@ public class Pessoa{
 
     public Pessoa(){};
 
-    public Pessoa(int id, String nome, String email, String senha, String data_nascimento, String genero){
+    public Pessoa(int id, String nome, String email, String senha){
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.data_nascimento = data_nascimento;
-        this.genero = genero;
     }
 
     public int getId() {
@@ -51,11 +49,11 @@ public class Pessoa{
         this.senha = senha;
     }
 
-    public String getData_nascimento() {
+    public String getDataNascimento() {
         return this.data_nascimento;
     }
 
-    public void setData_nascimento(String data_nascimento) {
+    public void setDataNascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 

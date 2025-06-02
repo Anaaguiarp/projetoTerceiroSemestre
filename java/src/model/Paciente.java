@@ -6,11 +6,17 @@ public class Paciente extends Pessoa{
     private String doenca;
     private String tipo_sanguineo;
 
-    public String getNome_social() {
+    public Paciente(){};
+
+    public Paciente(int id, String nome, String email, String senha){
+        super(id, nome, email, senha);
+    }
+
+    public String getNomeSocial() {
         return this.nome_social;
     }
 
-    public void setNome_social(String nome_social) {
+    public void setNomeSocial(String nome_social) {
         this.nome_social = nome_social;
     }
 
@@ -30,11 +36,11 @@ public class Paciente extends Pessoa{
         this.doenca = doenca;
     }
 
-    public String getTipo_sanguineo() {
+    public String getTipoSanguineo() {
         return this.tipo_sanguineo;
     }
 
-    public void setTipo_sanguineo(String tipo_sanguineo) {
+    public void setTipoSanguineo(String tipo_sanguineo) {
         this.tipo_sanguineo = tipo_sanguineo;
     }
 
