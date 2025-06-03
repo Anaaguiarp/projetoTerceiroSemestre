@@ -1,8 +1,9 @@
 <?php
-    class Admin extends Pessoa {
+    class Administrador extends Pessoa {
         private $ultimoLogin;
-        private $documento;
+        private $conselhoProfissional;
         private $formacao;
+        private $registroProfissional;
         private $especialidade;
 
         public function getUltimoLogin(){
@@ -13,12 +14,12 @@
             $this->ultimoLogin = $ultimoLogin;
         }
 
-        public function getDocumento(){
-            return $this->documento;
+        public function getConselhoProfissional(){
+            return $this->conselhoProfissional;
         }
 
-        public function setDocumento($documento){
-            $this->documento = $documento;
+        public function setConselhoProfissional($conselhoProfissional){
+            $this->conselhoProfissional = $conselhoProfissional;
         }
 
         public function getFormacao(){
@@ -27,6 +28,14 @@
 
         public function setFormacao($formacao){
             $this->formacao = $formacao;
+        }
+
+        public function getRegistroProfissional(){
+            return $this->registroProfissional;
+        }
+
+        public function setRegistroProfissional($registroProfissional){
+            $this->registroProfissional = $registroProfissional;
         }
         
         public function getEspecialidade(){
@@ -38,7 +47,7 @@
         }
 
         public function __toString(){
-            parent::__toString()." Último login: {$this->ultimoLogin}\nFormação: {$this->formacao}\nEspecialidade: {$this->especialidade}";
+            parent::__toString()." Último login: {$this->ultimoLogin}\nConselho Profissional: {$this->conselhoProfissional}\nFormação: {$this->formacao}\nRegistro Profissional: {$this->registroProfissional}\nEspecialidade: {$this->especialidade}";
         }
     }
 ?>

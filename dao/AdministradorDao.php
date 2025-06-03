@@ -2,7 +2,7 @@
     class AdministradorDao {
         public function inserir(Administrador $admin) {
             try {
-                $sql = "INSERT INTO administrador (nome, nome_social, email, senha, data_nascimento, genero, ultimoLogin, documento, formacao, especialidade) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :ultimoLogin, :documento, :formacao, :especialidade)";
+                $sql = "INSERT INTO administrador (nome, nome_social, email, senha, data_nascimento, genero, ultimoLogin, conselhoProfissional, formacao, registroProfissional, especialidade) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :ultimoLogin, :conselhoProfissional, :formacao, :registroProfissional, :especialidade)";
                 $conn = ConnectionFactory::getConnection()->prepare($sql);
                 $conn->bindValue(":nome", $admin->getNome());
                 $conn->bindValue(":nome_social", $admin->getNomeSocial());
@@ -11,8 +11,9 @@
                 $conn->bindValue(":data_nascimento", $admin->getDataNascimento());
                 $conn->bindValue(":genero", $admin->getGenero());
                 $conn->bindValue(":ultimoLogin", $admin->getUltimoLogin());
-                $conn->bindValue(":documento", $admin->getDocumento());
+                $conn->bindValue(":conselhoProfissional", $admin->getConselhoProfissional());
                 $conn->bindValue(":formacao", $admin->getFormacao());
+                $conn->bindValue(":registroProfissional", $admin->getRegistroProfissional());
                 $conn->bindValue(":especialidade", $admin->getEspecialidade());
                 return $conn->execute();
             } catch (PDOException $ex) {
@@ -36,7 +37,7 @@
         }
 
         public function listaAdministrador($row) {
-            $admin = new Admin();
+            $admin = new Administrador();
             $admin->setId($row['id']);
             $admin->setNome($row['nome']);
             $admin->setNomeSocial($row['nome_social']);
@@ -45,8 +46,9 @@
             $admin->setDataNascimento($row['data_nascimento']);
             $admin->setGenero($row['genero']);
             $admin->setUltimoLogin($row['ultimoLogin']);
-            $admin->setDocumento($row['documento']);
+            $admin->setConselhoProfissional($row['conselhoProfissional']);
             $admin->setFormacao($row['formacao']);
+            $admin->setRegistroProfissional($row['registroProfissional']);
             $admin->setEspecialidade($row['especialidade']);
             return $admin;
         }

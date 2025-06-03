@@ -54,9 +54,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3"><!-- ADICIONAR ESSA SESSÃO AOS DEMAIS PROCESSOS DO CÓGIDO -->
-                        <label for="conselho" class="form-label">Conselho Profissional</label>
-                        <select class="form-select" id="conselho" name="conselho" required>
+                    <div class="mb-3">
+                        <label for="conselhoProfissional" class="form-label">Conselho Profissional</label>
+                        <select class="form-select" id="conselho" name="conselhoProfissional" required>
                             <option value="">Selecione...</option>
                             <option value="CRM">CRM - Medicina</option>
                             <option value="COREN">COREN - Enfermagem</option>
@@ -91,9 +91,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3"><!-- ADICIONAR ESSA SESSÃO AOS DEMAIS PROCESSOS DO CÓGIDO -->
-                        <label for="registro" class="form-label">Número do Registro Profissional</label>
-                        <input type="text" class="form-control" name="registro" placeholder="Ex: 123456/SP" required>
+                    <div class="mb-3">
+                        <label for="registroProfissional" class="form-label">Número do Registro Profissional</label>
+                        <input type="text" class="form-control" name="registroProfissional" placeholder="Ex: 123456/SP" required>
                     </div>
                     <div class="mb-4">
                         <label for="especialidade" class="form-label">Especialidade/Área de Estudo: </label>
