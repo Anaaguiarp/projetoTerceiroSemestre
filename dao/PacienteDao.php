@@ -1,5 +1,6 @@
 <?php
-    class PacienteDao {
+    require_once 'ConnectionFactory.php'
+;    class PacienteDao {
         public function inserir(Paciente $paciente) {
             try {
                 $sql = "INSERT INTO paciente (nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :estado, :cidade, :medicacao, :doenca, :tipo_sanguineo)";
@@ -71,5 +72,72 @@
 
             return null;
         }
+
+        public function excluir($id) {
+            try {
+                $conn = ConnectionFactory::getConnection();
+                $stmt = $conn->prepare("DELETE FROM paciente WHERE id = :id");
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                return $stmt->execute();
+            } catch (PDOException $ex) {
+                echo "<p>Erro ao excluir paciente: $ex</p>";
+            }
+        }
+
+        public function buscarPorId($id) {
+            $conn = ConnectionFactory::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM paciente WHERE id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                return $this->listaPaciente($row);
+            }
+
+            return null;
+        }
+
+        public function atualizar(Paciente $paciente) {
+            try {
+                $sql = "UPDATE paciente SET 
+                            nome = :nome,
+                            nome_social = :nome_social,
+                            email = :email,
+                            data_nascimento = :data_nascimento,
+                            genero = :genero,
+                            estado = :estado,
+                            cidade = :cidade,
+                            medicacao = :medicacao,
+                            doenca = :doenca,
+                            tipo_sanguineo = :tipo_sanguineo";
+                // Só atualiza a senha se foi enviada
+                if (!empty($paciente->getSenha())) {
+                    $sql .= ", senha = :senha";
+                }
+
+                $sql .= " WHERE id = :id";
+
+                $conn = ConnectionFactory::getConnection()->prepare($sql);
+                $conn->bindValue(":id", $paciente->getId());
+                $conn->bindValue(":nome", $paciente->getNome());
+                $conn->bindValue(":nome_social", $paciente->getNomeSocial());
+                $conn->bindValue(":email", $paciente->getEmail());
+                $conn->bindValue(":data_nascimento", $paciente->getDataNascimento());
+                $conn->bindValue(":genero", $paciente->getGenero());
+                $conn->bindValue(":estado", $paciente->getEstado());
+                $conn->bindValue(":cidade", $paciente->getCidade());
+                $conn->bindValue(":medicacao", $paciente->getMedicacao());
+                $conn->bindValue(":doenca", $paciente->getDoenca());
+                $conn->bindValue(":tipo_sanguineo", $paciente->getTipoSanguineo());
+
+                if (!empty($paciente->getSenha())) {
+                    $conn->bindValue(":senha", $paciente->getSenha());
+                }
+
+                return $conn->execute();
+        } catch (PDOException $ex) {
+                echo "<p>Erro ao atualizar: $ex</p>";
+        }
+    }
     }
 ?>

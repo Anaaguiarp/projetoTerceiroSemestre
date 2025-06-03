@@ -1,5 +1,5 @@
 <?php
-
+    require_once 'Pessoa.php';
     class Paciente extends Pessoa{
         private $estado;
         private $cidade;
