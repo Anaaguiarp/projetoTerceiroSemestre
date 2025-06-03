@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <style>
     .nav-login{
         font-family: "Lexend Giga", sans-serif;
@@ -20,8 +26,10 @@
         <li class="d-flex justify-content-between align-items-center text-decoration-none">
             <img src="../img/perfil.png" alt="Imagem de perfil" style="width: 8%;">
             <span>
-                <?php if (isset($_SESSION['usuario'])): ?>
-                    <strong><?php echo htmlspecialchars($_SESSION['usuario']['nome']); ?></strong>
+                <?php if (isset($_SESSION['paciente'])): ?>
+                    <a href="../perfil/perfil.php" class="fw-bold text-decoration-none text-primary">
+                        <?php echo htmlspecialchars($_SESSION['usuario']['nome']); ?>
+                    </a>
                     <a href="../logout.php" class="ms-3">Sair</a>
                 <?php else: ?>
                     <a href="../login/login.php">Faça login</a>

@@ -65,13 +65,13 @@
                 $paciente->setId($row['id']);
                 $paciente->setNome($row['nome']);
                 $paciente->setEmail($row['email']);
-                $paciente->setSenha($row['senha']);
-                // Adicione os outros campos se quiser
+                $paciente->setSenha($row['senha']); // senha precisa estar com hash
                 return $paciente;
             }
 
             return null;
         }
+
 
         public function excluir($id) {
             try {

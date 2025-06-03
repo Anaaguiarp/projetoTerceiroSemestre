@@ -1,31 +1,34 @@
 <?php
-session_start();
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
+    session_start();
 
-require __DIR__ . '/../dao/ConnectionFactory.php';
-require __DIR__ . '/../dao/PacienteDao.php';
+    require __DIR__ . '/../dao/ConnectionFactory.php';
+    require __DIR__ . '/../dao/PacienteDao.php';
+    require __DIR__ . '/../model/Paciente.php';
 
-// Verifica se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $email = $_POST['email'] ?? '';
+        $senha = $_POST['senha'] ?? '';
 
-    $pacienteDao = new PacienteDao();
-    $paciente = $pacienteDao->buscarPorEmail($email); // você precisa ter esse método no PacienteDao
+        $pacienteDao = new PacienteDao();
+        $paciente = $pacienteDao->buscarPorEmail($email);
 
-    if ($paciente && password_verify($senha, $paciente->getSenha())) {
-        // Login válido
-        $_SESSION['usuario'] = [
-            'id' => $paciente->getId(),
-            'nome' => $paciente->getNome(),
-            'email' => $paciente->getEmail()
-        ];
-        $_SESSION['sucesso'] = 'Login realizado com sucesso!';
-        header('Location: ../view/homePage/index.php');
-        exit();
-    } else {
-        $_SESSION['erro'] = 'E-mail ou senha inválidos.';
-        header('Location: ../view/login/login.php');
-        exit();
+        if ($paciente && password_verify($senha, $paciente->getSenha())) {
+            $_SESSION['paciente'] = [
+                'id' => $paciente->getId(),
+                'nome' => $paciente->getNome(),
+                'email' => $paciente->getEmail()
+            ];
+            $_SESSION['sucesso'] = 'Login realizado com sucesso!';
+            header('Location: ../view/homePage/index.php');
+            exit();
+        } else {
+            $_SESSION['erro'] = 'E-mail ou senha inválidos.';
+            header('Location: ../view/login/login.php');
+            exit();
+        }
     }
-}
 ?>
