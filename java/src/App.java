@@ -23,7 +23,7 @@ public class App {
             System.out.print("Digite sua senha: ");
             String senha = sc.nextLine();
 
-            System.out.print("Informe sua data de nascimento (DD-MM-AAAA): ");
+            System.out.print("Informe sua data de nascimento (AAAA-MM-DD): ");
             String dataNascimento = sc.nextLine();
 
             System.out.print("Informe seu gênero ('Feminino', 'Masculino' ou 'Outros'): ");
