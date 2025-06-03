@@ -8,9 +8,14 @@ require __DIR__ . '/../model/Administrador.php';
 require __DIR__ . '/../dao/AdministradorDao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
+    if ($_POST['senha'] !== $_POST['confirmacao_senha']) {
+        echo "As senhas não coincidem.";
+        exit();
+    }
+
     $administradorDao = new AdministradorDao();
 
-    $administrador = new Admin();
+    $administrador = new Administrador();
     $administrador->setNome($_POST['nome']);
     $administrador->setNomeSocial($_POST['nome_social']);
     $administrador->setEmail($_POST['email']);
@@ -19,8 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
     $administrador->setDataNascimento($_POST['data_nascimento']);
     $administrador->setGenero($_POST['genero']);
     $administrador->setUltimoLogin($_POST['ultimoLogin']);
-    $administrador->setDocumento($_POST['documento']);
+    $administrador->setConselhoProfissional($_POST['conselhoProfissional']);
     $administrador->setFormacao($_POST['formacao']);
+    $administrador->setRegistroProfissional($_POST['registroProfissional']);
     $administrador->setEspecialidade($_POST['especialidade']);
 
     $resultado = $administradorDao->inserir($administrador);
@@ -30,9 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
     } else {
         echo "Falha na inserção.";
     }
-
-    // Redirecionamento após inserção
-    header('Location: ../view/homePage/index.php');
     exit();
 }
 ?>
