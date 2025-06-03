@@ -3,6 +3,7 @@ package model;
 public class Pessoa{
     private int id;
     private String nome;
+    private String nome_social;
     private String email;
     private String senha;
     private String data_nascimento;
@@ -10,9 +11,10 @@ public class Pessoa{
 
     public Pessoa(){};
 
-    public Pessoa(int id, String nome, String email, String senha){
+    public Pessoa(int id, String nome, String nome_social, String email, String senha){
         this.id = id;
         this.nome = nome;
+        this.nome_social = nome_social;
         this.email = email;
         this.senha = senha;
     }
@@ -31,6 +33,14 @@ public class Pessoa{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getNome_social() {
+        return this.nome_social;
+    }
+
+    public void setNome_social(String nome_social) {
+        this.nome_social = nome_social;
     }
 
     public String getEmail() {
@@ -67,6 +77,6 @@ public class Pessoa{
 
     @Override
     public String toString(){
-        return "Usuário\nNome: "+this.nome+". E-mail: "+this.email+". Data de nascimento: "+this.data_nascimento+". Gênero: "+this.genero;
+        return "Usuário\nNome: "+this.nome+". Nome Social: "+this.nome_social+". E-mail: "+this.email+". Data de nascimento: "+this.data_nascimento+". Gênero: "+this.genero;
     }
 }

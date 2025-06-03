@@ -14,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
     $administrador->setNome($_POST['nome']);
     $administrador->setNomeSocial($_POST['nome_social']);
     $administrador->setEmail($_POST['email']);
-    $administrador->setSenha($_POST['senha']);
+    $senhaCriptografada = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    $administrador->setSenha($senhaCriptografada);
     $administrador->setDataNascimento($_POST['data_nascimento']);
     $administrador->setGenero($_POST['genero']);
     $administrador->setUltimoLogin($_POST['ultimoLogin']);
