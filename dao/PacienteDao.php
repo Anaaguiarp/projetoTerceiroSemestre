@@ -61,17 +61,11 @@
             $stmt->execute();
 
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $paciente = new Paciente();
-                $paciente->setId($row['id']);
-                $paciente->setNome($row['nome']);
-                $paciente->setEmail($row['email']);
-                $paciente->setSenha($row['senha']); // senha precisa estar com hash
-                return $paciente;
+                return $this->listaPaciente($row);
             }
 
             return null;
         }
-
 
         public function excluir($id) {
             try {
