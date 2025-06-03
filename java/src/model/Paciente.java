@@ -7,7 +7,7 @@ public class Paciente extends Pessoa{
 
     public Paciente(){};
 
-    public Paciente(int id, String nome, String nome_social String email, String senha){
+    public Paciente(int id, String nome, String nome_social, String email, String senha){
         super(id, nome, nome_social, email, senha);
     }
 
@@ -37,6 +37,7 @@ public class Paciente extends Pessoa{
 
     @Override
     public String toString(){
-        return super.toString()+". Nome social: "+this.nome_social+". Medicações: "+this.medicacao+". Doenças: "+this.doenca+". Tipo sanguíneo: "+this.tipo_sanguineo;
+        return super.toString()+". Medicações: "+this.medicacao+". Doenças: "+this.doenca+". Tipo sanguíneo: "+this.tipo_sanguineo;
     }
+    
 }

@@ -1,6 +1,6 @@
 <?php
     class AdministradorDao {
-        public function inserir(Admin $admin) {
+        public function inserir(Administrador $admin) {
             try {
                 $sql = "INSERT INTO administrador (nome, nome_social, email, senha, data_nascimento, genero, ultimoLogin, documento, formacao, especialidade) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :ultimoLogin, :documento, :formacao, :especialidade)";
                 $conn = ConnectionFactory::getConnection()->prepare($sql);

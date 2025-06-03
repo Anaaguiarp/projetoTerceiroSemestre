@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require __DIR__ . '/../dao/ConnectionFactory.php';
-require __DIR__ . '/../model/Admin.php';
+require __DIR__ . '/../model/Administrador.php';
 require __DIR__ . '/../dao/AdministradorDao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {

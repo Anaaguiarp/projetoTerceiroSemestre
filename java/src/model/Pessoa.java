@@ -79,4 +79,8 @@ public class Pessoa{
     public String toString(){
         return "Usuário\nNome: "+this.nome+". Nome Social: "+this.nome_social+". E-mail: "+this.email+". Data de nascimento: "+this.data_nascimento+". Gênero: "+this.genero;
     }
+
+    public String toStringSql(){
+        return "INSERT INTO pessoa (nome, nome_social, email, senha, data_nascimento, genero) VALUES ('"+this.nome+"', '"+this.nome_social+"', '"+this.email+"', '"+this.senha+"', '"+this.data_nascimento+"', '"+this.genero+"');\n";
+    }
 }
