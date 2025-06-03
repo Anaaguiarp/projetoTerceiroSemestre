@@ -53,7 +53,7 @@ function listar() {
     $pacienteDao = new PacienteDao();
     $lista = $pacienteDao->read();
     foreach ($lista as $pac) {
-        echo "<tr>
+        echo "<tr class=\"mb-4\">
             <td>{$pac->getId()}</td>
             <td>{$pac->getNome()}</td>
             <td>{$pac->getNomeSocial()}</td>

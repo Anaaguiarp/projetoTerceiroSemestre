@@ -1,7 +1,5 @@
 <?php
-
     require '../dao/ConnectionFactory.php';
-
 ?>
 
 <!DOCTYPE html>

@@ -1,23 +1,14 @@
 package model;
 
 public class Paciente extends Pessoa{
-    private String nome_social;
     private String medicacao;
     private String doenca;
     private String tipo_sanguineo;
 
     public Paciente(){};
 
-    public Paciente(int id, String nome, String email, String senha){
-        super(id, nome, email, senha);
-    }
-
-    public String getNomeSocial() {
-        return this.nome_social;
-    }
-
-    public void setNomeSocial(String nome_social) {
-        this.nome_social = nome_social;
+    public Paciente(int id, String nome, String nome_social String email, String senha){
+        super(id, nome, nome_social, email, senha);
     }
 
     public String getMedicacao() {

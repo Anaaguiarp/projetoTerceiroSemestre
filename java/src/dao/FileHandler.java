@@ -17,7 +17,7 @@ public class FileHandler {
         try (FileWriter fw = new FileWriter(FILE_NAME, true);
             PrintWriter pw = new PrintWriter(fw)) {
             pw.println(insertStatement);
-        } catch (IOException e) {
+        } catch (IOException e) { // Exception para Input Output
             System.err.println("Erro ao escrever no arquivo '" + FILE_NAME + "': " + e.getMessage());
         }
     }
