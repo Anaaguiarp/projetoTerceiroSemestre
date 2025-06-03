@@ -20,7 +20,15 @@
             $_SESSION['paciente'] = [
                 'id' => $paciente->getId(),
                 'nome' => $paciente->getNome(),
-                'email' => $paciente->getEmail()
+                'nome_social' => $paciente->getNomeSocial(),
+                'email' => $paciente->getEmail(),
+                'data_nascimento' => $paciente->getDataNascimento(),
+                'estado' => $paciente->getEstado(),
+                'cidade' => $paciente->getCidade(),
+                'genero' => $paciente->getGenero(),
+                'tipo_sanguineo' => $paciente->getTipoSanguineo(),
+                'medicacao' => $paciente->getMedicacao(),
+                'doencas' => $paciente->getDoenca()
             ];
             $_SESSION['sucesso'] = 'Login realizado com sucesso!';
             header('Location: ../view/homePage/index.php');
