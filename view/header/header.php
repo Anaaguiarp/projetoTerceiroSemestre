@@ -48,6 +48,11 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a href="../perfil/perfil.php">' . htmlspecialchars($_SESSION['paciente']['nome']) . '</a>
                             <a href="../logout/logout.php" class="btn btn-sair">Sair</a>
                         </span>';
+                } elseif (isset($_SESSION['admin'])) {
+                    echo '<span>
+                            <a href="../perfil/perfilAdministrador.php">' . htmlspecialchars($_SESSION['admin']['nome']) . '</a>
+                            <a href="../logout/logout.php" class="btn btn-sair">Sair</a>
+                        </span>';
                 } else {
                     echo '<span>
                             <a href="../login/login.php">Faça login</a>

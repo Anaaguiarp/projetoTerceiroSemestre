@@ -42,7 +42,6 @@ class AdministradorDao {
         }
     }
 
-    // resto dos métodos usando $this->conexao, ex:
     public function deletar($id) {
         $sql = "DELETE FROM administrador WHERE id = :id";
         $stmt = $this->conexao->prepare($sql);
@@ -106,6 +105,31 @@ class AdministradorDao {
             $admin->setRegistroProfissional($row['registroProfissional']);
             $admin->setEspecialidade($row['especialidade']);
             return $admin;
+    }
+
+    public function buscarPorEmail($email) {
+        $sql = "SELECT * FROM administrador WHERE email = :email";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($dados) {
+            $adm = new Administrador();
+            $adm->setId($dados['id']);
+            $adm->setNome($dados['nome']);
+            $adm->setNomeSocial($dados['nome_social']);
+            $adm->setEmail($dados['email']);
+            $adm->setSenha($dados['senha']);
+            $adm->setDataNascimento($dados['data_nascimento']);
+            $adm->setGenero($dados['genero']);
+            $adm->setConselhoProfissional($dados['conselhoProfissional']);
+            $adm->setFormacao($dados['formacao']);
+            $adm->setRegistroProfissional($dados['registroProfissional']);
+            $adm->setEspecialidade($dados['especialidade']);
+            return $adm;
+        }
+        return null;
     }
 }
 ?>

@@ -16,7 +16,6 @@
         <header><?php require_once ('../header/header.php'); ?></header>
         <main class="mt-5">
             <?php
-                session_start();
                 if (isset($_SESSION['erro'])) {
                     echo '<div class="alert alert-danger text-center w-50 mx-auto">' . $_SESSION['erro'] . '</div>';
                     unset($_SESSION['erro']); // limpar após exibir
