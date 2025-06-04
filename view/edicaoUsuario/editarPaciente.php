@@ -25,6 +25,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar usuário</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="editarPaciente.css">
 </head>
@@ -39,47 +42,47 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Nome:</label>
-                    <input class="form-control" type="text" name="nome" value="<?= htmlspecialchars($paciente->getNome()) ?>" required>
+                    <input type="text" name="nome" value="<?= htmlspecialchars($paciente->getNome()) ?>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Nome Social:</label>
-                    <input class="form-control" type="text" name="nome_social" value="<?= htmlspecialchars($paciente->getNomeSocial()) ?>">
+                    <input type="text" name="nome_social" value="<?= htmlspecialchars($paciente->getNomeSocial()) ?>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Email:</label>
-                    <input class="form-control" type="email" name="email" value="<?= htmlspecialchars($paciente->getEmail()) ?>" required>
+                    <input type="email" name="email" value="<?= htmlspecialchars($paciente->getEmail()) ?>" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Nova senha (opcional):</label>
-                    <input class="form-control" type="password" name="senha">
+                    <input type="password" name="senha">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Data de nascimento:</label>
-                    <input class="form-control" type="date" name="data_nascimento" value="<?= $paciente->getDataNascimento() ?>">
+                    <input type="date" name="data_nascimento" value="<?= $paciente->getDataNascimento() ?>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Gênero:</label>
-                    <input class="form-control" type="text" name="genero" value="<?= htmlspecialchars($paciente->getGenero()) ?>">
+                    <input type="text" name="genero" value="<?= htmlspecialchars($paciente->getGenero()) ?>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Estado:</label>
-                    <input class="form-control" type="text" name="estado" value="<?= htmlspecialchars($paciente->getEstado()) ?>">
+                    <input type="text" name="estado" value="<?= htmlspecialchars($paciente->getEstado()) ?>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Cidade:</label>
-                    <input class="form-control" type="text" name="cidade" value="<?= htmlspecialchars($paciente->getCidade()) ?>">
+                    <input type="text" name="cidade" value="<?= htmlspecialchars($paciente->getCidade()) ?>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Medicação:</label>
-                    <input class="form-control" type="text" name="medicacao" value="<?= htmlspecialchars($paciente->getMedicacao()) ?>">
+                    <input type="text" name="medicacao" value="<?= htmlspecialchars($paciente->getMedicacao()) ?>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Doença:</label>
-                    <input class="form-control" type="text" name="doenca" value="<?= htmlspecialchars($paciente->getDoenca()) ?>">
+                    <input type="text" name="doenca" value="<?= htmlspecialchars($paciente->getDoenca()) ?>">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Tipo Sanguíneo:</label>
-                    <input class="form-control" type="text" name="tipo_sanguineo" value="<?= htmlspecialchars($paciente->getTipoSanguineo()) ?>">
+                    <input type="text" name="tipo_sanguineo" value="<?= htmlspecialchars($paciente->getTipoSanguineo()) ?>">
                 </div>
                 <button class="btn botao" type="submit">Salvar</button>
             </form>
