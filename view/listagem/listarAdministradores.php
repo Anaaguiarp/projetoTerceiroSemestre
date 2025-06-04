@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../../dao/ConnectionFactory.php';
+require_once __DIR__ . '/../../dao/ConnectionFactory.php';
 require_once __DIR__ . '/../../dao/AdministradorDao.php';
 require __DIR__ . '/../../model/Administrador.php';
 
@@ -26,8 +26,8 @@ function listarAdministradores() {
             <td>{$adm->getRegistroProfissional()}</td>
             <td>{$adm->getEspecialidade()}</td>
             <td>
-            <a href='editar.php?id={$adm->getId()}' class='btn btn-sm btn-warning'>Editar</a>
-            <a href='excluir.php?id={$adm->getId()}' class='btn btn-sm btn-danger'>Excluir</a>
+                <a href='editar.php?id=" . $adm->getId() . "' class='btn btn-sm btn-secondary'>Editar</a>
+                <a href='excluir.php?id=" . $adm->getId() . "' class='btn btn-sm btn-danger' onclick=\"return confirm('Tem certeza que deseja excluir este administrador?')\">Excluir</a>
             </td>
 
 

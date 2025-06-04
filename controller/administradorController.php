@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require __DIR__ . '/../dao/ConnectionFactory.php';
+require_once __DIR__ . '/../dao/ConnectionFactory.php';
 require __DIR__ . '/../model/Administrador.php';
 require __DIR__ . '/../dao/AdministradorDao.php';
 

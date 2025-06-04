@@ -8,7 +8,7 @@ class ConnectionFactory {
             $host = 'localhost';
             $dbName = 'projeto_cuidados_paliativos';
             $user = 'root';
-            $pass = '1234';
+            $pass = '';
             $port = '3306';
 
             try {
