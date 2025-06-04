@@ -29,15 +29,14 @@
                 <div class="info-pessoal">
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Nome Completo:</p>
-                        <p class="dado"><?php echo htmlspecialchars($paciente['nome']); ?></p>
+                        <p class="dado">
+                            <?php echo htmlspecialchars($paciente['nome']); ?>
+                        </p>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Nome Social:</p>
                         <p class="dado">
-                            <?php
-                                echo !empty($paciente['nome_social']) 
-                                    ? htmlspecialchars($paciente['nome_social']) 
-                                    : 'Não informado';
+                            <?php echo !empty($paciente['nome_social']) ? htmlspecialchars($paciente['nome_social']) : 'Não informado';
                             ?>
                         </p>
                     </div>
@@ -48,10 +47,7 @@
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Data de Nascimento:</p>
                         <p class="dado">
-                            <?php
-                                echo !empty($paciente['data_nascimento']) 
-                                    ? htmlspecialchars($paciente['data_nascimento']) 
-                                    : 'Não informado';
+                            <?php echo !empty($paciente['data_nascimento']) ? htmlspecialchars($paciente['data_nascimento']) : 'Não informado';
                             ?>
                         </p>
                     </div>
@@ -59,20 +55,14 @@
                         <div>
                             <p class="tipo-dado">Estado</p>
                             <p class="dado">
-                                <?php
-                                    echo !empty($paciente['estado']) 
-                                        ? htmlspecialchars($paciente['estado']) 
-                                        : 'Não informado';
+                                <?php echo !empty($paciente['estado']) ? htmlspecialchars($paciente['estado']) : 'Não informado';
                                 ?>
                             </p>
                         </div>
                         <div>
                             <p class="tipo-dado">Cidade</p>
                             <p class="dado">
-                                <?php
-                                    echo !empty($paciente['cidade']) 
-                                        ? htmlspecialchars($paciente['cidade']) 
-                                        : 'Não informado';
+                                <?php echo !empty($paciente['cidade']) ? htmlspecialchars($paciente['cidade']) : 'Não informado';
                                 ?>
                             </p>
                         </div>
@@ -81,13 +71,13 @@
                         <p class="tipo-dado">Gênero:</p>
                         <p class="dado">
                             <?php
-                                if ($paciente['genero'] === 'F') {
+                                if($paciente['genero'] === 'F') {
                                     echo 'Feminino';
-                                } elseif ($paciente['genero'] === 'M') {
+                                }elseif ($paciente['genero'] === 'M') {
                                     echo 'Masculino';
-                                } elseif ($paciente['genero'] === 'O') {
+                                }elseif ($paciente['genero'] === 'O') {
                                     echo 'Outro';
-                                } else {
+                                }else {
                                     echo 'Não informado';
                                 }
                             ?>
@@ -114,21 +104,14 @@
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Medicação:</p>
                         <p class="dado">
-                            <?php
-                                echo !empty($paciente['medicacao']) 
-                                    ? htmlspecialchars($paciente['medicacao']) 
-                                    : 'Não informado';
+                            <?php echo !empty($paciente['medicacao']) ? htmlspecialchars($paciente['medicacao']) : 'Não informado';
                             ?>
                         </p>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Doenças:</p>
                         <p class="dado">
-                            <?php
-                                echo !empty($paciente['doencas']) 
-                                    ? nl2br(htmlspecialchars($paciente['doencas'])) 
-                                    : 'Não informado';
-                            ?>
+                            <?php echo !empty($paciente['doencas']) ? nl2br(htmlspecialchars($paciente['doencas'])) : 'Não informado';?>
                         </p>
                     </div>
                 </div>
