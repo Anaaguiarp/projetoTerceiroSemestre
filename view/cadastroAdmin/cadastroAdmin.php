@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="cadastroAdminStyles.css">
 </head>
 <body class="bg-light">
-
+<header><?php require_once ('../header/header.php'); ?></header>
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10">
@@ -32,6 +33,7 @@
                     <div class="mb-3">
                         <label for="confirmacao_senha" class="form-label">Confirme sua senha:</label>
                         <input type="password" class="form-control" name="confirmacao_senha" placeholder="Confirme a senha" maxlength="30" required>
+                        
                     </div>
                     <div class="mb-3">
                         <label for="data_nascimento" class="form-label">Data de Nascimento:</label>
@@ -67,7 +69,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Formação:</label>
+                        <label class="form-label mb-2">Formação:</label>
                         <div class="d-flex flex-wrap gap-2">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="formacao" value="Psicologia" id="psico">
@@ -100,12 +102,12 @@
                         <input type="text" class="form-control" name="especialidade">
                     </div>
                     <div class="d-grid">
-                        <input type="submit" class="btn btn-primary" name="cadastrar" value="Cadastrar">
+                        <input type="submit" class="btn btn-secondary" name="cadastrar" value="Cadastrar">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+<?php require '../footer/footer.php'?>
 </body>
 </html>

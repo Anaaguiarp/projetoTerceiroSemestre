@@ -1,4 +1,5 @@
 <?php
+    require_once 'Pessoa.php';
     class Administrador extends Pessoa {
         private $ultimoLogin;
         private $conselhoProfissional;
