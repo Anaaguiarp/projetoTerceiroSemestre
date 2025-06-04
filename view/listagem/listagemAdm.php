@@ -12,19 +12,26 @@
     <title>Lista de Administradores</title>
 </head>
 <body>
-    <div>
-        <header><?php require '../header/header.php' ?></header>
-        <h1 class="mt-2">Lista de Administradores</h1>
+    <div class="container-fluid p-0">
+    <header><?php require '../header/header.php' ?></header>
+        <main class="m-5">
+        <h1>Lista de Administradores</h1>
         <table class="table table-stripped">
             <thead>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Data de Nascimento</th>
-                <th>Último Login</th>
-                <th>Conselho Profissional</th>
-                <th>Formação</th>
-                <th>Registro Profissional</th>
-                <th>Especialidade</th>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Nome Social</th>
+                    <th>E-mail</th>
+                    <th>Data de Nascimento</th>
+                    <th>Gênero</th>
+                    <th>Último Login</th>
+                    <th>Conselho Profissional</th>
+                    <th>Formação</th>
+                    <th>Registro Profissional</th>
+                    <th>Especialidade</th>
+                    <th>Ações</th>
+                </tr>
             </thead>
             <tbody>
                 <?php
@@ -33,7 +40,8 @@
                 ?>
             </tbody>
         </table>
-        
+        </main>
+        <footer><?php require '../footer/footer.php' ?></footer>
     </div>
 </body>
 </html>

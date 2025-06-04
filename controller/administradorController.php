@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
     $administrador->setSenha($senhaCriptografada);
     $administrador->setDataNascimento($_POST['data_nascimento']);
     $administrador->setGenero($_POST['genero']);
-    $administrador->setUltimoLogin($_POST['ultimoLogin']);
     $administrador->setConselhoProfissional($_POST['conselhoProfissional']);
     $administrador->setFormacao($_POST['formacao']);
     $administrador->setRegistroProfissional($_POST['registroProfissional']);

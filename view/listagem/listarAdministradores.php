@@ -20,12 +20,16 @@ function listarAdministradores() {
             <td>{$adm->getEmail()}</td>
             <td>{$adm->getDataNascimento()}</td>
             <td>{$adm->getGenero()}</td>
-            <td>{$adm->getUltimoLogin()}</td>
+            <td>" . ($adm->getUltimoLogin() ? $adm->getUltimoLogin() : "adm ainda não logou") . "</td>
             <td>{$adm->getConselhoProfissional()}</td>
             <td>{$adm->getFormacao()}</td>
             <td>{$adm->getRegistroProfissional()}</td>
             <td>{$adm->getEspecialidade()}</td>
             <td>
+            <a href='editar.php?id={$adm->getId()}' class='btn btn-sm btn-warning'>Editar</a>
+            <a href='excluir.php?id={$adm->getId()}' class='btn btn-sm btn-danger'>Excluir</a>
+            </td>
+
 
             </td>
         </tr>";
