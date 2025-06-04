@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="cadastroStyles.css">
 </head>
 <body>
@@ -85,56 +86,54 @@
                         </div>
                         <div class="mb-3">
                             <p class="label-genero">Tipo sanguíneo</p>
-                            <div class="d-flex justify-content-around">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="A+">
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        A+
-                                    </label>
+                            <div class="row row-cols-4 g-3">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="A+">
+                                        <label class="form-check-label">A+</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="B+">
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        B+
-                                    </label>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="B+">
+                                        <label class="form-check-label">B+</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="AB+" checked>
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        AB+
-                                    </label>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="AB+">
+                                        <label class="form-check-label">AB+</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="O+" checked>
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        O+
-                                    </label>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="O+">
+                                        <label class="form-check-label">O+</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex justify-content-around">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="A-">
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        A-
-                                    </label>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="A-">
+                                        <label class="form-check-label">A-</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="B-">
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        B-
-                                    </label>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="B-">
+                                        <label class="form-check-label">B-</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="AB-" checked>
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        AB-
-                                    </label>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="AB-">
+                                        <label class="form-check-label">AB-</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_sanguineo" value="O-" checked>
-                                    <label class="form-check-label" for="tipo_sanguineo">
-                                        O-
-                                    </label>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="O-">
+                                        <label class="form-check-label">O-</label>
+                                    </div>
                                 </div>
                             </div>
                         </div> 
@@ -146,7 +145,7 @@
                             <label for="doenca" class="form-label">Doenças ou Condições de Saúde</label>
                             <textarea class="form-control" name="doenca" placeholder="Informe suas condições de saúde" rows="5" maxlength="500"></textarea>
                         </div>
-                        <input type="submit" name="cadastrar" value="Salvar">
+                        <input class="btn text-white" style="background-color: #47639C;" type="submit" name="cadastrar" value="Salvar">
                     </form>
                 </div>
             </section>
