@@ -37,7 +37,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="data_nascimento" class="form-label">Data de Nascimento:</label>
-                        <input type="date" class="form-control" name="data_nascimento" required>
+                        <input type="date" class="form-control" name="data_nascimento">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Gênero:</label>
