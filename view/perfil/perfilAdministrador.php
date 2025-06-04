@@ -6,6 +6,7 @@
     <title>Cadastro de Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="cadastroAdminStyles.css">
+    <link rel="stylesheet" href="../global.css">
 </head>
 <body class="bg-light">
 <header><?php require_once ('../header/header.php'); ?></header>
@@ -108,6 +109,6 @@
             </div>
         </div>
     </div>
-<?php require '../footer/footer.php'?>
+    <?php require '../footer/footer.php'?>
 </body>
 </html>
