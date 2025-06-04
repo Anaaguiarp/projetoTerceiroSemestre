@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="../global.css">
 </head>
 <body>
     <div class="container-fluid p-0">

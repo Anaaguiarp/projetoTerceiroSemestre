@@ -33,6 +33,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
     .btn-sair {
         margin-left: 10px;
+        background-color: #d67b09;
+        color: #FFF;
     }
 </style>
 
@@ -44,7 +46,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 if (isset($_SESSION['paciente'])) {
                     echo '<span>
                             <a href="../perfil/perfil.php">' . htmlspecialchars($_SESSION['paciente']['nome']) . '</a>
-                            <a href="../logout/logout.php" class="btn btn-danger btn-sair">Sair</a>
+                            <a href="../logout/logout.php" class="btn btn-sair">Sair</a>
                         </span>';
                 } else {
                     echo '<span>
