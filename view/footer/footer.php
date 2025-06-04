@@ -1,4 +1,15 @@
 <style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    main {
+        flex: 1;
+    }
+
     .container-footer {
         font-family: "Lexend Giga", sans-serif;
         font-size: 16px;
