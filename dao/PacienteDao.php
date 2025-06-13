@@ -1,137 +1,112 @@
 <?php
-    require_once 'ConnectionFactory.php'
-;    class PacienteDao {
-        public function inserir(Paciente $paciente) {
-            try {
-                $sql = "INSERT INTO paciente (nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :estado, :cidade, :medicacao, :doenca, :tipo_sanguineo)";
-                $conn = ConnectionFactory::getConnection()->prepare($sql);
-                $conn->bindValue(":nome", $paciente->getNome());
-                $conn->bindValue(":nome_social", $paciente->getNomeSocial());
-                $conn->bindValue(":email", $paciente->getEmail());
-                $conn->bindValue(":senha", $paciente->getSenha());
-                $conn->bindValue(":data_nascimento", $paciente->getDataNascimento());
-                $conn->bindValue(":genero", $paciente->getGenero());
-                $conn->bindValue(":estado", $paciente->getEstado());
-                $conn->bindValue(":cidade", $paciente->getCidade());
-                $conn->bindValue(":medicacao", $paciente->getMedicacao());
-                $conn->bindValue(":doenca", $paciente->getDoenca());
-                $conn->bindValue(":tipo_sanguineo", $paciente->getTipoSanguineo());
-                return $conn->execute();
-            } catch (PDOException $ex) {
-                echo "<p>Erro!</p> <p>$ex</p>";
-            }
+
+    class PacienteDao{
+        public function inserir(Paciente $pac){
+            $url = "http://localhost:3000/pacientes";
+            $dados = [
+                "nome" => $pac->getNome(),
+                "nome_social" => $pac->getNomeSocial(),
+                "email" => $pac->getEmail(),
+                "senha" => $pac->getSenha(),
+                "data_nascimento" => $pac->getDataNascimento(),
+                "genero" => $pac->getGenero(),
+                "estado" => $pac->getEstado(),
+                "cidade" => $pac->getCidade(),
+                "medicacao" => $pac->getMedicacao(),
+                "doenca" => $pac->getDoenca(),
+                "tipo_sanguineo" => $pac->getTipoSanguineo(),
+            ];
+
+            $options = [
+                "http" => [
+                    "header" => "Content-Type: application/json\r\n",
+                    "method" => "POST",
+                    "content" => json_encode($dados)
+                ]
+            ];
+
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            return $result ? json_decode($result, true) : false;
+        }
+    
+        public function read(){
+            $url = "http://localhost:3000/pacientes";
+            $result = file_get_contents($url);
+            $pacList = array();
+            $lista = json_decode($result, true);
+            foreach($lista as $pac):
+                $pacList[] = $this->listaPaciente($pac);
+            endforeach;
+            return $pacList;
         }
 
-        public function read() {
-            try {
-                $sql = "SELECT * FROM paciente";
-                $conn = ConnectionFactory::getConnection()->query($sql);
-                $lista = $conn->fetchAll(PDO::FETCH_ASSOC);
-                $pacienteList = array();
-                foreach ($lista as $pac) {
-                    $pacienteList[] = $this->listaPaciente($pac);
-                }
-                return $pacienteList;
-            } catch (PDOException $ex) {
-                echo "<p>Erro ao executar a consulta: </p><p>$ex</p>";
-            }
-        }
-
-        public function listaPaciente($row) {
+        public function listaPaciente($row){
             $paciente = new Paciente();
-            $paciente->setId($row['id']);
-            $paciente->setNome($row['nome']);
-            $paciente->setNomeSocial($row['nome_social']);
-            $paciente->setEmail($row['email']);
-            $paciente->setSenha($row['senha']);
-            $paciente->setDataNascimento($row['data_nascimento']);
-            $paciente->setGenero($row['genero']);
-            $paciente->setEstado($row['estado']);
-            $paciente->setCidade($row['cidade']);
-            $paciente->setMedicacao($row['medicacao']);
-            $paciente->setDoenca($row['doenca']);
-            $paciente->setTipoSanguineo($row['tipo_sanguineo']);
-            return $paciente;
+            $paciente->setId(htmlspecialchars($row['id']));
+            $paciente->setId(htmlspecialchars($row['nome']));
+            $paciente->setId(htmlspecialchars($row['nome_social']));
+            $paciente->setId(htmlspecialchars($row['email']));
+            $paciente->setId(htmlspecialchars($row['senha']));
+            $paciente->setId(htmlspecialchars($row['data_nascimento']));
+            $paciente->setId(htmlspecialchars($row['genero']));
+            $paciente->setId(htmlspecialchars($row['estado']));
+            $paciente->setId(htmlspecialchars($row['cidade']));
+            $paciente->setId(htmlspecialchars($row['medicacao']));
+            $paciente->setId(htmlspecialchars($row['doenca']));
+            $paciente->setId(htmlspecialchars($row['tipo_sanguineo']));
         }
+        
+        public function editar(Paciente $pac){
+            $url = "http://localhost:3000/pacientes/".$pac->getId();
+            $dados = [
+                "nome" => $pac->getNome(),
+                "nome_social" => $pac->getNomeSocial(),
+                "email" => $pac->getEmail(),
+                "senha" => $pac->getSenha(),
+                "data_nascimento" => $pac->getDataNascimento(),
+                "genero" => $pac->getGenero(),
+                "estado" => $pac->getEstado(),
+                "cidade" => $pac->getCidade(),
+                "medicacao" => $pac->getMedicacao(),
+                "doenca" => $pac->getDoenca(),
+                "tipo_sanguineo" => $pac->getTipoSanguineo()
+            ];
 
-        public function buscarPorEmail($email) {
-            $conn = ConnectionFactory::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM paciente WHERE email = :email");
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
+            $options = [
+                "http" => [
+                    "header"  => "Content-Type: application/json\r\n",
+                    "method"  => "PUT",
+                    "content" => json_encode($dados)
+                ]
+            ];
 
-            if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                return $this->listaPaciente($row);
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+
+            if($result === FALSE){
+                return ["erro" => "Falha na requisiçãp PATCH"];
             }
 
-            return null;
+            return json_decode($result, true);
         }
-
-        public function excluir($id) {
+    
+        public function buscarPorId($id){
+            $url = "http://localhost:3000/pacientes/" . urlencode($id);
             try {
-                $conn = ConnectionFactory::getConnection();
-                $stmt = $conn->prepare("DELETE FROM paciente WHERE id = :id");
-                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-                return $stmt->execute();
-            } catch (PDOException $ex) {
-                echo "<p>Erro ao excluir paciente: $ex</p>";
+                $response = @file_get_contents($url);
+                if ($response === FALSE) {
+                    return null; // ID não encontrado ou erro na requisição
+                }
+                $data = json_decode($response, true);
+                if ($data) {
+                    return $this->listaPaciente($data);
+                }
+                return null;
+            } catch (Exception $e) {
+                echo "<p>Erro ao buscar paciente por ID: </p> <p>{$e->getMessage()}</p>";
+                return null;
             }
         }
-
-        public function buscarPorId($id) {
-            $conn = ConnectionFactory::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM paciente WHERE id = :id");
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                return $this->listaPaciente($row);
-            }
-
-            return null;
-        }
-
-        public function atualizar(Paciente $paciente) {
-            try {
-                $sql = "UPDATE paciente SET 
-                            nome = :nome,
-                            nome_social = :nome_social,
-                            email = :email,
-                            data_nascimento = :data_nascimento,
-                            genero = :genero,
-                            estado = :estado,
-                            cidade = :cidade,
-                            medicacao = :medicacao,
-                            doenca = :doenca,
-                            tipo_sanguineo = :tipo_sanguineo";
-                // Só atualiza a senha se foi enviada
-                if (!empty($paciente->getSenha())) {
-                    $sql .= ", senha = :senha";
-                }
-
-                $sql .= " WHERE id = :id";
-
-                $conn = ConnectionFactory::getConnection()->prepare($sql);
-                $conn->bindValue(":id", $paciente->getId());
-                $conn->bindValue(":nome", $paciente->getNome());
-                $conn->bindValue(":nome_social", $paciente->getNomeSocial());
-                $conn->bindValue(":email", $paciente->getEmail());
-                $conn->bindValue(":data_nascimento", $paciente->getDataNascimento());
-                $conn->bindValue(":genero", $paciente->getGenero());
-                $conn->bindValue(":estado", $paciente->getEstado());
-                $conn->bindValue(":cidade", $paciente->getCidade());
-                $conn->bindValue(":medicacao", $paciente->getMedicacao());
-                $conn->bindValue(":doenca", $paciente->getDoenca());
-                $conn->bindValue(":tipo_sanguineo", $paciente->getTipoSanguineo());
-
-                if (!empty($paciente->getSenha())) {
-                    $conn->bindValue(":senha", $paciente->getSenha());
-                }
-
-                return $conn->execute();
-        } catch (PDOException $ex) {
-                echo "<p>Erro ao atualizar: $ex</p>";
-        }
-    }
     }
 ?>

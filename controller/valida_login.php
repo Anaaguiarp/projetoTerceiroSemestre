@@ -18,7 +18,7 @@
 
         $pacienteDao = new PacienteDao();
         $adminDao = new AdministradorDao();
-        $paciente = $pacienteDao->buscarPorEmail($email);
+        // $paciente = $pacienteDao->buscarPorEmail($email); // voce consegue fazer ou nao?
         $administrador = $adminDao->buscarPorEmail($email);
 
         if ($paciente && password_verify($senha, $paciente->getSenha())) {

@@ -41,36 +41,5 @@
         </main>
         <footer><?php require '../footer/footer.php' ?></footer>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll(".excluir-usuario").forEach(botao => {
-                botao.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    const id = this.dataset.id;
-
-                    if (confirm("Tem certeza que deseja excluir?")) {
-                        fetch("../../controller/pacienteController.php", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded"
-                            },
-                            body: "acao=excluir&id=" + encodeURIComponent(id)
-                        })
-                        .then(response => {
-                            if (!response.ok) throw new Error("Erro na resposta");
-                            return response.text();
-                        })
-                        .then(() => {
-                            location.reload();
-                        })
-                        .catch(err => {
-                            console.error("Erro:", err);
-                            alert("Erro ao excluir.");
-                        });
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
