@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Administradores</title>
+</head>
+<body>
+    <h1>Lista de Administradores</h1>
+    <ul>
+        <% administradoresDoController.forEach( administrador => {%>
+            <li><strong>ID:</strong> <%= administrador.id %> | <strong>Nome:</strong> <%= administrador.nome %> - Nome Social: <%= administrador.nome_social %> - E-mail: <%= administrador.email %> - Senha: <%= administrador.senha %> - Data de Nascimento: <%= administrador.data_nascimento %> - Gênero: <%= administrador.genero %> - Formação: <%= administrador.formacao %> - Especialidade: <%= administrador.especialidade %> - Número de Registro: <%= administrador.registro_profissional %> - Conselho Profissional: <%= administrador.conselho_profissional %> | <a href="/editaradministrador/<%=administrador.id%>">Editar</a> - <a href="/removeradministrador/<%=administrador.id%>">Excluir</a></li>
+        <%} ) %>
+    </ul>
+</body>
+</html>
