@@ -13,7 +13,7 @@
     <header><?php require '../header/header.php' ?></header>
         <main class="m-5">
         <h1>Lista de Administradores</h1>
-        <table class="table table-stripped">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
