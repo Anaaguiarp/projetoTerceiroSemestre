@@ -13,11 +13,11 @@
     .container-footer {
         font-family: "Lexend Giga", sans-serif;
         font-size: 16px;
-        color: #131C63;
+        color: #CE997F;
     }
 
     .nav-footer{
-        background-color: #131C63;
+        background-color: #CE997F;
         color: #FFF;
     }
 
