@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     a {
         text-decoration: none;
-        color: #131C63;
+        color: #542F16;
     }
 
     ul {
