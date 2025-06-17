@@ -5,7 +5,7 @@ async function createConnection() {
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'todolist'
+    database: 'projeto_cuidados_paliativos'
   });
   console.log('Conectado ao MySQL! :)');
   return connection;

@@ -142,8 +142,6 @@ app.delete("/api/administrador", async (req, res) => {
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ PACIENTE ☆
 
-const {getPacientes, insertPaciente, editPaciente, deletePaciente} = require("../models/DAO/PacienteDAO");
-
 // READ
 app.get("/pacientes", async (req, res) => {
     const pacientes = await getPacientes();
@@ -221,8 +219,6 @@ app.get('/removerpaciente/:id', async (req, res) => {
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ CONTENUDO ☆
-
-const {getConteudos, insertConteudo, editConteudo, deleteConteudo} = require("../models/DAO/ConteudoDAO");
 
 // READ
 app.get("/conteudos", async (req, res) => {
