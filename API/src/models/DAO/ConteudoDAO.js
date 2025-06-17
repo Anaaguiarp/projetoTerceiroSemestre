@@ -1,45 +1,66 @@
-const pool = require('./db');
+const { createConnection } = require('./db');
 
 async function getConteudos() {
-    const { rows } = await pool.query("SELECT * FROM conteudos ORDER BY titulo");
+    const connection = await createConnection();
+    const [rows] = await connection.query("SELECT * FROM conteudo");
     return rows;
 }
 
-async function insertConteudo(titulo, texto) {
-    if (titulo && texto) {
-        const result = await pool.query(`
-            INSERT INTO conteudos (titulo, texto)
-            VALUES ($1, $2)
-            RETURNING id, titulo, texto
-        `, [titulo, texto]);
+async function insertConteudo(titulo, descricao, texto, data) {
+    const connection = await createConnection();
+    if (titulo && descricao && texto && data) {
+        const [result] = await connection.query(
+            `INSERT INTO conteudo (titulo, descricao, texto, data)
+             VALUES (?, ?, ?, ?)`,
+            [titulo, descricao, texto, data]
+        );
 
-        return result.rows.length > 0;
+       if(result.affectedRows > 0){
+            return true;
+        }
+        
+        return false;
     }
+
+    console.error("Falha ao criar o conteúdo. Faltou algum dado");
     return false;
 }
 
-async function editConteudo(id, titulo, texto) {
-    if (!id || !titulo || !texto) return false;
+async function editConteudo(id, titulo, descricao, texto, data) {
+    const connection = await createConnection();
+    if (id && titulo && descricao && texto && data){
+        const [result] = await connection.query(
+            `UPDATE conteudo SET titulo = ?, descricao = ?, texto = ?, data = ? WHERE id = ?`,
+            [titulo, descricao, texto, data, id]
+        );
 
-    const result = await pool.query(`
-        UPDATE conteudos
-        SET titulo = $1,
-            texto = $2
-        WHERE id = $3
-        RETURNING id, titulo, texto
-    `, [titulo, texto, id]);
+        if (result.affectedRows === 0) return false;
+        return true;
+    }
 
-    return result.rows.length > 0;
+    console.error("Falha ao editar o conteúdo. Faltou algum dado");
+    return false;
 }
 
 async function deleteConteudo(id) {
-    if (!id) return false;
+    if (id){
+        const connection = await createConnection();
+        const [result] = await connection.query(
+            `DELETE FROM conteudo WHERE id = ?`,
+            [id]
+        );
 
-    const result = await pool.query(`
-        DELETE FROM conteudos WHERE id = $1 RETURNING id
-    `, [id]);
+        if (result.affectedRows > 0) {
+            console.log(`Conteúdo com ID ${id} removida com sucesso.`);
+            return true;
+        }
 
-    return result.rows.length > 0;
+        console.error(`Nenhum conteúdo encontrada com ID ${id}.`);
+        return false;
+    }
+
+    console.error("Falha ao deletar a tarefa. ID não informado.");
+    return false;
 }
 
 module.exports = {
