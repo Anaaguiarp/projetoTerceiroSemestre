@@ -1,5 +1,5 @@
 const pool = require('./db');
-
+// tem que ve neh kkkkk
 async function getPacientes() {
     const { rows } = await pool.query("SELECT * FROM pacientes ORDER BY nome");
     return rows;

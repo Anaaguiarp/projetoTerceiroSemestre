@@ -6,7 +6,7 @@
             $dados = [
                 "titulo" => $cont->getTitulo(),
                 "descricao" => $cont->getDescricao(),
-                "conteudo" => $cont->getConteudo(),
+                "texto" => $cont->getTexto(),
                 "data" => $cont->getData(),
             ];
 
@@ -39,7 +39,7 @@
             $conteudo->setId(htmlspecialchars($row['id']));
             $conteudo->setTitulo(htmlspecialchars($row['titulo']));
             $conteudo->setDescricao(htmlspecialchars($row['descricao']));
-            $conteudo->setConteudo(htmlspecialchars($row['conteudo']));
+            $conteudo->setTexto(htmlspecialchars($row['texto']));
             $conteudo->setData(htmlspecialchars($row['data']));
             return $conteudo;
         }
@@ -49,7 +49,7 @@
             $dados = [
                 "titulo" => $cont->getTitulo(),
                 "descricao" => $cont->getDescricao(),
-                "conteudo" => $cont->getConteudo(),
+                "texto" => $cont->getTexto(),
                 "data" => $cont->getData(),
             ];
 

@@ -8,7 +8,7 @@
         $conteudo = new Conteudo();
         $conteudo->setTitulo($_POST['titulo']);
         $conteudo->setDescricao($_POST['descricao']);
-        $conteudo->setConteudo($_POST['conteudo']);
+        $conteudo->setTexto($_POST['texto']);
         $conteudo->setData($_POST['data']);
         $conteudoDao->inserir($conteudo);
         header("Location: ../view/homePage/index.php");
@@ -29,7 +29,7 @@
         $conteudo->setId($_POST['id']);
         $conteudo->setTitulo($_POST['titulo']);
         $conteudo->setDescricao($_POST['descricao']);
-        $conteudo->setConteudo($_POST['conteudo']);
+        $conteudo->setTexto($_POST['texto']);
         $conteudo->setData($_POST['data']);
 
         $conteudoDao->editar($conteudo);
@@ -47,7 +47,7 @@
                 <td>{$cont->getId()}</td>
                 <td>{$cont->getTitulo()}</td>
                 <td>{$cont->getDescricao()}</td>
-                <td>{$cont->getConteudo()}</td>
+                <td>{$cont->getTexto()}</td>
                 <td>{$cont->getData()}</td>
                 <td>
                     <a href='#'>Editar</a>

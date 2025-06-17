@@ -1,11 +1,11 @@
 const { createConnection } = require('./db');
-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 async function getConteudos() {
     const connection = await createConnection();
     const [rows] = await connection.query("SELECT * FROM conteudo");
     return rows;
 }
-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 async function insertConteudo(titulo, descricao, texto, data) {
     const connection = await createConnection();
     if (titulo && descricao && texto && data) {
@@ -25,7 +25,7 @@ async function insertConteudo(titulo, descricao, texto, data) {
     console.error("Falha ao criar o conteúdo. Faltou algum dado");
     return false;
 }
-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 async function editConteudo(id, titulo, descricao, texto, data) {
     const connection = await createConnection();
     if (id && titulo && descricao && texto && data){
@@ -41,7 +41,7 @@ async function editConteudo(id, titulo, descricao, texto, data) {
     console.error("Falha ao editar o conteúdo. Faltou algum dado");
     return false;
 }
-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 async function deleteConteudo(id) {
     if (id){
         const connection = await createConnection();
@@ -62,7 +62,7 @@ async function deleteConteudo(id) {
     console.error("Falha ao deletar a tarefa. ID não informado.");
     return false;
 }
-
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 module.exports = {
     getConteudos,
     insertConteudo,

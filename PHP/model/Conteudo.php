@@ -3,7 +3,7 @@
         private $id;
         private $titulo;
         private $descricao;
-        private $conteudo;
+        private $texto;
         private $data;
 
         public function getId(){
@@ -30,12 +30,12 @@
             $this->descricao = $descricao;
         }
 
-        public function getConteudo(){
-            return $this->conteudo;
+        public function getTexto(){
+            return $this->texto;
         }
 
-        public function setConteudo($conteudo){
-            $this->conteudo = $conteudo;
+        public function setTexto($texto){
+            $this->texto = $texto;
         }
 
         public function getData(){
@@ -47,7 +47,7 @@
         }
 
         public function __toString(){
-            return "Título: {$this->titulo}. Descrição: {$this->descricao} Conteúdo: {$this->conteudo} Data: {$this->data}";
+            return "Título: {$this->titulo}. Descrição: {$this->descricao} Texto: {$this->texto} Data: {$this->data}";
         }
     }
 ?>
