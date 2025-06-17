@@ -232,6 +232,13 @@ app.get("/conteudos", async (req, res) => {
     res.status(200).render("listaConteudos", { conteudosDoController: conteudos });
 });
 
+// API envia lista de conteúdos
+app.get("/api/conteudos", async (req, res) => {
+    const conteudos = await getConteudos();
+
+    res.status(200).json({sucess: true, conteudos});
+});
+
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // Formulário - CREATE
@@ -249,6 +256,16 @@ app.post('/conteudo', async (req, res) => {
     } else {
         res.status(400).send("Erro ao cadastrar conteúdo.");
     }
+});
+
+// Inserindo pela API
+app.post("/api/conteudo", async (req, res) => {
+    const {titulo, descricao, texto, data} = req.body;
+    const result = await insertConteudo(titulo, descricao, texto, data);
+    if(result){
+        return res.status(202).json({sucess: true});
+    }
+    return res.status(400).json({sucess: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -279,6 +296,17 @@ app.post('/editarconteudo/:id', async (req, res) => {
     }
 });
 
+// Editando por API
+app.put("/api/conteudo", async (req, res) => {
+    const {id, titulo, descricao, texto, data} = req.body;
+    const result = await editConteudo(id, titulo, descricao, texto, data);
+
+    if(result){
+        return res.status(200).json({sucess: true});
+    }
+    return res.status(404).json({sucess: false});
+});
+
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // DELETE
@@ -291,6 +319,15 @@ app.get('/removerconteudo/:id', async (req, res) => {
     } else {
         res.status(400).send("Erro ao remover conteúdo :(");
     }
+});
+
+app.delete("/api/conteudo", async (req, res) => {
+    const {id} = req.body;
+    const result = await deleteConteudo(id);
+    if(result){
+        return res.status(200).json({sucess: true});
+    }  
+    return res.status(404).json({sucess: false});
 });
 
 app.listen(3001, 'localhost', () => {
