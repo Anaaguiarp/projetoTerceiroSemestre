@@ -52,7 +52,7 @@
 
                     <div class="text-center mt-5">
                         <h3>ou</h3>
-                        <h1 class="mt-2"><a class="forgetPass" href="../cadastro/cadastro.php">Cadastrar</a></h1>  
+                        <h1 class="mt-2"><a class="forgetPass" href="../cadastroPaciente/cadastro.php">Cadastrar</a></h1>  
                     </div>        
                 </section>
             </main>

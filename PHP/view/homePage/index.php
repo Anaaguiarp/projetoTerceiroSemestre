@@ -17,28 +17,28 @@
             <header><?php require '../header/header.php' ?> </header>
             <h1 class="titulo m-0">Cuidados paliativos</h1>
         </div>
-        <div class="container-nav p-3">
+        <div class="container-nav p-3" style="color: #542f16;">
             <p class="m-0">Eu sinto:</p>
             <nav class="navbar navbar-expand-lg p-0">
                 <ul class="navbar-nav d-flex justify-content-evenly w-100 pb-4">
-                    <li class="nav-item"><a href="#" class="nav-link py-0 text-light">Dores</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link py-0 text-light">Cansaço</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link py-0 text-light">Fraqueza</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-light py-0 ">Falta de Apetite</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link py-0">Dores</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link py-0">Cansaço</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link py-0 ">Fraqueza</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link py-0 ">Falta de Apetite</a></li>
                 </ul>
             </nav>
         </div>
         <div class="d-flex align-items-center justify-content-between mt-5">
-            <div class="mx-5 px-3" style="width: 40%; border-left: 5px solid #131C63">
+            <div class="mx-5 px-3" style="width: 40%; border-left: 5px solid #542f16">
                 <h2 class="mb-3" style="font-weight: bolder;">O que é Cuidado Paliativo?</h2>
-                <p class="m-0" style="color: #131C63;">Cuidados paliativos são um conjunto de práticas voltadas para melhorar a qualidade de vida de pacientes com doenças graves ou incuráveis.<br><br>
+                <p class="m-0" style="color: #542f16;">Cuidados paliativos são um conjunto de práticas voltadas para melhorar a qualidade de vida de pacientes com doenças graves ou incuráveis.<br><br>
                 O foco não é a cura, mas o alívio do sofrimento, controle da dor e apoio emocional para o paciente e sua família.<br><br>
                 Esse tipo de cuidado pode ser oferecido em qualquer fase da doença, junto a outros tratamentos, e envolve uma equipe multidisciplinar que inclui médicos, enfermeiros, psicólogos e assistentes sociais.
                 </p>
             </div>
-            <img src="../img/4.jpg" alt="Homem sendo vacinado no braço por uma enfermeira feliz" class="ms-5 img-fluid rounded-start" style="width: 40%; box-shadow: 0 5px 10px #777777;">
+            <img src="../img/homem_e_mulher_hospital.png" alt="Homem deitado em cama de hospital sendo acolhido por uma mulher" class="ms-5 img-fluid rounded-start" style="width: 40%; box-shadow: 0 5px 10px #777777;">
         </div>
-        <div class="mt-5 p-5 container-fluid p-3 text-center text-white" style="background-color: #47639C;">
+        <div class="mt-5 p-5 container-fluid p-3 text-center" style="background-color: #e4ccbe; color: #542f16;">
             <h2>Nosso objetivo</h2>
             <div style="width: 150px; height: 2px; background-color: white; margin: 0 auto 20px auto;"></div>
             <p>Nosso site tem como propósito oferecer informações confiáveis e acessíveis sobre cuidados paliativos. 
@@ -46,9 +46,9 @@
             </p>
         </div>
         <div class="mt-5 d-flex align-items-center justify-content-between">
-            <img src="../img/1.jpg" alt="Mãos dadas" class="img-fluid rounded-end" style="width: 40%; box-shadow: -10px 8px 10px #777777;">
+            <img src="../img/1.jpg" alt="Mãos dadas" class="img-fluid rounded-end" style="width: 40%; box-shadow: -10px 8px 10px #542f16;">
             <div class="mx-5" style="width: 40%">
-                <p style="color: #131C63">Se você ou alguém próximo precisa de cuidados paliativos, saiba que esse tipo de assistência é voltado para <strong>proporcionar conforto, qualidade de vida e apoio integral, tanto para o paciente quanto para a família.</strong><br><br>Os cuidados paliativos podem ser indicados em diversas situações, especialmente em doenças graves ou progressivas, quando o foco passa a ser o bem-estar e o alívio dos sintomas.
+                <p style="color: #542f16">Se você ou alguém próximo precisa de cuidados paliativos, saiba que esse tipo de assistência é voltado para <strong>proporcionar conforto, qualidade de vida e apoio integral, tanto para o paciente quanto para a família.</strong><br><br>Os cuidados paliativos podem ser indicados em diversas situações, especialmente em doenças graves ou progressivas, quando o foco passa a ser o bem-estar e o alívio dos sintomas.
                 </p>
             </div>
         </div>

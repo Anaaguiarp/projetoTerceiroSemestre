@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="../global.css">
 </head>
 <body class="bg-light">
-<header><?php require_once ('../header/header.php'); ?></header>
+    <header><?php require_once ('../header/header.php'); ?></header>
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10">
                 <h1 class="text-center mb-4">Adicionar Conteúdo</h1>
-                <form action="../../controller/administradorController.php" method="POST">
+                <form action="../../controller/conteudoController.php" method="POST">
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Título:</label>
                         <input type="text" class="form-control" name="titulo" placeholder="Digite o título da publicação" maxlength="100" required>
@@ -29,6 +29,6 @@
             </div>
         </div>
     </div>
-<?php require '../footer/footer.php'?>
+    <footer><?php require '../footer/footer.php'?></footer>
 </body>
 </html>

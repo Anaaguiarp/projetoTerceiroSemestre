@@ -13,11 +13,11 @@
     .container-footer {
         font-family: "Lexend Giga", sans-serif;
         font-size: 16px;
-        color: #CE997F;
+        color: #542e16;
     }
 
     .nav-footer{
-        background-color: #CE997F;
+        background-color: #542e16;
         color: #FFF;
     }
 
@@ -37,7 +37,7 @@
         </nav>
     </div>
     <div class="d-flex justify-content-center align-items-center gap-1 m-1">
-        <img src="../img/copyright.png" alt="Símbolo de Copyright">
+        <img src="../img/copyright.svg" alt="Símbolo de Copyright">
         <p class="m-0">2025, Cuidados Paliativos - Todos os direitos reservados</p>
     </div>
 </div>

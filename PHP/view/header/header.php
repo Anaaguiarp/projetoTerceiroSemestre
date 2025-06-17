@@ -41,7 +41,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <nav class="p-3 nav-login">
     <ul class="m-0 px-5 d-flex justify-content-between align-items-center">
         <li class="perfil-info">
-            <img src="../img/perfil.png" alt="Imagem de perfil">
+            <img src="../img/perfil.svg" alt="Imagem de perfil">
             <?php
                 if (isset($_SESSION['paciente'])) {
                     echo '<span>
@@ -56,7 +56,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 } else {
                     echo '<span>
                             <a href="../login/login.php">Faça login</a>
-                            <a href="../cadastro/cadastro.php">ou cadastre-se</a>
+                            <a href="../cadastroPaciente/cadastro.php">ou cadastre-se</a>
                         </span>';
                 }
             ?>
