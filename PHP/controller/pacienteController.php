@@ -73,7 +73,7 @@
                 <td> {$pac->getDoenca()}</td>
                 <td> {$pac->getTipoSanguineo()}</td>
                 <td>
-                    <a href='../cadastro/cadastro.php?editar={$pac->getId()}'>Editar</a>
+                    <a href='../cadastroPaciente/cadastro.php?editar={$pac->getId()}'>Editar</a>
                     <a href='  #  '><Excluir</a>
                 </td>
             </tr>";

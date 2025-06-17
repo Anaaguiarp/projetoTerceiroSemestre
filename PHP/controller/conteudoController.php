@@ -7,9 +7,9 @@
     if(isset($_POST['cadastrar'])){
         $conteudo = new Conteudo();
         $conteudo->setTitulo($_POST['titulo']);
-        $conteudo->setTitulo($_POST['descricao']);
-        $conteudo->setTitulo($_POST['conteudo']);
-        $conteudo->setTitulo($_POST['data']);
+        $conteudo->setDescricao($_POST['descricao']);
+        $conteudo->setConteudo($_POST['conteudo']);
+        $conteudo->setData($_POST['data']);
         $conteudoDao->inserir($conteudo);
         header("Location: ../view/homePage/index.php");
     }
@@ -27,10 +27,10 @@
     if(isset($_POST['salvar-edicao'])){
         $conteudo = new Conteudo();
         $conteudo->setId($_POST['id']);
-        $conteudo->setId($_POST['titulo']);
-        $conteudo->setId($_POST['descricao']);
-        $conteudo->setId($_POST['conteudo']);
-        $conteudo->setId($_POST['data']);
+        $conteudo->setTitulo($_POST['titulo']);
+        $conteudo->setDescricao($_POST['descricao']);
+        $conteudo->setConteudo($_POST['conteudo']);
+        $conteudo->setData($_POST['data']);
 
         $conteudoDao->editar($conteudo);
 

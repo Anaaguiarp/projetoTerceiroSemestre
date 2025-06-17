@@ -159,7 +159,7 @@
                         </div>
                         <?php
                             if(isset($paciente) && $paciente->getId()) : ?>
-                            <button type="submit" name="salvar-edicao" class="btn text-white" style="background-color: #47639C;">Salvar Edição</button>
+                            <button type="submit" name="salvar-edicao" class="btn text-white" style="background-color: #542e16;">Salvar Edição</button>
                             <?php else: ?>
                             <button type="submit" name="cadastrar" class="btn text-white" style="background-color: #542e16;">Cadastrar</button>
                         <?php endif; ?>
