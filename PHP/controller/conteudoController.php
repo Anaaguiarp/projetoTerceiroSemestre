@@ -4,7 +4,7 @@
 
     $conteudoDao = new ConteudoDao();
 
-    if(isset($_POST['cadastrar'])){
+    if(isset($_POST['publicar'])){
         $conteudo = new Conteudo();
         $conteudo->setTitulo($_POST['titulo']);
         $conteudo->setDescricao($_POST['descricao']);
