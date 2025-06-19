@@ -54,7 +54,7 @@ class AdministradorDao {
 
     public function inserir(Administrador $admin) {
         try {
-            $sql = "INSERT INTO administrador (nome, nome_social, email, senha, data_nascimento, genero, conselhoProfissional, formacao, registroProfissional, especialidade) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :conselhoProfissional, :formacao, :registroProfissional, :especialidade)";
+            $sql = "INSERT INTO administrador (nome, nome_social, email, senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, especialidade) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :conselho_profissional, :formacao, :registro_profissional, :especialidade)";
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(":nome", $admin->getNome());
             $stmt->bindValue(":nome_social", $admin->getNomeSocial());
@@ -62,9 +62,9 @@ class AdministradorDao {
             $stmt->bindValue(":senha", $admin->getSenha());
             $stmt->bindValue(":data_nascimento", $admin->getDataNascimento());
             $stmt->bindValue(":genero", $admin->getGenero());
-            $stmt->bindValue(":conselhoProfissional", $admin->getConselhoProfissional());
+            $stmt->bindValue(":conselho_profissional", $admin->getConselhoProfissional());
             $stmt->bindValue(":formacao", $admin->getFormacao());
-            $stmt->bindValue(":registroProfissional", $admin->getRegistroProfissional());
+            $stmt->bindValue(":registro_profissional", $admin->getRegistroProfissional());
             $stmt->bindValue(":especialidade", $admin->getEspecialidade());
             return $stmt->execute();
         } catch (PDOException $ex) {
@@ -110,9 +110,9 @@ class AdministradorDao {
             $adm->setSenha($dados['senha']);
             $adm->setDataNascimento($dados['data_nascimento']);
             $adm->setGenero($dados['genero']);
-            $adm->setConselhoProfissional($dados['conselhoProfissional']);
+            $adm->setConselhoProfissional($dados['conselho_profissional']);
             $adm->setFormacao($dados['formacao']);
-            $adm->setRegistroProfissional($dados['registroProfissional']);
+            $adm->setRegistroProfissional($dados['registro_profissional']);
             $adm->setEspecialidade($dados['especialidade']);
             return $adm;
         }
@@ -120,7 +120,7 @@ class AdministradorDao {
     }
 
     public function atualizar($adm) {
-        $sql = "UPDATE administrador SET nome = :nome, nome_social = :nome_social, email = :email, senha = :senha, data_nascimento = :data_nascimento, genero = :genero, conselhoProfissional = :conselhoProfissional, formacao = :formacao, registroProfissional = :registroProfissional, especialidade = :especialidade WHERE id = :id";
+        $sql = "UPDATE administrador SET nome = :nome, nome_social = :nome_social, email = :email, senha = :senha, data_nascimento = :data_nascimento, genero = :genero, conselho_profissional = :conselho_profissional, formacao = :formacao, registro_profissional = :registro_profissional, especialidade = :especialidade WHERE id = :id";
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindParam(':nome', $adm->getNome());
         $stmt->bindParam(':nome_social', $adm->getNomeSocial());
@@ -128,9 +128,9 @@ class AdministradorDao {
         $stmt->bindParam(':senha', $adm->getSenha());
         $stmt->bindParam(':data_nascimento', $adm->getDataNascimento());
         $stmt->bindParam(':genero', $adm->getGenero());
-        $stmt->bindParam(':conselhoProfissional', $adm->getConselhoProfissional());
+        $stmt->bindParam(':conselho_profissional', $adm->getConselhoProfissional());
         $stmt->bindParam(':formacao', $adm->getFormacao());
-        $stmt->bindParam(':registroProfissional', $adm->getRegistroProfissional());
+        $stmt->bindParam(':registro_profissional', $adm->getRegistroProfissional());
         $stmt->bindParam(':especialidade', $adm->getEspecialidade());
         $stmt->bindParam(':id', $adm->getId());
         return $stmt->execute();
@@ -145,9 +145,9 @@ class AdministradorDao {
             $admin->setSenha($row['senha']);
             $admin->setDataNascimento($row['data_nascimento']);
             $admin->setGenero($row['genero']);
-            $admin->setConselhoProfissional($row['conselhoProfissional']);
+            $admin->setConselhoProfissional($row['conselho_profissional']);
             $admin->setFormacao($row['formacao']);
-            $admin->setRegistroProfissional($row['registroProfissional']);
+            $admin->setRegistroProfissional($row['registro_profissional']);
             $admin->setEspecialidade($row['especialidade']);
             return $admin;
     }
@@ -168,9 +168,9 @@ class AdministradorDao {
             $adm->setSenha($dados['senha']);
             $adm->setDataNascimento($dados['data_nascimento']);
             $adm->setGenero($dados['genero']);
-            $adm->setConselhoProfissional($dados['conselhoProfissional']);
+            $adm->setConselhoProfissional($dados['conselho_profissional']);
             $adm->setFormacao($dados['formacao']);
-            $adm->setRegistroProfissional($dados['registroProfissional']);
+            $adm->setRegistroProfissional($dados['registro_profissional']);
             $adm->setEspecialidade($dados['especialidade']);
             return $adm;
         }
