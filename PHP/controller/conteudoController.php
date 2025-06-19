@@ -12,7 +12,7 @@
         $conteudo->setTexto($_POST['texto']);
         $conteudo->setData($_POST['data']);
         $conteudoDao->inserir($conteudo);
-        header("Location: ../view/homePage/index.php");
+        header("Location: ../view/conteudo/listaConteudos.php");
     }
 
     if(isset($_GET['editar'])){
@@ -35,7 +35,7 @@
 
         $conteudoDao->editar($conteudo);
 
-        header('Location: ../view/listagem/listagemUsuarios.php');
+        header('Location: ../view/conteudo/listaConteudos.php');
         exit();
     }
 
@@ -51,14 +51,18 @@
                 <td>{$cont->getTexto()}</td>
                 <td>{$cont->getData()}</td>
                 <td>
-                    <a href='#'>Editar</a>
-                    <a href='#'>Excluir</a>
+                    <a href='conteudo.php?editar={$cont->getId()}'>Editar</a>
+                    <a href='../../controller/conteudoController.php?excluir={$cont->getId()}'>Excluir</a>
                 </td>
             </tr>";
         }
     }
+
+    if (isset($_GET['excluir'])) {
+        $id = $_GET['excluir'];
+        $conteudoDao->deletar($id);
+        header("Location: ../view/conteudo/listaConteudos.php");
+        exit();
+    }
+
 ?>
-
-<form method="">
-
-</form>

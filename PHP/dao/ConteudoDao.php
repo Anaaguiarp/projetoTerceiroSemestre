@@ -30,9 +30,13 @@
             $result = file_get_contents($url);
             $contList = array();
             $lista = json_decode($result, true);
-            foreach($lista as $cont):
-                $contList[] = $this->listaConteudo($cont);
-            endforeach;
+
+            if (isset($lista['conteudos']) && is_array($lista['conteudos'])) {
+                foreach($lista['conteudos'] as $cont){
+                    $contList[] = $this->listaConteudo($cont);
+                }
+            }
+            
             return $contList;
         }
 
@@ -47,8 +51,9 @@
         }
         
         public function editar(Conteudo $cont){
-            $url = "http://localhost:3001/api/conteudos".$cont->getId();
+            $url = "http://localhost:3001/api/conteudos";
             $dados = [
+                "id" => $cont->getId(),
                 "titulo" => $cont->getTitulo(),
                 "descricao" => $cont->getDescricao(),
                 "texto" => $cont->getTexto(),
@@ -74,28 +79,36 @@
         }
     
         public function deletar($id) {
-            $sql = "DELETE FROM conteudo WHERE id = :id";
-            $conn = $this->conexao->prepare($sql);
-            $conn->bindParam(':id', $id);
-            return $conn->execute();
+            $url = "http://localhost:3001/api/conteudos";
+            $dados = ["id" => $id];
+            
+            $options = [
+                "http" => [
+                    "header"  => "Content-Type: application/json\r\n",
+                    "method"  => "DELETE",
+                    "content" => json_encode($dados)
+                ]
+            ];
+
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+
+            return $result ? json_decode($result, true) : false;
         }
 
         public function buscarPorId($id){
-            $url = "http://localhost:3001/" . urlencode($id);
-            try {
-                $response = @file_get_contents($url);
-                if ($response === FALSE) {
-                    return null; // ID não encontrado ou erro na requisição
+            $url = "http://localhost:3001/api/conteudos";
+            $response = file_get_contents($url);
+            $dados = json_decode($response, true);
+            $conteudos = $dados['conteudos'];
+
+            foreach ($conteudos as $item) {
+                if ($item['id'] == $id) {
+                    return $this->listaConteudo($item);
                 }
-                $data = json_decode($response, true);
-                if ($data) {
-                    return $this->listaConteudo($data);
-                }
-                return null;
-            } catch (Exception $e) {
-                echo "<p>Erro ao buscar conteúdo por ID: </p> <p>{$e->getMessage()}</p>";
-                return null;
             }
+
+            return new Conteudo(); // retorna vazio se não achar
         }
     }
 ?>

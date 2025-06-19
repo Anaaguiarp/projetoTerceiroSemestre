@@ -243,7 +243,7 @@ app.get('/novoconteudo', (req, res) => {
 });
 
 // CREATE
-app.post('/conteudo', async (req, res) => {
+app.post('/conteudos', async (req, res) => {
     const {titulo, descricao, texto, data} = req.body;
     const sucesso = await insertConteudo(titulo, descricao, texto, data);
 
@@ -280,7 +280,7 @@ app.get('/editarconteudo/:id', async (req, res) => {
 });
 
 // UPDATE
-app.post('/editarconteudo/:id', async (req, res) => {
+app.post('/conteudos/:id', async (req, res) => {
     const {id} = req.params;
     const {titulo, descricao, texto, data} = req.body;
     const sucesso = await editConteudo(id, titulo, descricao, texto, data);
