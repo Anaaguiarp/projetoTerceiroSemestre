@@ -1,6 +1,7 @@
 <?php
-    require_once 'ConnectionFactory.php'
-;       class PacienteDaoSql {
+    require_once 'ConnectionFactory.php';
+        class PacienteDaoSql {
+            private $conexao;
             public function inserir(Paciente $paciente) {
                 try {
                     $sql = "INSERT INTO paciente (nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) VALUES (:nome, :nome_social, :email, :senha, :data_nascimento, :genero, :estado, :cidade, :medicacao, :doenca, :tipo_sanguineo)";
@@ -76,7 +77,6 @@
                 }
             }
 
-// A PROFESSORA NAO FEZ??????
             public function excluir($id) {
                 try {
                     $conn = ConnectionFactory::getConnection();
