@@ -9,7 +9,7 @@ class ConnectionFactory {
             $dbName = 'projeto_cuidados_paliativos';
             $user = 'root';
             $pass = '';
-            $port = '3307';
+            $port = '3306';
 
             try {
                 self::$connection = new PDO("mysql:host=$host;dbname=$dbName;port=$port", $user, $pass);

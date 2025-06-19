@@ -2,7 +2,7 @@
 
     class PacienteDao{
         public function inserir(Paciente $pac){
-            $url = "http://localhost:3000/pacientes";
+            $url = "http://localhost:3001/api/paciente";
             $dados = [
                 "nome" => $pac->getNome(),
                 "nome_social" => $pac->getNomeSocial(),
@@ -31,7 +31,7 @@
         }
     
         public function read(){
-            $url = "http://localhost:3000/pacientes";
+            $url = "http://localhost:3001/api/pacientes";
             $result = file_get_contents($url);
             $pacList = array();
             $lista = json_decode($result, true);
@@ -58,7 +58,7 @@
         }
         
         public function editar(Paciente $pac){
-            $url = "http://localhost:3000/pacientes/".$pac->getId();
+            $url = "http://localhost:3001/api/pacientes/".$pac->getId();
             $dados = [
                 "nome" => $pac->getNome(),
                 "nome_social" => $pac->getNomeSocial(),
@@ -85,14 +85,32 @@
             $result = file_get_contents($url, false, $context);
 
             if($result === FALSE){
-                return ["erro" => "Falha na requisiçãp PATCH"];
+                return ["erro" => "Falha na requisiçãp PUT"];
             }
 
             return json_decode($result, true);
         }
+
+        public function deletar($id) {
+            $url = "http://localhost:3001/api/pacientes";
+            $dados = ["id" => $id];
+            
+            $options = [
+                "http" => [
+                    "header"  => "Content-Type: application/json\r\n",
+                    "method"  => "DELETE",
+                    "content" => json_encode($dados)
+                ]
+            ];
+
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+
+            return $result ? json_decode($result, true) : false;
+        }
     
         public function buscarPorId($id){
-            $url = "http://localhost:3000/pacientes/" . urlencode($id);
+            $url = "http://localhost:3001/api/pacientes/" . urlencode($id);
             try {
                 $response = @file_get_contents($url);
                 if ($response === FALSE) {
