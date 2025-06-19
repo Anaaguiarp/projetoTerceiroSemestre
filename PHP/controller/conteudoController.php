@@ -10,6 +10,7 @@
         $conteudo->setTitulo($_POST['titulo']);
         $conteudo->setDescricao($_POST['descricao']);
         $conteudo->setTexto($_POST['texto']);
+        $conteudo->setCategoria($_POST['categoria']);
         $conteudo->setData($_POST['data']);
         $conteudoDao->inserir($conteudo);
         header("Location: ../view/conteudo/listaConteudos.php");
@@ -31,6 +32,7 @@
         $conteudo->setTitulo($_POST['titulo']);
         $conteudo->setDescricao($_POST['descricao']);
         $conteudo->setTexto($_POST['texto']);
+        $conteudo->setCategoria($_POST['categoria']);
         $conteudo->setData($_POST['data']);
 
         $conteudoDao->editar($conteudo);
@@ -39,22 +41,27 @@
         exit();
     }
 
-    function listar(){
+    function listar($categoria = null) {
         $conteudoDao = new ConteudoDao();
         $lista = $conteudoDao->read();
-        foreach($lista as $cont){
-            echo
-            "<tr>
-                <td>{$cont->getId()}</td>
-                <td>{$cont->getTitulo()}</td>
-                <td>{$cont->getDescricao()}</td>
-                <td>{$cont->getTexto()}</td>
-                <td>{$cont->getData()}</td>
-                <td>
-                    <a href='conteudo.php?editar={$cont->getId()}'>Editar</a>
-                    <a href='../../controller/conteudoController.php?excluir={$cont->getId()}'>Excluir</a>
-                </td>
-            </tr>";
+
+        foreach ($lista as $cont) {
+            // Se tiver filtro e a categoria não bater, pula esse conteúdo
+            if ($categoria && strtolower($cont->getCategoria()) !== strtolower($categoria)) {
+                continue;
+            }
+
+            echo "<tr class='conteudo " . strtolower($cont->getCategoria()) . "'>
+                    <td>{$cont->getId()}</td>
+                    <td>{$cont->getTitulo()}</td>
+                    <td>{$cont->getDescricao()}</td>
+                    <td>{$cont->getTexto()}</td>
+                    <td>{$cont->getData()}</td>
+                    <td>
+                        <a href='conteudo.php?editar={$cont->getId()}'>Editar</a>
+                        <a href='../../controller/conteudoController.php?excluir={$cont->getId()}'>Excluir</a>
+                    </td>
+                </tr>";
         }
     }
 

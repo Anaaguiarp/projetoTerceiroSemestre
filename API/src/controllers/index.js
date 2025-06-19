@@ -244,8 +244,8 @@ app.get('/novoconteudo', (req, res) => {
 
 // CREATE
 app.post('/conteudos', async (req, res) => {
-    const {titulo, descricao, texto, data} = req.body;
-    const sucesso = await insertConteudo(titulo, descricao, texto, data);
+    const {titulo, descricao, texto, categoria, data} = req.body;
+    const sucesso = await insertConteudo(titulo, descricao, texto, categoria, data);
 
     if (sucesso) {
         res.redirect('/conteudos');
@@ -256,8 +256,8 @@ app.post('/conteudos', async (req, res) => {
 
 // Inserindo pela API
 app.post("/api/conteudos", async (req, res) => {
-    const {titulo, descricao, texto, data} = req.body;
-    const result = await insertConteudo(titulo, descricao, texto, data);
+    const {titulo, descricao, texto, categoria, data} = req.body;
+    const result = await insertConteudo(titulo, descricao, texto, categoria, data);
     if(result){
         return res.status(202).json({sucess: true});
     }
@@ -282,8 +282,8 @@ app.get('/editarconteudo/:id', async (req, res) => {
 // UPDATE
 app.post('/conteudos/:id', async (req, res) => {
     const {id} = req.params;
-    const {titulo, descricao, texto, data} = req.body;
-    const sucesso = await editConteudo(id, titulo, descricao, texto, data);
+    const {titulo, descricao, texto, categoria, data} = req.body;
+    const sucesso = await editConteudo(id, titulo, descricao, texto, categoria, data);
 
     if(sucesso){
         res.redirect('/conteudos');
@@ -294,8 +294,8 @@ app.post('/conteudos/:id', async (req, res) => {
 
 // Editando por API
 app.put("/api/conteudos", async (req, res) => {
-    const {id, titulo, descricao, texto, data} = req.body;
-    const result = await editConteudo(id, titulo, descricao, texto, data);
+    const {id, titulo, descricao, texto, categoria, data} = req.body;
+    const result = await editConteudo(id, titulo, descricao, texto, categoria, data);
 
     if(result){
         return res.status(200).json({sucess: true});

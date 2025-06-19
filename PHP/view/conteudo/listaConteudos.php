@@ -1,5 +1,7 @@
 <?php
     require '../../controller/conteudoController.php';
+    $categoria = $_GET['categoria'] ?? null;
+    listar($categoria);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +17,10 @@
 <body>
         <header><?php require '../header/header.php' ?></header>
         <main class="m-5">
-            <h1>Lista de Conteúdos</h1>
+            <h1>Conteúdos</h1>
+            <?php if ($categoria): ?>
+                <p class="text-muted">Filtrando por: <strong><?= ucfirst(str_replace('_', ' ', $categoria)) ?></strong></p>
+            <?php endif; ?>
             <table class="table table-striped">
                 <thead>
                     <tr>

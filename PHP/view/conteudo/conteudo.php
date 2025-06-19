@@ -37,6 +37,16 @@
                         <label for="data" class="form-label">Data: (Vou arrumar)</label><br>
                         <input type="date" class="form-control" name="data" value="<?= isset($conteudo) && $conteudo->getData() ? $conteudo->getData() : '' ?>" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Onde melhor se encaixa?</label>
+                        <select name="categoria" class="form-select" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="dores" <?= isset($conteudo) && $conteudo->getCategoria() === 'dores' ? 'selected' : '' ?>>Dores</option>
+                            <option value="cansaco" <?= isset($conteudo) && $conteudo->getCategoria() === 'cansaco' ? 'selected' : '' ?>>Cansaço</option>
+                            <option value="fraqueza" <?= isset($conteudo) && $conteudo->getCategoria() === 'fraqueza' ? 'selected' : '' ?>>Fraqueza</option>
+                            <option value="falta_de_apetite" <?= isset($conteudo) && $conteudo->getCategoria() === 'falta_de_apetite' ? 'selected' : '' ?>>Falta de apetite</option>
+                        </select>
+                    </div>
                     <div class="d-grid">
                         <?php if(isset($conteudo) && $conteudo->getId()): ?>
                             <button type="submit" name="salvar-edicao" class="btn btn-primary">Salvar Edição</button>

@@ -9,6 +9,7 @@
                 "titulo" => $cont->getTitulo(),
                 "descricao" => $cont->getDescricao(),
                 "texto" => $cont->getTexto(),
+                "categoria" => $cont->getCategoria(),
                 "data" => $cont->getData(),
             ];
 
@@ -46,6 +47,7 @@
             $conteudo->setTitulo(htmlspecialchars($row['titulo']));
             $conteudo->setDescricao(htmlspecialchars($row['descricao']));
             $conteudo->setTexto(htmlspecialchars($row['texto']));
+            $conteudo->setCategoria(htmlspecialchars($row['categoria']));
             $conteudo->setData(htmlspecialchars($row['data']));
             return $conteudo;
         }
@@ -57,6 +59,7 @@
                 "titulo" => $cont->getTitulo(),
                 "descricao" => $cont->getDescricao(),
                 "texto" => $cont->getTexto(),
+                "categoria" => $cont->getCategoria(),
                 "data" => $cont->getData(),
             ];
 

@@ -4,6 +4,7 @@
         private $titulo;
         private $descricao;
         private $texto;
+        private $categoria;
         private $data;
 
         public function getId(){
@@ -36,6 +37,14 @@
 
         public function setTexto($texto){
             $this->texto = $texto;
+        }
+
+        public function getCategoria(){
+            return $this->categoria;
+        }
+
+        public function setCategoria($categoria){
+            $this->categoria = $categoria;
         }
 
         public function getData(){

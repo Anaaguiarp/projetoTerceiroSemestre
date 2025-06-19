@@ -8,11 +8,11 @@ async function getConteudos() {
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 async function insertConteudo(titulo, descricao, texto, data) {
     const connection = await createConnection();
-    if (titulo && descricao && texto && data) {
+    if (titulo && descricao && texto && categoria && data) {
         const [result] = await connection.query(
-            `INSERT INTO conteudo (titulo, descricao, texto, data)
-             VALUES (?, ?, ?, ?)`,
-            [titulo, descricao, texto, data]
+            `INSERT INTO conteudo (titulo, descricao, texto, categoria, data)
+             VALUES (?, ?, ?, ?, ?)`,
+            [titulo, descricao, texto, categoria, data]
         );
 
        if(result.affectedRows > 0){
@@ -26,12 +26,12 @@ async function insertConteudo(titulo, descricao, texto, data) {
     return false;
 }
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-async function editConteudo(id, titulo, descricao, texto, data) {
+async function editConteudo(id, titulo, descricao, texto, categoria, data) {
     const connection = await createConnection();
-    if (id && titulo && descricao && texto && data){
+    if (id && titulo && descricao && texto && categoria && data){
         const [result] = await connection.query(
-            `UPDATE conteudo SET titulo = ?, descricao = ?, texto = ?, data = ? WHERE id = ?`,
-            [titulo, descricao, texto, data, id]
+            `UPDATE conteudo SET titulo = ?, descricao = ?, texto = ?, categoria = ?, data = ? WHERE id = ?`,
+            [titulo, descricao, texto, categoria, data, id]
         );
 
         if (result.affectedRows === 0) return false;
