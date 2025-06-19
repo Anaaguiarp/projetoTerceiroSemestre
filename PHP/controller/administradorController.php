@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
         "confirmacao_senha" => $_POST['confirmacao_senha'],
         "data_nascimento" => $_POST['data_nascimento'],
         "genero" => $_POST['genero'],
-        "conselho_profissional" => $_POST['conselhoProfissional'],
+        "conselho_profissional" => $_POST['conselho_profissional'],
         "formacao" => $_POST['formacao'],
-        "registro_profissional" => $_POST['registroProfissional'],
+        "registro_profissional" => $_POST['registro_profissional'],
         "especialidade" => $_POST['especialidade']
     ];
 
