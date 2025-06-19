@@ -36,7 +36,7 @@
 
     if(isset($_POST['salvar-edicao'])){
         $paciente = new Paciente();
-        $paciente->setId($_POST['id']); // ID É CRUCIAL PARA O MÉTODO DE UPDATE DO DAO
+        $paciente->setId($_POST['id']);
         $paciente->setNome($_POST['nome']);
         $paciente->setNomeSocial($_POST['nome_social']);
         $paciente->setEmail($_POST['email']);
@@ -49,7 +49,7 @@
         $paciente->setDoenca($_POST['doenca']);
         $paciente->setTipoSanguineo($_POST['tipo_sanguineo']);
 
-        $pacienteDao->editar($paciente); // Chama o método editar no PacienteDa
+        $pacienteDao->editar($paciente);
         
         header('Location: ../view/listagem/listagemUsuarios.php');
         exit();
