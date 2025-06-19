@@ -31,10 +31,6 @@
                         <textarea class="form-control" placeholder="Digite o conteúdo que deseja publicar" name="texto" id="exampleFormControlTextarea1" rows="14" maxlength="5000" required><?= isset($conteudo) && $conteudo->getTexto() ? $conteudo->getTexto() : '' ?></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="data" class="form-label">Data: (Vou arrumar)</label><br>
-                        <input type="date" class="form-control" name="data" value="<?= isset($conteudo) && $conteudo->getData() ? $conteudo->getData() : '' ?>" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="categoria" class="form-label">Onde melhor se encaixa?</label>
                         <select name="categoria" class="form-select" required>
                             <option value="">Selecione uma categoria</option>
