@@ -51,17 +51,22 @@
                 continue;
             }
 
-            echo "<tr class='conteudo " . strtolower($cont->getCategoria()) . "'>
-                    <td>{$cont->getId()}</td>
+            echo "<tr class='conteudo " . strtolower($cont->getCategoria()) . "'>";
+                    /* if (isset($_SESSION['admin'])){ */
+                        echo  "<td>{$cont->getId()}</td>";
+                    /* } */
+                    echo "
                     <td>{$cont->getTitulo()}</td>
                     <td>{$cont->getDescricao()}</td>
                     <td>{$cont->getTexto()}</td>
-                    <td>{$cont->getData()}</td>
-                    <td>
-                        <a href='conteudo.php?editar={$cont->getId()}'>Editar</a>
-                        <a href='../../controller/conteudoController.php?excluir={$cont->getId()}'>Excluir</a>
-                    </td>
-                </tr>";
+                    <td>{$cont->getData()}</td>";
+                    /* if (isset($_SESSION['admin'])) { */
+                        echo "<td>
+                                <a href='conteudo.php?editar={$cont->getId()}'>Editar</a>
+                                <a href='../../controller/conteudoController.php?excluir={$cont->getId()}'>Excluir</a>
+                            </td>";
+                    /* } */
+            echo "</tr>";
         }
     }
 

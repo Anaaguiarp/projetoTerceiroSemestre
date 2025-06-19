@@ -1,9 +1,6 @@
 <?php
-
     require '../../controller/conteudoController.php';
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

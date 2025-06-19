@@ -6,7 +6,7 @@ async function getConteudos() {
     return rows;
 }
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-async function insertConteudo(titulo, descricao, texto, data) {
+async function insertConteudo(titulo, descricao, texto, categoria, data) {
     const connection = await createConnection();
     if (titulo && descricao && texto && categoria && data) {
         const [result] = await connection.query(

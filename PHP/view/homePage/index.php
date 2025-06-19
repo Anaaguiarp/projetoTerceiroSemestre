@@ -20,19 +20,11 @@
         <div class="container-nav p-3" style="color: #542f16;">
             <p class="m-0">Eu sinto:</p>
             <nav class="navbar navbar-expand-lg p-0">
-                <ul class="nav nav-tabs mb-4" id="filtros">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../conteudo/listaConteudos.php">Ver tudo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../conteudo/listaConteudos.php?categoria=dores">Dores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../conteudo/listaConteudos.php?categoria=cansaco">Cansaço</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../conteudo/listaConteudos.php?categoria=cansaco">Fraqueza</a>
-                    </li>
+                <ul class="d-flex justify-content-around w-100">
+                    <li class="nav-item"><a class="nav-link" href="../conteudo/listaConteudos.php?categoria=dores">Dores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../conteudo/listaConteudos.php?categoria=cansaco">Cansaço</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../conteudo/listaConteudos.php?categoria=fraqueza">Fraqueza</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../conteudo/listaConteudos.php">Ver tudo</a></li>
                 </ul>
             </nav>
         </div>
