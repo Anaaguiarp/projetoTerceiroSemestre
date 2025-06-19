@@ -95,12 +95,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="senha" class="form-label">Sua senha</label>
-                            <input type="password" class="form-control" name="senha" placeholder="Crie uma senha" maxlength="30"
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Crie uma senha" maxlength="30"
                             <?= isset($paciente) && $paciente->getId() ? '' : 'required' ?>>
                         </div>
                         <div class="mb-3">
                             <label for="confirma_senha" class="form-label">Confirme sua senha</label>
-                            <input type="password" class="form-control" name="confirma_senha" placeholder="Confirme sua senha" maxlength="30"
+                            <input type="password" class="form-control" id="confirma_senha" name="confirma_senha" placeholder="Confirme sua senha" maxlength="30"
                             <?= isset($paciente) && $paciente->getId() ? '' : 'required' ?>>
                         </div>
                         <div class="mb-3">
@@ -223,5 +223,20 @@
         </main>
         <?php require '../footer/footer.php'?>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const senha = document.getElementById('senha');
+        const confirmaSenha = document.getElementById('confirma_senha');
+
+        form.addEventListener('submit', function(event) {
+            if (senha.value !== confirmaSenha.value) {
+                event.preventDefault();
+                alert('As senhas não conferem. Por favor, verifique e tente novamente.');
+                confirmaSenha.focus();
+            }
+        });
+    });
+    </script>
 </body>
 </html>

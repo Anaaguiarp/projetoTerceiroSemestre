@@ -159,17 +159,26 @@ app.get('/novopaciente', (req, res) => {
 
 // CREATE
 app.post('/paciente', async (req, res) => {
-    const {nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
+    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
     } = req.body;
 
-    const sucesso = await insertPaciente(nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
+    const result = await insertPaciente(nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
     );
 
-    if (sucesso){
+    if (result){
         res.redirect('/pacientes');
     }else{
         res.status(400).send("Erro ao cadastrar paciente.");
     }
+});
+
+app.post("/api/paciente", async (req, res) => {
+    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
+    const result = await insertPaciente(nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
+    if(result){
+        return res.status(202).json({sucess: true});
+    }
+    return res.status(400).json({sucess: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -191,10 +200,10 @@ app.get('/editarpaciente/:id', async (req, res) => {
 app.post('/editarpaciente/:id', async (req, res) => {
     const {id} = req.params;
 
-    const {nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
+    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
     } = req.body;
 
-    const sucesso = await editPaciente( id, nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
+    const sucesso = await editPaciente( id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
     );
 
     if(sucesso){
@@ -202,6 +211,16 @@ app.post('/editarpaciente/:id', async (req, res) => {
     }else{
         res.status(400).send("Erro ao editar paciente.");
     }
+});
+
+app.put("/api/paciente", async (req, res) => {
+    const {id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
+    const result = await editPaciente(id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
+
+    if(result){
+        return res.status(200).json({sucess: true});
+    }
+    return res.status(404).json({sucess: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -216,6 +235,15 @@ app.get('/removerpaciente/:id', async (req, res) => {
     }else{
         res.status(400).send("Erro ao remover paciente.");
     }
+});
+
+app.delete("/api/paciente", async (req, res) => {
+    const {id} = req.body;
+    const result = await deletePaciente(id);
+    if(result){
+        return res.status(200).json({sucess: true});
+    }  
+    return res.status(404).json({sucess: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ CONTENUDO ☆

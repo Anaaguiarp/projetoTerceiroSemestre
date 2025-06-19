@@ -7,17 +7,12 @@ async function getPacientes(){
     return rows;
 };
 
-async function insertPaciente(nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) {
+async function insertPaciente(nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) {
     const connection = await createConnection();
-    if (nome && nome_social && email && senha && confirmacao_senha && data_nascimento && genero && estado && cidade && medicacao && doenca && tipo_sanguineo) {
-        
-        if (senha !== confirmacao_senha) {
-            console.error("Senha e confirmação de senha não conferem.");
-            return false;
-        }
+    if (nome && nome_social && email && senha && data_nascimento && genero && estado && cidade && medicacao && doenca && tipo_sanguineo) {
 
         const [result] = await connection.query(`
-            INSERT INTO pacientes(
+            INSERT INTO paciente(
                 nome, nome_social, email, senha, data_nascimento, 
                 genero, estado, cidade, medicacao, doenca, tipo_sanguineo) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
@@ -34,9 +29,9 @@ async function insertPaciente(nome, nome_social, email, senha, confirmacao_senha
     return false;
 };
 
-async function editPaciente(id, nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) {
+async function editPaciente(id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) {
     const connection = await createConnection();
-    if (!id || !nome || !nome_social || !email || !senha || !confirmacao_senha || !data_nascimento || !genero || !estado || !cidade || !medicacao || !doenca || !tipo_sanguineo) {
+    if (!id || !nome || !nome_social || !email || !senha || !data_nascimento || !genero || !estado || !cidade || !medicacao || !doenca || !tipo_sanguineo) {
         console.error("Falha ao editar paciente, faltou algum dado.");
         return false;
     }
@@ -47,7 +42,7 @@ async function editPaciente(id, nome, nome_social, email, senha, confirmacao_sen
     }
 
     const result = await connection.query(`
-        UPDATE pacientes
+        UPDATE paciente
         SET nome = ?,
             nome_social = ?,
             email = ?,
@@ -71,7 +66,7 @@ async function deletePaciente(id) {
     const connection = await createConnection();
     if (id) {
         const result = await connection.query(`
-            DELETE FROM pacientes
+            DELETE FROM paciente
             WHERE id = ?`, [id]
         );
 
