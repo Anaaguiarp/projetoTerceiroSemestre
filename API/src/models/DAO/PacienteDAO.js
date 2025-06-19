@@ -1,11 +1,14 @@
-const pool = require('./db');
-// tem que ve neh kkkkk
-async function getPacientes() {
-    const { rows } = await pool.query("SELECT * FROM pacientes ORDER BY nome");
+const { createConnection } = require('./db');
+
+async function getPacientes(){
+    const connection = await createConnection();
+    const [rows] = await connection.query("SELECT * FROM paciente ORDER BY nome");
+
     return rows;
 };
 
 async function insertPaciente(nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) {
+    const connection = await createConnection();
     if (nome && nome_social && email && senha && confirmacao_senha && data_nascimento && genero && estado && cidade && medicacao && doenca && tipo_sanguineo) {
         
         if (senha !== confirmacao_senha) {
@@ -13,18 +16,18 @@ async function insertPaciente(nome, nome_social, email, senha, confirmacao_senha
             return false;
         }
 
-        const result = await pool.query(`
+        const [result] = await connection.query(`
             INSERT INTO pacientes(
                 nome, nome_social, email, senha, data_nascimento, 
-                genero, estado, cidade, medicacao, doenca, tipo_sanguineo
-            ) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-            RETURNING id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
-        `, [nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo]);
+                genero, estado, cidade, medicacao, doenca, tipo_sanguineo) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+            [nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo]);
 
-        console.log("Resultado do Insert: ", result.rows[0]);
+        if(result.affectedRows > 0){
+            return true;
+        }
 
-        return result.rows.length > 0;
+        return false;
     }
 
     console.error("Falha ao inserir paciente, faltou algum dado.");
@@ -32,6 +35,7 @@ async function insertPaciente(nome, nome_social, email, senha, confirmacao_senha
 };
 
 async function editPaciente(id, nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) {
+    const connection = await createConnection();
     if (!id || !nome || !nome_social || !email || !senha || !confirmacao_senha || !data_nascimento || !genero || !estado || !cidade || !medicacao || !doenca || !tipo_sanguineo) {
         console.error("Falha ao editar paciente, faltou algum dado.");
         return false;
@@ -42,22 +46,21 @@ async function editPaciente(id, nome, nome_social, email, senha, confirmacao_sen
         return false;
     }
 
-    const result = await pool.query(`
+    const result = await connection.query(`
         UPDATE pacientes
-        SET nome = $1,
-            nome_social = $2,
-            email = $3,
-            senha = $4,
-            data_nascimento = $5,
-            genero = $6,
-            estado = $7,
-            cidade = $8,
-            medicacao = $9,
-            doenca = $10,
-            tipo_sanguineo = $11
-        WHERE id = $12
-        RETURNING id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
-    `, [nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo, id]);
+        SET nome = ?,
+            nome_social = ?,
+            email = ?,
+            senha = ?,
+            data_nascimento = ?,
+            genero = ?,
+            estado = ?,
+            cidade = ?,
+            medicacao = ?,
+            doenca = ?,
+            tipo_sanguineo = ?
+        WHERE id = ?`, 
+        [nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo, id]);
 
     console.log("Resultado do edit: ", result.rows[0]);
 
@@ -65,14 +68,15 @@ async function editPaciente(id, nome, nome_social, email, senha, confirmacao_sen
 };
 
 async function deletePaciente(id) {
+    const connection = await createConnection();
     if (id) {
-        const result = await pool.query(`
+        const result = await connection.query(`
             DELETE FROM pacientes
-            WHERE id = $1
-            RETURNING id
-        `, [id]);
+            WHERE id = ?`, [id]
+        );
 
-        return result.rows.length > 0;
+        if(result.affectedRows === 0) return false;
+        return true;
     }
 
     console.error("Falha ao remover o paciente!");
