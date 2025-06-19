@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php listar(); ?>
+                    <?php listarSQL(); ?>
                 </tbody>
             </table>
         </main>

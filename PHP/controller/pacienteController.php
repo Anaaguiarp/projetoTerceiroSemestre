@@ -55,7 +55,7 @@
         exit();
     }
 
-    function listar(){
+    function listarSQL(){
         $pacienteDao = new PacienteDaoSql();
         $lista = $pacienteDao->read();
         foreach($lista as $pac){
@@ -74,7 +74,7 @@
                 <td> {$pac->getTipoSanguineo()}</td>
                 <td>
                     <a href='../cadastroPaciente/cadastro.php?editar={$pac->getId()}'>Editar</a>
-                    <a href='  #  '><Excluir</a>
+                    <a href='../../controller/pacienteController.php?id={$pac->getId()}'>Excluir</a>
                 </td>
             </tr>";
         }
