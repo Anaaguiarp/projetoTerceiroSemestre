@@ -1,49 +1,5 @@
 <?php
 require_once __DIR__ . '/../dao/ConnectionFactory.php';
-require_once('config.php');
-
-function listarAdministradores() {
-    $ch = curl_init(API_URL . '/administradores');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $resposta = curl_exec($ch);
-    curl_close($ch);
-
-    return json_decode($resposta, true);
-}
-
-function cadastrarAdministrador($dados) {
-    $ch = curl_init(API_URL . '/novoadministrador');
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($dados));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $resposta = curl_exec($ch);
-    curl_close($ch);
-
-    return json_decode($resposta, true);
-}
-
-function editarAdministrador($id, $dados) {
-    $ch = curl_init(API_URL . "/editaradministrador/$id");
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($dados));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $resposta = curl_exec($ch);
-    curl_close($ch);
-
-    return json_decode($resposta, true);
-}
-
-function excluirAdministrador($id) {
-    $ch = curl_init(API_URL . "/removeradministrador/$id");
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $resposta = curl_exec($ch);
-    curl_close($ch);
-
-    return json_decode($resposta, true);
-}
 
 class AdministradorDao {
     private $conexao;
