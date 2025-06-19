@@ -14,6 +14,58 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="cadastroStyles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectEstado = document.getElementById('estado');
+            const selectCidade = document.getElementById('cidade');
+            const estadoSelecionado = "<?= isset($paciente) ? $paciente->getEstado() : '' ?>";
+            const cidadeSelecionada = "<?= isset($paciente) ? $paciente->getCidade() : '' ?>";
+
+            // Carrega estados
+            fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+                .then(res => res.json())
+                .then(estados => {
+                    estados.forEach(estado => {
+                        const option = document.createElement('option');
+                        option.value = estado.id; // ID do estado (ex: 35)
+                        option.textContent = estado.nome;
+                        option.dataset.sigla = estado.sigla;
+
+                        if (estado.nome === estadoSelecionado || estado.sigla === estadoSelecionado) {
+                            option.selected = true;
+                            carregarCidades(estado.id); // Carrega as cidades do estado já salvo
+                        }
+
+                        selectEstado.appendChild(option);
+                    });
+                });
+
+            // Quando muda o estado
+            selectEstado.addEventListener('change', () => {
+                const estadoId = selectEstado.value;
+                carregarCidades(estadoId);
+            });
+
+            function carregarCidades(estadoId) {
+                selectCidade.innerHTML = '<option value="">Carregando cidades...</option>';
+
+                fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoId}/municipios`)
+                    .then(res => res.json())
+                    .then(cidades => {
+                        selectCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
+                        cidades.forEach(cidade => {
+                            const option = document.createElement('option');
+                            option.value = cidade.nome;
+                            option.textContent = cidade.nome;
+                            if (cidade.nome === cidadeSelecionada) {
+                                option.selected = true;
+                            }
+                            selectCidade.appendChild(option);
+                        });
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container-fluid p-0">
@@ -59,13 +111,15 @@
                         <div class="d-flex">
                             <div class="mb-3">
                                 <label for="estado" class="form-label">Estado</label>
-                                <input type="text" class="form-control" name="estado" maxlength="25"
-                                value="<?= isset($paciente) && $paciente->getEstado() ? $paciente->getEstado() : '' ?>">
+                                <select id="estado" name="estado" class="form-select">
+                                    <option value="">Selecione um estado</option>
+                                </select>
                             </div>
                             <div class="mb-3 mx-3">
                                 <label for="cidade" class="form-label">Cidade</label>
-                                <input type="text" class="form-control" name="cidade" maxlength="30"
-                                value="<?= isset($paciente) && $paciente->getCidade() ? $paciente->getCidade() : '' ?>">
+                                <select id="cidade" name="cidade" class="form-select">
+                                    <option value="">Selecione uma cidade</option>
+                                </select>
                             </div>
                         </div>
                         <div class="mb-3">
