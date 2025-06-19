@@ -1,7 +1,15 @@
 html, body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
     margin: 0;
     font-family: "Lexend Giga", sans-serif;
+}
+
+.container-fluid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
