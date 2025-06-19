@@ -1,8 +1,10 @@
 <?php
 
     class ConteudoDao{
+        private $conexao;
+        
         public function inserir(Conteudo $cont){
-            $url = "http://localhost:3000/conteudos";
+            $url = "http://localhost:3001/api/conteudos";
             $dados = [
                 "titulo" => $cont->getTitulo(),
                 "descricao" => $cont->getDescricao(),
@@ -24,7 +26,7 @@
         }
     
         public function read(){
-            $url = "http://localhost:3000/conteudos";
+            $url = "http://localhost:3001/api/conteudos";
             $result = file_get_contents($url);
             $contList = array();
             $lista = json_decode($result, true);
@@ -45,7 +47,7 @@
         }
         
         public function editar(Conteudo $cont){
-            $url = "http://localhost:3000/conteudos/".$cont->getId();
+            $url = "http://localhost:3001/api/conteudos".$cont->getId();
             $dados = [
                 "titulo" => $cont->getTitulo(),
                 "descricao" => $cont->getDescricao(),
@@ -71,8 +73,15 @@
             return json_decode($result, true);
         }
     
+        public function deletar($id) {
+            $sql = "DELETE FROM conteudo WHERE id = :id";
+            $conn = $this->conexao->prepare($sql);
+            $conn->bindParam(':id', $id);
+            return $conn->execute();
+        }
+
         public function buscarPorId($id){
-            $url = "http://localhost:3000/conteudos/" . urlencode($id);
+            $url = "http://localhost:3001/" . urlencode($id);
             try {
                 $response = @file_get_contents($url);
                 if ($response === FALSE) {

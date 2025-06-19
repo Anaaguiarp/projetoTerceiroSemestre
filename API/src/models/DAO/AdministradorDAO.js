@@ -7,15 +7,15 @@ async function getAdministradores(){
     return rows;
 };
 
-async function insertAdministrador(nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, especialidade){
+async function insertAdministrador(nome, nome_social, email, senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, ultimo_login, especialidade){
     const connection = await createConnection();
-    if(nome, nome_social, email, senha, confirmacao_senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, especialidade){
+    if(nome, nome_social, email, senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, ultimo_login, especialidade){
         const [result] = await connection.query(`
             INSERT INTO administrador(nome, nome_social, email, senha, data_nascimento, 
             genero, conselho_profissional, formacao, registro_profissional, ultimo_login, especialidade) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, Now(), ?)`, 
             [nome, nome_social, email, senha, data_nascimento, genero, 
-            conselho_profissional, formacao, registro_profissional, especialidade]
+            conselho_profissional, formacao, registro_profissional, ultimo_login, especialidade]
         );
 
         if(result.affectedRows > 0){

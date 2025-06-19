@@ -14,16 +14,29 @@
             <div class="col-lg-6 col-md-8 col-sm-10">
                 <h1 class="text-center mb-4">Adicionar Conteúdo</h1>
                 <form action="../../controller/conteudoController.php" method="POST">
+                    <input type="hidden" name="id" value="<?= isset($conteudo) && $conteudo->getId() ? $conteudo->getId() : '' ?> >
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Título:</label>
-                        <input type="text" class="form-control" name="titulo" placeholder="Digite o título da publicação" maxlength="100" required>
+                        <input type="text" class="form-control" name="titulo" placeholder="Digite o título da publicação" maxlength="100" value="<?= isset($conteudo) && $conteudo->getTitulo() ? $conteudo->getTitulo() : '' ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="conteudo" class="form-label">Conteúdo</label><br>
-                        <textarea class="form-control" placeholder="Digite o conteúdo que deseja publicar" id="exampleFormControlTextarea1" rows="14" maxlength="2000" required></textarea>
+                        <label for="descricao" class="form-label">Descrição:</label>
+                        <input type="text" class="form-control" name="descricao" placeholder="Crie uma descrição para seu post" maxlength="300" value="<?= isset($conteudo) && $conteudo->getDescricao() ? $conteudo->getDescricao() : '' ?>"  required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="texto" class="form-label">Conteúdo:</label><br>
+                        <textarea class="form-control" placeholder="Digite o conteúdo que deseja publicar" name="texto" id="exampleFormControlTextarea1" rows="14" maxlength="5000" value="<?= isset($conteudo) && $conteudo->getDescricao() ? $conteudo->getDescricao() : '' ?>"  required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Data: (Vou arrumar)</label><br>
+                        <input type="date" class="form-control" name="data" required>
                     </div>
                     <div class="d-grid">
-                        <input type="submit" class="btn btn-secondary" name="publicar" value="Publicar">
+                        <?php if(isset($conteudo) && $conteudo->getId()): ?>
+                            <button type="submit" name="salvar_edicao" class="btn btn-primary">Salvar Edição</button>
+                        <?php else: ?>
+                            <button type="submit" name="cadastrar" class="btn btn-success">Cadastrar</button>
+                        <?php endif; ?>
                     </div>
                 </form>
             </div>

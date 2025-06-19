@@ -255,7 +255,7 @@ app.post('/conteudo', async (req, res) => {
 });
 
 // Inserindo pela API
-app.post("/api/conteudo", async (req, res) => {
+app.post("/api/conteudos", async (req, res) => {
     const {titulo, descricao, texto, data} = req.body;
     const result = await insertConteudo(titulo, descricao, texto, data);
     if(result){
@@ -293,7 +293,7 @@ app.post('/editarconteudo/:id', async (req, res) => {
 });
 
 // Editando por API
-app.put("/api/conteudo", async (req, res) => {
+app.put("/api/conteudos", async (req, res) => {
     const {id, titulo, descricao, texto, data} = req.body;
     const result = await editConteudo(id, titulo, descricao, texto, data);
 
@@ -317,7 +317,7 @@ app.get('/removerconteudo/:id', async (req, res) => {
     }
 });
 
-app.delete("/api/conteudo", async (req, res) => {
+app.delete("/api/conteudos", async (req, res) => {
     const {id} = req.body;
     const result = await deleteConteudo(id);
     if(result){
