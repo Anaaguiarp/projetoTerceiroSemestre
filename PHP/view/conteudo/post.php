@@ -1,7 +1,7 @@
 <?php
     require '../../controller/conteudoController.php';
 
-    if (!isset($_GET['id'])) {
+    if (!isset($_GET['id'])) { // Se não houver essa requisição com 1 id válido, redireciona o usuário para a Página de Conteúdos
         header("Location: listaConteudos.php");
         exit;
     }
