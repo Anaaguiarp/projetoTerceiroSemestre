@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="listaConteudos.css">
 </head>
 <body>
     <header><?php require '../header/header.php' ?></header>
@@ -23,12 +24,11 @@
             <p class="text-muted">Filtrando por: <strong><?= ucfirst(str_replace('_', ' ', $categoria)) ?></strong></p>
         <?php endif; ?>
 
-        <!-- Botões de filtro por categoria (opcional) -->
-        <div class="mb-4">
-            <a href="?categoria=dores" class="btn btn-outline-primary btn-sm me-2">Dores</a>
-            <a href="?categoria=cansaco" class="btn btn-outline-primary btn-sm me-2">Cansaço</a>
-            <a href="?categoria=fraqueza" class="btn btn-outline-primary btn-sm me-2">Fraqueza</a>
-            <a href="?categoria=falta_de_apetite" class="btn btn-outline-primary btn-sm me-2">Falta de Apetite</a>
+        <div class="mb-4 categorias">
+            <a href="?categoria=dores" class="btn btn-sm me-2">Dores</a>
+            <a href="?categoria=cansaco" class="btn btn-sm me-2">Cansaço</a>
+            <a href="?categoria=fraqueza" class="btn btn-sm me-2">Fraqueza</a>
+            <a href="?categoria=falta_de_apetite" class="btn btn-sm me-2">Falta de Apetite</a>
             <a href="listaConteudos.php" class="btn btn-outline-secondary btn-sm">Ver Todos</a>
         </div>
 
