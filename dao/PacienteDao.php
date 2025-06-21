@@ -44,17 +44,17 @@
         public function listaPaciente($row){
             $paciente = new Paciente();
             $paciente->setId(htmlspecialchars($row['id']));
-            $paciente->setId(htmlspecialchars($row['nome']));
-            $paciente->setId(htmlspecialchars($row['nome_social']));
-            $paciente->setId(htmlspecialchars($row['email']));
-            $paciente->setId(htmlspecialchars($row['senha']));
-            $paciente->setId(htmlspecialchars($row['data_nascimento']));
-            $paciente->setId(htmlspecialchars($row['genero']));
-            $paciente->setId(htmlspecialchars($row['estado']));
-            $paciente->setId(htmlspecialchars($row['cidade']));
-            $paciente->setId(htmlspecialchars($row['medicacao']));
-            $paciente->setId(htmlspecialchars($row['doenca']));
-            $paciente->setId(htmlspecialchars($row['tipo_sanguineo']));
+            $paciente->setNome(htmlspecialchars($row['nome']));
+            $paciente->setNomeSocial(htmlspecialchars($row['nome_social']));
+            $paciente->setEmail(htmlspecialchars($row['email']));
+            $paciente->setSenha(htmlspecialchars($row['senha']));
+            $paciente->setDataNascimento(htmlspecialchars($row['data_nascimento']));
+            $paciente->setGenero(htmlspecialchars($row['genero']));
+            $paciente->setEstado(htmlspecialchars($row['estado']));
+            $paciente->setCidade(htmlspecialchars($row['cidade']));
+            $paciente->setMedicacao(htmlspecialchars($row['medicacao']));
+            $paciente->setDoenca(htmlspecialchars($row['doenca']));
+            $paciente->setTipoSanguineo(htmlspecialchars($row['tipo_sanguineo']));
         }
         
         public function editar(Paciente $pac){
