@@ -1,0 +1,9 @@
+.categorias a{
+    color: #542e16;
+    border: solid 1px #542e16;
+}
+
+.categorias a:hover{
+    color: #FFF;
+    background-color: #542e16;
+}

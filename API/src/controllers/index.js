@@ -257,29 +257,39 @@ app.delete("/api/paciente", async (req, res) => {
 
 // READ
 app.get("/conteudos", async (req, res) => {
-    const conteudos = await getConteudos();
-    console.log("Conteúdos: ", conteudos);
+    try{
+        const conteudos = await getConteudos();
+        console.log("Conteúdos: ", conteudos);
 
-    res.status(200).render("listaConteudos", { conteudosDoController: conteudos });
+        res.status(200).render("listaConteudos", { conteudosDoController: conteudos });
+    }catch (error) {
+        console.error("Erro ao buscar conteúdos:", error);
+        res.status(500).send("Erro interno ao carregar conteúdos.");
+    }
 });
 
 // API envia lista de conteúdos
 app.get("/api/conteudos", async (req, res) => {
-    const conteudos = await getConteudos();
-
-    res.status(200).json({sucess: true, conteudos});
+    try {
+        const conteudos = await getConteudos();
+        res.status(200).json({ success: true, conteudos });
+    } catch (error) {
+        console.error("Erro na API de conteúdos:", error);
+        res.status(500).json({ success: false, message: "Erro interno ao buscar conteúdos." });
+    }
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // Formulário - CREATE
 app.get('/novoconteudo', (req, res) => {
-    res.render('formConteudo', { conteudo: {} });
+    res.render('novoConteudo', { conteudo: {} });
 });
 
 // CREATE
 app.post('/conteudos', async (req, res) => {
-    const {titulo, descricao, texto, categoria, data} = req.body;
+    const {titulo, descricao, texto, categoria} = req.body;
+    const data = new Date().toISOString().split('T')[0];
     const sucesso = await insertConteudo(titulo, descricao, texto, categoria, data);
 
     if (sucesso) {
