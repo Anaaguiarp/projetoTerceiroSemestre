@@ -1,23 +1,10 @@
 <?php
     require __DIR__ . '/../dao/ConnectionFactory.php';
-<<<<<<< HEAD:controller/conteudoController.php
-=======
     require __DIR__ . '/../dao/ConteudoDao.php';
->>>>>>> a419c745a2a70f6fab0e2c7afa0e586f2e1291c7:PHP/controller/conteudoController.php
     require __DIR__ . '/../model/Conteudo.php';
 
     $conteudoDao = new ConteudoDao();
 
-<<<<<<< HEAD:controller/conteudoController.php
-    if(isset($_POST['cadastrar'])){
-        $conteudo = new Conteudo();
-        $conteudo->setTitulo($_POST['titulo']);
-        $conteudo->setTitulo($_POST['descricao']);
-        $conteudo->setTitulo($_POST['conteudo']);
-        $conteudo->setTitulo($_POST['data']);
-        $conteudoDao->inserir($conteudo);
-        header("Location: ../view/homePage/index.php");
-=======
     if(isset($_POST['publicar'])){
         $conteudo = new Conteudo();
         $conteudo->setTitulo($_POST['titulo']);
@@ -27,7 +14,6 @@
         $conteudo->setData(date('Y-m-d')); 
         $conteudoDao->inserir($conteudo);
         header("Location: ../view/conteudo/listaConteudos.php");
->>>>>>> a419c745a2a70f6fab0e2c7afa0e586f2e1291c7:PHP/controller/conteudoController.php
     }
 
     if(isset($_GET['editar'])){
@@ -128,6 +114,4 @@
         header("Location: ../view/conteudo/listaConteudos.php");
         exit();
     }
-
->>>>>>> a419c745a2a70f6fab0e2c7afa0e586f2e1291c7:PHP/controller/conteudoController.php
 ?>
