@@ -65,6 +65,19 @@
                 });
             }
         });
+        document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const senha = document.getElementById('senha');
+        const confirmaSenha = document.getElementById('confirma_senha');
+
+            form.addEventListener('submit', function(event) {
+                if (senha.value !== confirmaSenha.value) {
+                    event.preventDefault();
+                    alert('As senhas não conferem. Por favor, verifique e tente novamente.');
+                    confirmaSenha.focus();
+                }
+            });
+        });
     </script>
 </head>
 <body>
@@ -223,20 +236,5 @@
         </main>
         <?php require '../footer/footer.php'?>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
-        const senha = document.getElementById('senha');
-        const confirmaSenha = document.getElementById('confirma_senha');
-
-        form.addEventListener('submit', function(event) {
-            if (senha.value !== confirmaSenha.value) {
-                event.preventDefault();
-                alert('As senhas não conferem. Por favor, verifique e tente novamente.');
-                confirmaSenha.focus();
-            }
-        });
-    });
-    </script>
 </body>
 </html>

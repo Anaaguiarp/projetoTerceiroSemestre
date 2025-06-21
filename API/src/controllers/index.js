@@ -150,6 +150,13 @@ app.get("/pacientes", async (req, res) => {
     res.status(200).render("listaPacientes", {pacientesDoController: pacientes});
 });
 
+app.get("/api/pacientes", async (req, res) => {
+    const pacientes = await getPacientes();
+
+    res.status(200).json({sucess: true, pacientes});
+});
+
+
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // Formulário - CREATE

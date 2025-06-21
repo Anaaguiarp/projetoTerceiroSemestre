@@ -1,3 +1,12 @@
+<?php
+    require_once '../../controller/administradorController.php';
+    require_once 'listarAdministradores.php';
+
+    $administradorDao = new AdministradorDao();
+    $administradores = $administradorDao->read();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,10 +40,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                    require 'listarAdministradores.php';
-                    listarAdministradores();
-                ?>
+                <?php 
+                listarAdministradores($administradores) ?>
             </tbody>
         </table>
         </main>

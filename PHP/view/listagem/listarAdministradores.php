@@ -1,17 +1,5 @@
 <?php
-function listarAdministradores() {
-    $url = 'http://localhost:3001/administradores';
-
-    $json = file_get_contents($url);
-
-    if ($json === false) {
-        echo "<tr><td colspan='12'>Erro ao acessar a API</td></tr>";
-        return;
-    }
-
-    $administradores = json_decode($json, true);
-
-    // Verifica se o retorno é válido
+function listarAdministradores($administradores) {
     if (!is_array($administradores)) {
         echo "<tr><td colspan='12'>Nenhum administrador encontrado</td></tr>";
         return;
