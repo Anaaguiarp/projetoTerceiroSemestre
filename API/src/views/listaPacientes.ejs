@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pacientes</title>
+</head>
+<body>
+    <h1>Lista de Pacientes</h1>
+    <ul>
+        <% pacientesDoController.forEach(paciente => { %>
+            <li>
+                <strong>ID:</strong> <%= paciente.id %>
+                <strong>Nome:</strong> <%= paciente.nome %>
+                <strong>Nome Social:</strong> <%= paciente.nome_social %>
+                <strong>E-mail:</strong> <%= paciente.email %>
+                <strong>Senha:</strong> <%= paciente.senha %>
+                <strong>Data de Nascimento:</strong> <%= paciente.data_nascimento %>
+                <strong>Gênero:</strong> <%= paciente.genero %>
+                <strong>Estado:</strong> <%= paciente.estado %>
+                <strong>Cidade:</strong> <%= paciente.cidade %>
+                <strong>Medicação:</strong> <%= paciente.medicacao %>
+                <strong>Doença:</strong> <%= paciente.doenca %>
+                <strong>Tipo Sanguíneo:</strong> <%= paciente.tipo_sanguineo %>
+                <a href="/editarpaciente/<%= paciente.id %>">Editar</a>
+                <a href="/removerpaciente/<%= paciente.id %>">Excluir</a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
