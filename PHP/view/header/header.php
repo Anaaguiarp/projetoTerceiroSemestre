@@ -48,9 +48,9 @@
                             <a href="../perfil/perfil.php">' . htmlspecialchars($_SESSION['paciente']['nome']) . '</a>
                             <a href="../logout/logout.php" class="btn btn-sair">Sair</a>
                         </span>';
-                } elseif (isset($_SESSION['admin'])) {
+                } elseif (isset($_SESSION['administrador'])) {
                     echo '<span>
-                            <a href="../perfil/perfilAdministrador.php">' . htmlspecialchars($_SESSION['admin']['nome']) . '</a>
+                            <a href="../perfil/perfilAdministrador.php">' . htmlspecialchars($_SESSION['administrador']['nome']) . '</a>
                             <a href="../logout/logout.php" class="btn btn-sair">Sair</a>
                         </span>';
                 } else {
