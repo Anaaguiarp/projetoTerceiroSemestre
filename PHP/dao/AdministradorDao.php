@@ -1,4 +1,4 @@
-'<?php
+<?php
 require_once 'ConnectionFactory.php';
 class AdministradorDao {
     private $conexao;
@@ -121,4 +121,3 @@ class AdministradorDao {
     }
 }
 ?>
-'
