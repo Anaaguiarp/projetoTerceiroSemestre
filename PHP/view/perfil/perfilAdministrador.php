@@ -6,7 +6,7 @@ session_start();
 
 $dao = new AdministradorDao();
 
-$id = $_SESSION['id_administrador'] ?? null;
+$id = $_SESSION['administrador']['id'] ?? null;
 
 if (!$id) {
     header('Location: ../../login/login.php'); // ou a página de login
