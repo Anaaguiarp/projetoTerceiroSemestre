@@ -153,7 +153,7 @@ app.get("/pacientes", async (req, res) => {
 app.get("/api/pacientes", async (req, res) => {
     const pacientes = await getPacientes();
 
-    res.status(200).json({sucess: true, pacientes});
+    res.status(200).json({success: true, pacientes});
 });
 
 
@@ -183,9 +183,9 @@ app.post("/api/paciente", async (req, res) => {
     const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
     const result = await insertPaciente(nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
     if(result){
-        return res.status(202).json({sucess: true});
+        return res.status(202).json({success: true});
     }
-    return res.status(400).json({sucess: false});
+    return res.status(400).json({success: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -225,9 +225,9 @@ app.put("/api/paciente", async (req, res) => {
     const result = await editPaciente(id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
 
     if(result){
-        return res.status(200).json({sucess: true});
+        return res.status(200).json({success: true});
     }
-    return res.status(404).json({sucess: false});
+    return res.status(404).json({success: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
