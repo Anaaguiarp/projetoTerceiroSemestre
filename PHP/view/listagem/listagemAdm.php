@@ -22,28 +22,30 @@
     <header><?php require '../header/header.php' ?></header>
         <main class="m-5">
         <h1>Lista de Administradores</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Nome Social</th>
-                    <th>E-mail</th>
-                    <th>Data de Nascimento</th>
-                    <th>Gênero</th>
-                    <th>Último Login</th>
-                    <th>Conselho Profissional</th>
-                    <th>Formação</th>
-                    <th>Registro Profissional</th>
-                    <th>Especialidade</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                listarAdministradores($administradores) ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Nome Social</th>
+                        <th>E-mail</th>
+                        <th>Data de Nascimento</th>
+                        <th>Gênero</th>
+                        <th>Último Login</th>
+                        <th>Conselho Profissional</th>
+                        <th>Formação</th>
+                        <th>Registro Profissional</th>
+                        <th>Especialidade</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    listarAdministradores($administradores) ?>
+                </tbody>
+            </table>
+        </div>
         </main>
         <footer><?php require '../footer/footer.php' ?></footer>
     </div>

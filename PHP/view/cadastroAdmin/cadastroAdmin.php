@@ -102,9 +102,7 @@
                         <label for="especialidade" class="form-label">Especialidade/Área de Estudo: </label>
                         <input type="text" class="form-control" name="especialidade">
                     </div>
-                    <div class="d-grid">
-                        <input type="submit" class="btn btn-secondary" name="cadastrar" value="Cadastrar">
-                    </div>
+                    <button type="submit" name="cadastrar" class="btn text-white" style="background-color: #542e16;">Cadastrar</button>
                 </form>
             </div>
         </div>

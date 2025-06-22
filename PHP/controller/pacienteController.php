@@ -73,8 +73,10 @@
                 <td> {$pac->getDoenca()}</td>
                 <td> {$pac->getTipoSanguineo()}</td>
                 <td>
-                    <a href='../cadastroPaciente/cadastro.php?editar={$pac->getId()}'>Editar</a>
-                    <a href='../../controller/pacienteController.php?id={$pac->getId()}'>Excluir</a>
+                    <div class='d-flex flex-column align-items-center gap-1'>
+                        <a href='../cadastroPaciente/cadastro.php?editar={$pac->getId()}' class='btn btn-warning btn-sm mb-2 text-white w-100'>Editar</a>
+                        <a href='../../controller/pacienteController.php?id={$pac->getId()}' class='btn btn-danger btn-sm w-100'>Excluir</a>
+                    </div>
                 </td>
             </tr>";
         }
