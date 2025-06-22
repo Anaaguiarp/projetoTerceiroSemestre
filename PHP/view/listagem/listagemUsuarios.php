@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['administrador'])) {
+        header('Location: ../login/login.php');
+        exit();
+    }
     require '../../controller/pacienteController.php';
 ?>
 

@@ -61,8 +61,13 @@
                 }
             ?>
         </li>
-        <li>
+        <li class="d-flex align-items-center gap-3">
             <a href="../homePage/index.php">Sobre nós</a>
+            <?php
+                if (isset($_SESSION['administrador'])) {
+                    echo '<a href="../configuracoes/configuracoes.php" class="btn btn-outline-secondary btn-sm">Opções</a>';
+                }
+            ?>
         </li>
     </ul>
 </nav>

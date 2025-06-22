@@ -1,4 +1,11 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['administrador'])) {
+        header('Location: ../login/login.php');
+        exit();
+    }
+
     require_once '../../controller/administradorController.php';
     require_once 'listarAdministradores.php';
 
