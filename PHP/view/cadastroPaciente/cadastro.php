@@ -229,11 +229,11 @@
                             <button type="submit" name="salvar-edicao" class="btn text-white" style="background-color: #542e16;">Salvar Edição</button>
                         <?php else: ?>
                             <button type="submit" name="cadastrar" class="btn text-white" style="background-color: #542e16;">Cadastrar</button>
+                            <h6 class="text-center mt-2"><a href="../cadastroAdmin/cadastroAdmin.php">Se cadastrar como Administrador</a></h6>
                         <?php endif; ?>
                     </form>
                 </div>
             </section>
-            <h6 class="text-center mt-2"><a href="../cadastroAdmin/cadastroAdmin.php">Se cadastrar como Administrador</a></h6>
         </main>
         <?php require '../footer/footer.php'?>
     </div>
