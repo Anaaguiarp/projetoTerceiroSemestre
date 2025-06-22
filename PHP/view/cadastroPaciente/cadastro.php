@@ -233,6 +233,7 @@
                     </form>
                 </div>
             </section>
+            <h6 class="text-center mt-2"><a href="../cadastroAdmin/cadastroAdmin.php">Se cadastrar como Administrador</a></h6>
         </main>
         <?php require '../footer/footer.php'?>
     </div>

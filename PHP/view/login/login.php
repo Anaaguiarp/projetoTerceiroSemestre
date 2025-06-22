@@ -46,13 +46,11 @@
                                 <input type="password" class="form-control" maxlength="10" name="senha" id="senha" placeholder="Digite sua senha" required>
                             </div>
                             <button type="submit" class="botao btn w-100 my-4 fw-bold">Entrar</button>
-                            <p><u><a href="#">Esqueceu sua senha?</a></u></p>
                         </form>
                     </div>
-
                     <div class="text-center mt-5">
                         <h3>ou</h3>
-                        <h1 class="mt-2"><a class="forgetPass" href="../cadastroPaciente/cadastro.php">Cadastrar</a></h1>  
+                        <h1 class="mt-2"><a class="forgetPass" href="../cadastroPaciente/cadastro.php">Cadastrar</a></h1>
                     </div>        
                 </section>
             </main>
