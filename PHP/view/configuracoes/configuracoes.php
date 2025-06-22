@@ -44,7 +44,6 @@
             </div>
         </div>
     </main>
-
     <?php require_once '../footer/footer.php'; ?>
 </body>
 </html>
