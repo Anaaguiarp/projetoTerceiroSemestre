@@ -4,14 +4,21 @@ require_once '../../model/Administrador.php';
 
 session_start();
 
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 $dao = new AdministradorDao();
 
-$id = $_SESSION['administrador']['id'] ?? null;
+$idSessao = $_SESSION['administrador']['id'] ?? null; // nós administradores
+$idEdita = $_GET['id'] ?? null; // o id do adm que será editado
+
+$id = $idEdita ?? $idSessao; // aqui ele vê se veio um ID da URL, se sim, é para ele ser usado, se nao é o ID do adm se editando
 
 if (!$id) {
     header('Location: ../../login/login.php'); // ou a página de login
     exit();
 }
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 $dao = new AdministradorDao();
 
