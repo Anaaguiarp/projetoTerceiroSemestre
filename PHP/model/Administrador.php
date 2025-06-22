@@ -1,26 +1,26 @@
 <?php
     require_once 'Pessoa.php';
     class Administrador extends Pessoa {
-        private $ultimoLogin;
-        private $conselhoProfissional;
+        private $ultimo_login;
+        private $conselho_profissional;
         private $formacao;
-        private $registroProfissional;
+        private $registro_profissional;
         private $especialidade;
 
         public function getUltimoLogin(){
-            return $this->ultimoLogin;
+            return $this->ultimo_login;
         }
 
-        public function setUltimoLogin($ultimoLogin){
-            $this->ultimoLogin = $ultimoLogin;
+        public function setUltimoLogin($ultimo_login){
+            $this->ultimo_login = $ultimo_login;
         }
 
         public function getConselhoProfissional(){
-            return $this->conselhoProfissional;
+            return $this->conselho_profissional;
         }
 
-        public function setConselhoProfissional($conselhoProfissional){
-            $this->conselhoProfissional = $conselhoProfissional;
+        public function setConselhoProfissional($conselho_profissional){
+            $this->conselho_profissional = $conselho_profissional;
         }
 
         public function getFormacao(){
@@ -32,11 +32,11 @@
         }
 
         public function getRegistroProfissional(){
-            return $this->registroProfissional;
+            return $this->registro_profissional;
         }
 
-        public function setRegistroProfissional($registroProfissional){
-            $this->registroProfissional = $registroProfissional;
+        public function setRegistroProfissional($registro_profissional){
+            $this->registro_profissional = $registro_profissional;
         }
         
         public function getEspecialidade(){
@@ -48,7 +48,7 @@
         }
 
         public function __toString(){
-            parent::__toString()." Último login: {$this->ultimoLogin}\nConselho Profissional: {$this->conselhoProfissional}\nFormação: {$this->formacao}\nRegistro Profissional: {$this->registroProfissional}\nEspecialidade: {$this->especialidade}";
+            parent::__toString()." Último login: {$this->ultimoLogin}\nConselho Profissional: {$this->conselho_profissional}\nFormação: {$this->formacao}\nRegistro Profissional: {$this->registro_profissional}\nEspecialidade: {$this->especialidade}";
         }
     }
 ?>

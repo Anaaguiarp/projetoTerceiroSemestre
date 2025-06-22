@@ -6,6 +6,7 @@
 
     $administrador = new Administrador();
     $administradorDao = new AdministradorDao();
+    
     if(isset($_POST['cadastrar'])){
         $administrador->setNome($_POST['nome']);
         $administrador->setNomeSocial($_POST['nome_social']);
@@ -37,7 +38,14 @@
         $administrador->setNome($_POST['nome']);
         $administrador->setNomeSocial($_POST['nome_social']);
         $administrador->setEmail($_POST['email']);
-        $administrador->setSenha($_POST['senha']);
+        $senhaTexto = $_POST['senha'];
+            if(!empty($senhaTexto)){
+                $senhaHash = password_hash($senhaTexto, PASSWORD_DEFAULT);
+                $administrador->setSenha($senhaHash);
+            } else {
+                $senhaAntiga = $administradorDao->buscarPorId($_POST['id'])->getSenha();
+                $administrador->setSenha($senhaAntiga);
+            }
         $administrador->setDataNascimento($_POST['data_nascimento']);
         $administrador->setGenero($_POST['genero']);
         $administrador->setConselhoProfissional($_POST['conselho_profissional']);
@@ -50,30 +58,4 @@
         header('Location: ../view/listagem/listagemAdm.php');
         exit();
     }
-                
-/*
-    function listarSQL(){
-        $pacienteDao = new PacienteDaoSql();
-        $lista = $pacienteDao->read();
-        foreach($lista as $pac){
-            echo 
-            "<tr>
-                <td> {$pac->getId()} </td>
-                <td> {$pac->getNome()}</td>
-                <td> {$pac->getNomeSocial()}</td>
-                <td> {$pac->getEmail()}</td>
-                <td> {$pac->getDataNascimento()}</td>
-                <td> {$pac->getGenero()}</td>
-                <td> {$pac->getEstado()}</td>
-                <td> {$pac->getCidade()}</td>
-                <td> {$pac->getMedicacao()}</td>
-                <td> {$pac->getDoenca()}</td>
-                <td> {$pac->getTipoSanguineo()}</td>
-                <td>
-                    <a href='../cadastroPaciente/cadastro.php?editar={$pac->getId()}'>Editar</a>
-                    <a href='../../controller/pacienteController.php?id={$pac->getId()}'>Excluir</a>
-                </td>
-            </tr>";
-        }
-    }*/
 ?>

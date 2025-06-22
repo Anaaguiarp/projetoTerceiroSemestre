@@ -46,13 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Verifica login de administrador
-    if ($administrador && password_verify($senha, $administrador->getSenha())) {
-        $_SESSION['admin'] = [
+    if ($administrador !== null && password_verify($senha, $administrador->getSenha())) {
+        $_SESSION['administrador'] = [
             'id' => $administrador->getId(),
             'nome' => $administrador->getNome(),
-            'email' => $administrador->getEmail()
+            'nome_social' => $administrador->getNomeSocial(),
+            'email' => $administrador->getEmail(),
+            'data_nascimento' => $administrador->getDataNascimento(),
+            'genero' => $administrador->getGenero(),
+            'ultimo_login' => $administrador->getUltimoLogin(), 
+            'conselho_profissional' => $administrador->getConselhoProfissional(),
+            'formacao' => $administrador->getFormacao(),
+            'registro_profissional' => $administrador->getRegistroProfissional(),
+            'especialidade' => $administrador->getEspecialidade()
         ];
-        $_SESSION['sucesso'] = 'Login de administrador realizado com sucesso!';
+        $_SESSION['sucesso'] = 'Login realizado com sucesso!';
         header('Location: ../view/listagem/listagemUsuarios.php');
         exit();
     }
