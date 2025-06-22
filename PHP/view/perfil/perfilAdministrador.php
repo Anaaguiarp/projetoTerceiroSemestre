@@ -1,114 +1,163 @@
+<?php
+require_once '../../dao/AdministradorDao.php';
+require_once '../../model/Administrador.php';
+
+session_start();
+
+$dao = new AdministradorDao();
+
+$id = $_SESSION['id_administrador'] ?? null;
+
+if (!$id) {
+    header('Location: ../../login/login.php'); // ou a página de login
+    exit();
+}
+
+$dao = new AdministradorDao();
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $adm = $dao->buscarPorId($id);
+
+    if (!$adm) {
+        echo "Administrador não encontrado.";
+        exit();
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $adm = new Administrador();
+    $adm->setId($id);
+    $adm->setNome($_POST['nome']);
+    $adm->setNomeSocial($_POST['nome_social']);
+    $adm->setEmail($_POST['email']);
+    
+    if (!empty($_POST['senha'])) {
+        $adm->setSenha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
+    } else {
+        $admAntigo = $dao->buscarPorId($id);
+        $adm->setSenha($admAntigo->getSenha());
+    }
+    
+    $adm->setDataNascimento($_POST['data_nascimento']);
+    $adm->setGenero($_POST['genero']);
+    $adm->setConselhoProfissional($_POST['conselhoProfissional']);
+    $adm->setFormacao($_POST['formacao']);
+    $adm->setRegistroProfissional($_POST['registroProfissional']);
+    $adm->setEspecialidade($_POST['especialidade']);
+
+    $dao->editar($adm);
+
+    header("Location: ../listagem/listagemAdm.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Administrador</title>
+    <title>Perfil do Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="cadastroAdminStyles.css">
     <link rel="stylesheet" href="../global.css">
+    <style>
+        body{
+            font-family: "Lexend Giga", sans-serif;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 <header><?php require_once ('../header/header.php'); ?></header>
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8 col-sm-10">
-                <h1 class="text-center mb-4">Informações Pessoais</h1>
-                <form action="../../controller/administradorController.php" method="POST">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" name="nome" placeholder="Seu nome completo" maxlength="100" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nome_social" class="form-label">Nome social:</label>
-                        <input type="text" class="form-control" name="nome_social" placeholder="Nome social (opcional)" maxlength="100">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">E-mail:</label>
-                        <input type="email" class="form-control" name="email" placeholder="Seu e-mail" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="senha" class="form-label">Senha:</label>
-                        <input type="password" class="form-control" name="senha" placeholder="Crie uma senha" maxlength="30" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmacao_senha" class="form-label">Confirme sua senha:</label>
-                        <input type="password" class="form-control" name="confirmacao_senha" placeholder="Confirme a senha" maxlength="30" required>
-                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="data_nascimento" class="form-label">Data de Nascimento:</label>
-                        <input type="date" class="form-control" name="data_nascimento">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Gênero:</label>
-                        <div class="d-flex gap-3 flex-wrap">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="genero" value="F" id="generoF">
-                                <label class="form-check-label" for="generoF">Feminino</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="genero" value="M" id="generoM">
-                                <label class="form-check-label" for="generoM">Masculino</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="genero" value="O" id="generoO" checked>
-                                <label class="form-check-label" for="generoO">Outro</label>
-                            </div>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <h1 class="text-center mb-4">Informações Pessoais</h1>
+            <form method="post">
+                <div class="mb-2">
+                    <label class="form-label">Nome:</label>
+                    <input class="form-control" type="text" name="nome" value="<?= $adm->getNome() ?>" required>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Nome Social:</label>
+                    <input class="form-control" type="text" name="nome_social" value="<?= $adm->getNomeSocial() ?>">
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Email:</label>
+                    <input class="form-control" type="email" name="email" value="<?= $adm->getEmail() ?>" required>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Senha:</label>
+                    <input class="form-control" type="password" name="senha" placeholder="Digite nova senha para alterar">
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Data de Nascimento:</label>
+                    <input class="form-control" type="date" name="data_nascimento" value="<?= $adm->getDataNascimento() ?>" required>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Gênero:</label>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genero" value="F" <?= $adm->getGenero() == 'F' ? 'checked' : '' ?> required>
+                            <label class="form-check-label">Feminino</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genero" value="M" <?= $adm->getGenero() == 'M' ? 'checked' : '' ?> required>
+                            <label class="form-check-label">Masculino</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genero" value="O" <?= $adm->getGenero() == 'O' ? 'checked' : '' ?> required>
+                            <label class="form-check-label">Outro</label>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="conselhoProfissional" class="form-label">Conselho Profissional</label>
-                        <select class="form-select" id="conselho" name="conselhoProfissional" required>
-                            <option value="">Selecione...</option>
-                            <option value="CRM">CRM - Medicina</option>
-                            <option value="COREN">COREN - Enfermagem</option>
-                            <option value="CREFITO">CREFITO - Fisioterapia/Terapia Ocupacional</option>
-                            <option value="CRP">CRP - Psicologia</option>
-                            <option value="CRO">CRO - Odontologia</option>
-                            <option value="Outros">Outro...</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label mb-2">Formação:</label>
-                        <div class="d-flex flex-wrap gap-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="formacao" value="Psicologia" id="psico">
-                                <label class="form-check-label" for="psico">Psicologia</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="formacao" value="Enfermagem" id="enf">
-                                <label class="form-check-label" for="enf">Enfermagem</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="formacao" value="Fisioterapia" id="fisio">
-                                <label class="form-check-label" for="fisio">Fisioterapia</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="formacao" value="Medicina" id="med">
-                                <label class="form-check-label" for="med">Medicina</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="formacao" value="Outro" id="outro">
-                                <label class="form-check-label" for="outro">Outro</label>
-                            </div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Conselho Profissional:</label>
+                    <select class="form-select" name="conselhoProfissional" required>
+                        <option value="" <?= $adm->getConselhoProfissional() == '' ? 'selected' : '' ?>>Selecione...</option>
+                        <option value="CRM" <?= $adm->getConselhoProfissional() == 'CRM' ? 'selected' : '' ?>>CRM - Medicina</option>
+                        <option value="COREN" <?= $adm->getConselhoProfissional() == 'COREN' ? 'selected' : '' ?>>COREN - Enfermagem</option>
+                        <option value="CREFITO" <?= $adm->getConselhoProfissional() == 'CREFITO' ? 'selected' : '' ?>>CREFITO - Fisioterapia/Terapia Ocupacional</option>
+                        <option value="CRP" <?= $adm->getConselhoProfissional() == 'CRP' ? 'selected' : '' ?>>CRP - Psicologia</option>
+                        <option value="CRO" <?= $adm->getConselhoProfissional() == 'CRO' ? 'selected' : '' ?>>CRO - Odontologia</option>
+                        <option value="Outros" <?= $adm->getConselhoProfissional() == 'Outros' ? 'selected' : '' ?>>Outro...</option>
+                    </select>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Formação:</label><br>
+                    <?php
+                    $formacoes = ['Medicina', 'Enfermagem', 'Fisioterapia', 'Psicologia', 'Odontologia', 'Outro'];
+                    foreach ($formacoes as $formacao) {
+                    ?>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="formacao" value="<?= $formacao ?>" <?= $adm->getFormacao() == $formacao ? 'checked' : '' ?> required>
+                            <label class="form-check-label"><?= $formacao ?></label>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="registroProfissional" class="form-label">Número do Registro Profissional</label>
-                        <input type="text" class="form-control" name="registroProfissional" placeholder="Ex: 123456/SP" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="especialidade" class="form-label">Especialidade/Área de Estudo: </label>
-                        <input type="text" class="form-control" name="especialidade">
-                    </div>
-                    <div class="d-grid">
-                        <input type="submit" class="btn btn-secondary" name="cadastrar" value="Editar Dados">
-                    </div>
-                </form>
-            </div>
+                    <?php } ?>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Registro Profissional:</label>
+                    <input class="form-control" type="text" name="registroProfissional" value="<?= $adm->getRegistroProfissional() ?>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Especialidade:</label>
+                    <input class="form-control" type="text" name="especialidade" value="<?= $adm->getEspecialidade() ?>">
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-warning">Editar Dados</button>
+                </div>
+            </form>
         </div>
     </div>
-    <?php require '../footer/footer.php'?>
+</div>
+
+<?php require '../footer/footer.php' ?>
 </body>
 </html>

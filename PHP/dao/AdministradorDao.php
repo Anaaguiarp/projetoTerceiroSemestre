@@ -62,7 +62,13 @@ class AdministradorDao {
             $conn->bindParam(':nome', $adm->getNome());
             $conn->bindParam(':nome_social', $adm->getNomeSocial());
             $conn->bindParam(':email', $adm->getEmail());
-            $conn->bindParam(':senha', $adm->getSenha());
+            if (!empty($_POST['senha'])) {
+                $adm->setSenha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
+            } else {
+                // Buscar a senha atual no banco para não sobrescrever com vazio
+                $admAtual = $dao->buscarPorId($_POST['id']);
+                $adm->setSenha($admAtual->getSenha());
+            }
             $conn->bindParam(':data_nascimento', $adm->getDataNascimento());
             $conn->bindParam(':genero', $adm->getGenero());
             $conn->bindParam(':conselho_profissional', $adm->getConselhoProfissional());
