@@ -20,7 +20,7 @@ function listarAdministradores($administradores) {
         echo "<td>" . $admin->getEspecialidade() . "</td>";
         echo "<td>
             <div class='d-flex flex-column align-items-center gap-1'>
-                <a href='editar.php?id=" . $admin->getId() . "' class='btn btn-warning btn-sm mb-2 text-white w-100'>Editar</a>
+                <a href='../perfil/perfilAdministrador.php?id=" . $admin->getId() . "' class='btn btn-warning btn-sm mb-2 text-white w-100'>Editar</a>
                 <a href='excluir.php?id=" . $admin->getId() . "' class='btn btn-danger btn-sm w-100'>Excluir</a>
             </div>  
             </td>";

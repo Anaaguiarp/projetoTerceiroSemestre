@@ -57,26 +57,46 @@ class AdministradorDao {
 
         
         public function editar($adm) {
-            $sql = "UPDATE administrador SET nome = :nome, nome_social = :nome_social, email = :email, senha = :senha, data_nascimento = :data_nascimento, genero = :genero, conselho_profissional = :conselho_profissional, formacao = :formacao, registro_profissional = :registro_profissional, especialidade = :especialidade WHERE id = :id";
-            $conn = ConnectionFactory::getConnection()->prepare($sql);
-            $conn->bindParam(':nome', $adm->getNome());
-            $conn->bindParam(':nome_social', $adm->getNomeSocial());
-            $conn->bindParam(':email', $adm->getEmail());
-            if (!empty($_POST['senha'])) {
-                $adm->setSenha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
-            } else {
-                // Buscar a senha atual no banco para não sobrescrever com vazio
-                $admAtual = $dao->buscarPorId($_POST['id']);
-                $adm->setSenha($admAtual->getSenha());
+            try {
+                $sql = "UPDATE administrador SET 
+                    nome = :nome, 
+                    nome_social = :nome_social, 
+                    email = :email, 
+                    senha = :senha, 
+                    data_nascimento = :data_nascimento, 
+                    genero = :genero, 
+                    conselho_profissional = :conselho_profissional, 
+                    formacao = :formacao, 
+                    registro_profissional = :registro_profissional, 
+                    especialidade = :especialidade 
+                    WHERE id = :id";
+
+                $conn = ConnectionFactory::getConnection()->prepare($sql);
+
+                if (!empty($_POST['senha'])) {
+                    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+                } else {
+                    $admAtual = $this->buscarPorId($adm->getId());
+                    $senha = $admAtual->getSenha();
+                }
+
+                $conn->bindValue(':nome', $adm->getNome());
+                $conn->bindValue(':nome_social', $adm->getNomeSocial());
+                $conn->bindValue(':email', $adm->getEmail());
+                $conn->bindValue(':senha', $senha);
+                $conn->bindValue(':data_nascimento', $adm->getDataNascimento());
+                $conn->bindValue(':genero', $adm->getGenero());
+                $conn->bindValue(':conselho_profissional', $adm->getConselhoProfissional());
+                $conn->bindValue(':formacao', $adm->getFormacao());
+                $conn->bindValue(':registro_profissional', $adm->getRegistroProfissional());
+                $conn->bindValue(':especialidade', $adm->getEspecialidade());
+                $conn->bindValue(':id', $adm->getId());
+
+                return $conn->execute();
+            } catch (PDOException $ex) {
+                echo "<p>Erro ao editar administrador:</p><p>" . $ex->getMessage() . "</p>";
+                return false;
             }
-            $conn->bindParam(':data_nascimento', $adm->getDataNascimento());
-            $conn->bindParam(':genero', $adm->getGenero());
-            $conn->bindParam(':conselho_profissional', $adm->getConselhoProfissional());
-            $conn->bindParam(':formacao', $adm->getFormacao());
-            $conn->bindParam(':registro_profissional', $adm->getRegistroProfissional());
-            $conn->bindParam(':especialidade', $adm->getEspecialidade());
-            $conn->bindParam(':id', $adm->getId());
-            return $conn->execute();
         }
 
         public function deletar($id) {
