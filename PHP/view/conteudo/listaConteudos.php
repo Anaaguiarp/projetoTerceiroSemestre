@@ -3,6 +3,8 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    session_start();
+
     require '../../controller/conteudoController.php';
     $categoria = $_GET['categoria'] ?? null;
 ?>
@@ -36,12 +38,13 @@
             <a href="listaConteudos.php" class="btn btn-outline-secondary btn-sm">Ver Todos</a>
         </div>
 
-        <!-- Botão para adicionar novo conteúdo -->
-        <div class="mb-4">
-            <a href="conteudo.php" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Novo Conteúdo
-            </a>
-        </div>
+        <?php if (isset($_SESSION['administrador'])): ?>
+            <div class="mb-4">
+                <a href="conteudo.php" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Novo Conteúdo
+                </a>
+            </div>
+        <?php endif; ?>
 
         <!-- Grid de Cards -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">

@@ -72,41 +72,46 @@
     }
 
     function listarComoCards($categoria = null) {
-        $conteudoDao = new ConteudoDao();
-        $lista = $conteudoDao->read();
+    $conteudoDao = new ConteudoDao();
+    $lista = $conteudoDao->read();
 
-        foreach ($lista as $cont) {
-            if ($categoria && strtolower($cont->getCategoria()) !== strtolower($categoria)) {
-                continue;
-            }
+    foreach ($lista as $cont) {
+        if ($categoria && strtolower($cont->getCategoria()) !== strtolower($categoria)) {
+            continue;
+        }
 
-            $titulo = htmlspecialchars($cont->getTitulo());
-            $descricao = htmlspecialchars($cont->getDescricao());
-            $data = date("d/m/Y", strtotime($cont->getData()));
-            $id = $cont->getId();
+        $titulo = htmlspecialchars($cont->getTitulo());
+        $descricao = htmlspecialchars($cont->getDescricao());
+        $data = date("d/m/Y", strtotime($cont->getData()));
+        $id = $cont->getId();
+        ?>
 
-            echo "
-            <div class='col'>
-                <div class='card h-100 shadow-sm border-0'>
-                    <div class='card-body'>
-                        <a href='post.php?id={$id}' class='text-decoration-none text-dark'>
-                            <h5 class='card-title'>{$titulo}</h5>
-                            <h6 class='card-subtitle mb-2 text-muted'>{$data}</h6>
-                            <p class='card-text'>{$descricao}</p>
-                        </a>
-                    </div>
+        <div class='col'>
+            <div class='card h-100 shadow-sm border-0'>
+                <div class='card-body'>
+                    <a href='post.php?id=<?= $id ?>' class='text-decoration-none text-dark'>
+                        <h5 class='card-title'><?= $titulo ?></h5>
+                        <h6 class='card-subtitle mb-2 text-muted'><?= $data ?></h6>
+                        <p class='card-text'><?= $descricao ?></p>
+                    </a>
+                </div>
+
+                <?php if (isset($_SESSION['administrador'])): ?>
                     <div class='card-footer bg-transparent border-0 d-flex justify-content-between'>
-                        <a href='conteudo.php?editar={$id}' class='btn btn-sm btn-outline-primary'>
+                        <a href='conteudo.php?editar=<?= $id ?>' class='btn btn-sm btn-outline-primary'>
                             <i class='bi bi-pencil-square'></i> Editar
                         </a>
-                        <a href='../../controller/conteudoController.php?excluir={$id}' class='btn btn-sm btn-outline-danger'>
+                        <a href='../../controller/conteudoController.php?excluir=<?= $id ?>' class='btn btn-sm btn-outline-danger'>
                             <i class='bi bi-trash'></i> Excluir
                         </a>
                     </div>
-                </div>
-            </div>";
-        }
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <?php
     }
+}
 
     if (isset($_GET['excluir'])) {
         $id = $_GET['excluir'];
