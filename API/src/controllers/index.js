@@ -156,7 +156,6 @@ app.get("/api/pacientes", async (req, res) => {
     res.status(200).json({sucess: true, pacientes});
 });
 
-
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // Formulário - CREATE
@@ -166,8 +165,7 @@ app.get('/novopaciente', (req, res) => {
 
 // CREATE
 app.post('/paciente', async (req, res) => {
-    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
-    } = req.body;
+    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
 
     const result = await insertPaciente(nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
     );
