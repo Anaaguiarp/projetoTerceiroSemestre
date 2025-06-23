@@ -32,7 +32,7 @@ app.get("/administradores", async (req, res) => {
 app.get("/api/administradores", async (req, res) => {
     const administradores = await getAdministradores();
 
-    res.status(200).json({sucess: true, administradores});
+    res.status(200).json({success: true, administradores});
 });
 
 //Inserindo Administrador (create)
@@ -70,9 +70,9 @@ app.post("/api/administrador", async (req, res) => {
     const {nome, nome_social, email, senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, ultimo_login, especialidade} = req.body;
     const result = await insertAdministrador(nome, nome_social, email, senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, ultimo_login, especialidade);
     if(result){
-        return res.status(202).json({sucess: true});
+        return res.status(202).json({success: true});
     }
-    return res.status(400).json({sucess: false});
+    return res.status(400).json({success: false});
 });
 
 //Atualizando Administrador (Update)
@@ -106,9 +106,9 @@ app.put("/api/administrador", async (req, res) => {
     const result = await editAdministrador(id, nome, nome_social, email, senha, data_nascimento, genero, conselho_profissional, formacao, registro_profissional, especialidade);
 
     if(result){
-        return res.status(200).json({sucess: true});
+        return res.status(200).json({success: true});
     }
-    return res.status(404).json({sucess: false});
+    return res.status(404).json({success: false});
 });
 
 //Removendo Administrador (delete)
@@ -135,9 +135,9 @@ app.delete("/api/administrador", async (req, res) => {
     const {id} = req.body;
     const result = await deleteAdministrador(id);
     if(result){
-        return res.status(200).json({sucess: true});
+        return res.status(200).json({success: true});
     }  
-    return res.status(404).json({sucess: false});
+    return res.status(404).json({success: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ PACIENTE ☆
@@ -153,7 +153,7 @@ app.get("/pacientes", async (req, res) => {
 app.get("/api/pacientes", async (req, res) => {
     const pacientes = await getPacientes();
 
-    res.status(200).json({sucess: true, pacientes});
+    res.status(200).json({success: true, pacientes});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -223,9 +223,9 @@ app.put("/api/paciente", async (req, res) => {
     const result = await editPaciente(id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
 
     if(result){
-        return res.status(200).json({sucess: true});
+        return res.status(200).json({success: true});
     }
-    return res.status(404).json({sucess: false});
+    return res.status(404).json({success: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -246,9 +246,9 @@ app.delete("/api/paciente", async (req, res) => {
     const {id} = req.body;
     const result = await deletePaciente(id);
     if(result){
-        return res.status(200).json({sucess: true});
+        return res.status(200).json({success: true});
     }  
-    return res.status(404).json({sucess: false});
+    return res.status(404).json({success: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ CONTENUDO ☆
@@ -302,9 +302,9 @@ app.post("/api/conteudos", async (req, res) => {
     const {titulo, descricao, texto, categoria, data} = req.body;
     const result = await insertConteudo(titulo, descricao, texto, categoria, data);
     if(result){
-        return res.status(202).json({sucess: true});
+        return res.status(202).json({success: true});
     }
-    return res.status(400).json({sucess: false});
+    return res.status(400).json({success: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -341,9 +341,9 @@ app.put("/api/conteudos", async (req, res) => {
     const result = await editConteudo(id, titulo, descricao, texto, categoria, data);
 
     if(result){
-        return res.status(200).json({sucess: true});
+        return res.status(200).json({success: true});
     }
-    return res.status(404).json({sucess: false});
+    return res.status(404).json({success: false});
 });
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -364,9 +364,9 @@ app.delete("/api/conteudos", async (req, res) => {
     const {id} = req.body;
     const result = await deleteConteudo(id);
     if(result){
-        return res.status(200).json({sucess: true});
+        return res.status(200).json({success: true});
     }  
-    return res.status(404).json({sucess: false});
+    return res.status(404).json({success: false});
 });
 
 app.listen(3001, 'localhost', () => {

@@ -107,6 +107,17 @@
             </div>
         </div>
     </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const senha = document.querySelector('input[name="senha"]').value;
+            const confirmacao = document.querySelector('input[name="confirmacao_senha"]').value;
+
+            if (senha !== confirmacao) {
+                event.preventDefault();
+                alert('As senhas não coincidem. Por favor, corrija antes de continuar.');
+            }
+        });
+    </script>
 <?php require '../footer/footer.php'?>
 </body>
 </html>

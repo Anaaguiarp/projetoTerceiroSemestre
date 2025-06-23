@@ -44,7 +44,7 @@
                         <?php if(isset($conteudo) && $conteudo->getId()): ?>
                             <button type="submit" name="salvar-edicao" class="btn btn-primary">Salvar Edição</button>
                         <?php else: ?>
-                            <button type="submit" name="publicar" class="btn btn-success">Cadastrar</button>
+                            <button type="submit" name="publicar" class="btn btn-success">Publicar</button>
                         <?php endif; ?>
                     </div>
                 </form>
