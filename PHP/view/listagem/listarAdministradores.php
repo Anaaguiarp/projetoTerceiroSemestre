@@ -21,7 +21,7 @@ function listarAdministradores($administradores) {
         echo "<td>
             <div class='d-flex flex-column align-items-center gap-1'>
                 <a href='../perfil/perfilAdministrador.php?id=" . $admin->getId() . "' class='btn btn-warning btn-sm mb-2 text-white w-100'>Editar</a>
-                <a href='excluir.php?id=" . $admin->getId() . "' class='btn btn-danger btn-sm w-100'>Excluir</a>
+                <a href='excluir.php?id=" . $admin->getId() . "' class='btn btn-danger btn-sm w-100' onclick='return confirm(\"Tem certeza que deseja excluir este administrador?\")'>Excluir</a>
             </div>  
             </td>";
         echo "</tr>";
