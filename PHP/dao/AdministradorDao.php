@@ -129,21 +129,21 @@ class AdministradorDao {
         }
 
         public function buscarPorEmail($email) {
-        try {
-            $sql = "SELECT * FROM administrador WHERE email = :email";
-            $conn = ConnectionFactory::getConnection()->prepare($sql);
-            $conn->bindParam(':email', $email);
-            $conn->execute();
-            $row = $conn->fetch(PDO::FETCH_ASSOC);
+            try {
+                $sql = "SELECT * FROM administrador WHERE email = :email";
+                $conn = ConnectionFactory::getConnection()->prepare($sql);
+                $conn->bindParam(':email', $email);
+                $conn->execute();
+                $row = $conn->fetch(PDO::FETCH_ASSOC);
 
-            if ($row) {
-                return $this->listaAdministrador($row);
+                if ($row) {
+                    return $this->listaAdministrador($row);
+                }
+                return null;
+            } catch (PDOException $ex) {
+                echo "<p>Erro ao buscar administrador por email: {$ex->getMessage()}</p>";
+                return null;
             }
-            return null;
-        } catch (PDOException $ex) {
-            echo "<p>Erro ao buscar administrador por email: {$ex->getMessage()}</p>";
-            return null;
         }
     }
-}
 ?>

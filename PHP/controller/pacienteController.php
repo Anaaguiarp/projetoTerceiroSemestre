@@ -6,6 +6,13 @@
 
     $pacienteDao = new PacienteDaoSql();
 
+    if (isset($_GET['id'])){
+        $id = $_GET['id'];
+        $pacienteDao->excluir($id);
+        header('Location: ../view/listagem/listagemUsuarios.php');
+        exit();
+    }
+
     if(isset($_POST['cadastrar'])){
         $paciente = new Paciente();
         $paciente->setNome($_POST['nome']);
@@ -56,6 +63,7 @@
     }
 
     function listarSQL(){
+        
         $pacienteDao = new PacienteDaoSql();
         $lista = $pacienteDao->read();
         foreach($lista as $pac){

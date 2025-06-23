@@ -4,7 +4,7 @@
         header('Location: ../login/login.php');
         exit();
     }
-    require '../../controller/pacienteController.php';
+    require '../../controller/pacienteController.php'; // nao excluir se for usar a API para listar, só comente aqui para depois eu utilizar meu PHP/Banco 
 ?>
 
 <!DOCTYPE html>

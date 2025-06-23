@@ -7,6 +7,7 @@ session_start();
 
 require __DIR__ . '/../dao/ConnectionFactory.php';
 require __DIR__ . '/../dao/PacienteDao.php';
+require __DIR__ . '/../dao/PacienteDaoSql.php';
 require __DIR__ . '/../model/Paciente.php';
 
 require __DIR__ . '/../dao/AdministradorDao.php';
@@ -16,16 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $senha = $_POST['senha'] ?? '';
 
-    $pacienteDao = new PacienteDao();
+    // $pacienteDao = new PacienteDao();
+    $pacienteDao = new PacienteDaoSql();
     $adminDao = new AdministradorDao();
 
-    // Descomente a linha abaixo se quiser ativar login de paciente!!!!!!!!!!!!!!!!!
     // $paciente = $pacienteDao->buscarPorEmail($email);
-    $paciente = null; // Para evitar erro de variável indefinida
+    $pacienteDao = null;
 
     $administrador = $adminDao->buscarPorEmail($email);
 
-    // Verifica login de paciente (DESATIVADO por enquanto)
+    // Verifica login de paciente (DESATIVADO)
     if ($paciente !== null && password_verify($senha, $paciente->getSenha())) {
         $_SESSION['paciente'] = [
             'id' => $paciente->getId(),

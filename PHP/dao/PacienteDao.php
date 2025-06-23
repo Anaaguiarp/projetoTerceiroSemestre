@@ -1,5 +1,4 @@
 <?php
-
     class PacienteDao{
         public function inserir(Paciente $pac){
             $url = "http://localhost:3001/api/paciente";
@@ -43,18 +42,20 @@
 
         public function listaPaciente($row){
             $paciente = new Paciente();
-            $paciente->setId(htmlspecialchars($row['id']));
-            $paciente->setNome(htmlspecialchars($row['nome']));
-            $paciente->setNomeSocial(htmlspecialchars($row['nome_social']));
-            $paciente->setEmail(htmlspecialchars($row['email']));
-            $paciente->setSenha(htmlspecialchars($row['senha']));
-            $paciente->setDataNascimento(htmlspecialchars($row['data_nascimento']));
-            $paciente->setGenero(htmlspecialchars($row['genero']));
-            $paciente->setEstado(htmlspecialchars($row['estado']));
-            $paciente->setCidade(htmlspecialchars($row['cidade']));
-            $paciente->setMedicacao(htmlspecialchars($row['medicacao']));
-            $paciente->setDoenca(htmlspecialchars($row['doenca']));
-            $paciente->setTipoSanguineo(htmlspecialchars($row['tipo_sanguineo']));
+            $paciente->setId($row['id']);
+            $paciente->setNome($row['nome']);
+            $paciente->setNomeSocial($row['nome_social']);
+            $paciente->setEmail($row['email']);
+            $paciente->setSenha($row['senha']);
+            $paciente->setDataNascimento($row['data_nascimento']);
+            $paciente->setGenero($row['genero']);
+            $paciente->setEstado($row['estado']);
+            $paciente->setCidade($row['cidade']);
+            $paciente->setMedicacao($row['medicacao']);
+            $paciente->setDoenca($row['doenca']);
+            $paciente->setTipoSanguineo($row['tipo_sanguineo']);
+
+            return $paciente;
         }
         
         public function editar(Paciente $pac){

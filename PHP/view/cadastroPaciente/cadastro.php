@@ -27,13 +27,12 @@
                 .then(estados => {
                     estados.forEach(estado => {
                         const option = document.createElement('option');
-                        option.value = estado.id; // ID do estado (ex: 35)
+                        option.value = estado.sigla; // quero salvar a sigla
                         option.textContent = estado.nome;
-                        option.dataset.sigla = estado.sigla;
 
-                        if (estado.nome === estadoSelecionado || estado.sigla === estadoSelecionado) {
+                        if (estado.sigla == estadoSelecionado) {
                             option.selected = true;
-                            carregarCidades(estado.id); // Carrega as cidades do estado já salvo
+                            carregarCidades(estado.sigla); // Carrega as cidades do estado já salvo
                         }
 
                         selectEstado.appendChild(option);
@@ -42,14 +41,14 @@
 
             // Quando muda o estado
             selectEstado.addEventListener('change', () => {
-                const estadoId = selectEstado.value;
-                carregarCidades(estadoId);
+                const estadoSigla = selectEstado.value;
+                carregarCidades(estadoSigla);
             });
 
-            function carregarCidades(estadoId) {
+            function carregarCidades(estadoSigla) {
                 selectCidade.innerHTML = '<option value="">Carregando cidades...</option>';
 
-                fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoId}/municipios`)
+                fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoSigla}/municipios`)
                     .then(res => res.json())
                     .then(cidades => {
                         selectCidade.innerHTML = '<option value="">Selecione uma cidade</option>';
@@ -65,6 +64,7 @@
                 });
             }
         });
+
         document.addEventListener('DOMContentLoaded', function() {
         const form = document.querySelector('form');
         const senha = document.getElementById('senha');
