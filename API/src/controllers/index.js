@@ -7,6 +7,7 @@ const app = express();
 app.set("view engine", "ejs"); 
 app.set("views", "./src/views");
 
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -205,11 +206,9 @@ app.get('/editarpaciente/:id', async (req, res) => {
 app.post('/editarpaciente/:id', async (req, res) => {
     const {id} = req.params;
 
-    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
-    } = req.body;
+    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
 
-    const sucesso = await editPaciente( id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo
-    );
+    const sucesso = await editPaciente( id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
 
     if(sucesso){
         res.redirect('/pacientes');
@@ -218,8 +217,11 @@ app.post('/editarpaciente/:id', async (req, res) => {
     }
 });
 
-app.put("/api/paciente", async (req, res) => {
-    const {id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
+app.put("/api/paciente/:id", async (req, res) => {
+    const {id} = req.params;
+
+    console.log("ID:", req.params.id);
+    const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
     const result = await editPaciente(id, nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
 
     if(result){
@@ -242,8 +244,9 @@ app.get('/removerpaciente/:id', async (req, res) => {
     }
 });
 
-app.delete("/api/paciente", async (req, res) => {
-    const {id} = req.body;
+app.delete("/api/paciente/:id", async (req, res) => {
+    const {id} = req.params;
+    //console.log(`Requisição DELETE recebida para o ID: ${id}`); //Para testar o DELETE do paciente
     const result = await deletePaciente(id);
     if(result){
         return res.status(200).json({success: true});
@@ -251,7 +254,7 @@ app.delete("/api/paciente", async (req, res) => {
     return res.status(404).json({success: false});
 });
 
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ CONTENUDO ☆
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ CONTEÚDO ☆
 
 // READ
 app.get("/conteudos", async (req, res) => {
