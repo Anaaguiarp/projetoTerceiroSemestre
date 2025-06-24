@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -19,32 +17,31 @@
             <main>
                 <h1 class="my-5 text-center">Informações Pessoais</h1>
                 <div class="info-pessoal">
+                <form action="../../controller/pacienteController.php" method="POST">
+                    <input type="hidden" name="_method" value="PUT" />
+                    <input type="hidden" name="id" value="<?= $paciente['id'] ?>" />
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Nome Completo:</p>
                         <p class="dado">
-                            <?php echo !empty($paciente['nome']) ? htmlspecialchars($paciente['nome']) : 'Nome não informado';
-                            ?>
+                            <input type="text" name="nome" value="<?= !empty($paciente['nome']) ? htmlspecialchars($paciente['nome']) : 'Não informado' ?>" class="form-control" />
                         </p>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Nome Social:</p>
                         <p class="dado">
-                            <?php echo !empty($paciente['nome_social']) ? htmlspecialchars($paciente['nome_social']) : 'Não informado';
-                            ?>
+                            <input type="text" name="nome_social" value="<?= !empty($paciente['nome_social']) ? htmlspecialchars($paciente['nome_social']) : 'Não informado' ?>" class="form-control" />
                         </p>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">E-mail:</p>
                         <p class="dado">
-                            <?php echo !empty($paciente['email']) ? htmlspecialchars($paciente['email']) : 'Email não informado';
-                            ?>
+                            <input type="email" name="email" value="<?= !empty($paciente['email']) ? htmlspecialchars($paciente['email']) : 'Não informado' ?>" class="form-control" />
                         </p>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Data de Nascimento:</p>
                         <p class="dado">
-                            <?php echo !empty($paciente['data_nascimento']) ? htmlspecialchars($paciente['data_nascimento']) : 'Não informado';
-                            ?>
+                            <input type="date" name="data_nascimento" class="form-control" value="<?= !empty($paciente['data_nascimento']) ? htmlspecialchars($paciente['data_nascimento']) : '' ?>">
                         </p>
                     </div>
                     <div class="perfil-item mb-3">
@@ -65,19 +62,27 @@
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Gênero:</p>
-                        <p class="dado">
+                        <div class="dado">
                             <?php
-                                if($paciente['genero'] === 'F') {
-                                    echo 'Feminino';
-                                }elseif ($paciente['genero'] === 'M') {
-                                    echo 'Masculino';
-                                }elseif ($paciente['genero'] === 'O') {
-                                    echo 'Outro';
-                                }else {
-                                    echo 'Não informado';
-                                }
+                                $genero = isset($paciente) ? $paciente->getGenero() : '';
                             ?>
-                        </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" value="F" <?= $genero === 'F' ? 'checked' : '' ?>>
+                                <label class="form-check-label">Feminino</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" value="M" <?= $genero === 'M' ? 'checked' : '' ?>>
+                                <label class="form-check-label">Masculino</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" value="O" <?= $genero === 'O' ? 'checked' : '' ?>>
+                                <label class="form-check-label">Outro</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" value="" <?= $genero === '' ? 'checked' : '' ?>>
+                                <label class="form-check-label">Não informado</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Tipo Sanguíneo:</p>
@@ -93,23 +98,32 @@
                                     'O+' => 'O+',
                                     'O-' => 'O-'
                                 ];
-                                echo $tiposSanguineos[$paciente['tipo_sanguineo']] ?? 'Não informado';
+                                 $tipoPaciente = $paciente['tipo_sanguineo'] ?? '';
                             ?>
+                            <?php foreach ($tiposSanguineos as $valor => $label): ?>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo_sanguineo" value="<?= $valor ?>"
+                                            <?= $tipoPaciente === $valor ? 'checked' : '' ?>>
+                                        <label class="form-check-label"><?= $label ?></label>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </p>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Medicação:</p>
                         <p class="dado">
-                            <?php echo !empty($paciente['medicacao']) ? htmlspecialchars($paciente['medicacao']) : 'Nenhuma medicação informada';
-                            ?>
+                            <textarea name="medicacao" placeholder="Não informado"><?= isset($paciente) && $paciente->getMedicacao() ? htmlspecialchars($paciente->getMedicacao()) : '' ?></textarea>
                         </p>
                     </div>
                     <div class="perfil-item mb-3">
                         <p class="tipo-dado">Doenças:</p>
                         <p class="dado">
-                            <?php echo !empty($paciente['doencas']) ? nl2br(htmlspecialchars($paciente['doencas'])) : 'Nenhuma doença ou alergia informada';?>
+                            <textarea name="doenca" placeholder="Não informado"><?= isset($paciente) && $paciente->getDoenca() ? htmlspecialchars($paciente->getDoenca()) : '' ?></textarea>
                         </p>
                     </div>
+                </form>
                 </div>
             </main>
             <footer><?php require '../footer/footer.php' ?></footer>

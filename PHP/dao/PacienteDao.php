@@ -86,7 +86,7 @@
             $result = file_get_contents($url, false, $context);
 
             if($result === FALSE){
-                return ["erro" => "Falha na requisiçãp PUT"];
+                return ["erro" => "Falha na requisição PUT"];
             }
 
             return json_decode($result, true);

@@ -62,6 +62,25 @@
         header('Location: ../view/listagem/listagemUsuarios.php');
         exit();
     }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'PUT') {
+    $id = $_POST['id'];
+    $paciente = new Paciente();
+    $paciente->setId($id);
+    $paciente->setNome($_POST['nome']);
+    $paciente->setNomeSocial($_POST['nome_social']);
+    $paciente->setEmail($_POST['email']);
+    $paciente->setMedicacao($_POST['medicacao']);
+    $paciente->setDoenca($_POST['doenca']);
+    $paciente->setTipoSanguineo($_POST['tipo_sanguineo']);
+
+    $dao = new PacienteDao(); // esse chama sua API
+    $dao->editar($paciente);
+
+    header("Location: ../view/listagem/listagemUsuarios.php");
+    exit();
+    }
+
     //O HTML não suporta o método delete, então a gente faz essa simulação HTTP para "enganar o HTML"
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'DELETE') {
         $id = $_POST['id'];
