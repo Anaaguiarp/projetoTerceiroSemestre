@@ -43,18 +43,18 @@
 
         public function listaPaciente($row){
             $paciente = new Paciente();
-            $paciente->setId($row['id']);
-            $paciente->setNome($row['nome']);
-            $paciente->setNomeSocial($row['nome_social']);
-            $paciente->setEmail($row['email']);
-            $paciente->setSenha($row['senha']);
-            $paciente->setDataNascimento($row['data_nascimento']);
-            $paciente->setGenero($row['genero']);
-            $paciente->setEstado($row['estado']);
-            $paciente->setCidade($row['cidade']);
-            $paciente->setMedicacao($row['medicacao']);
-            $paciente->setDoenca($row['doenca']);
-            $paciente->setTipoSanguineo($row['tipo_sanguineo']);
+            $paciente->setId(htmlspecialchars($row['id']));
+            $paciente->setNome(htmlspecialchars($row['nome']));
+            $paciente->setNomeSocial(htmlspecialchars($row['nome_social']));
+            $paciente->setEmail(htmlspecialchars($row['email']));
+            $paciente->setSenha(htmlspecialchars($row['senha']));
+            $paciente->setDataNascimento(htmlspecialchars($row['data_nascimento']));
+            $paciente->setGenero(htmlspecialchars($row['genero']));
+            $paciente->setEstado(htmlspecialchars($row['estado']));
+            $paciente->setCidade(htmlspecialchars($row['cidade']));
+            $paciente->setMedicacao(htmlspecialchars($row['medicacao']));
+            $paciente->setDoenca(htmlspecialchars($row['doenca']));
+            $paciente->setTipoSanguineo(htmlspecialchars($row['tipo_sanguineo']));
 
             return $paciente;
         }
@@ -109,22 +109,19 @@
             return $result ? json_decode($result, true) : false;
         }
     
-        public function buscarPorId($id){
-            $url = "http://localhost:3001/api/paciente/" . urlencode($id);
-            try {
-                $response = @file_get_contents($url);
-                if ($response === FALSE) {
-                    return null; // ID não encontrado ou erro na requisição
+        /*public function buscarPorId($id){
+            $url = "http://localhost:3001/api/paciente/";
+            $response = @file_get_contents($url);
+            $dados = json_decode($response, true);
+            $pacientes = $dados['pacientes'];
+
+            foreach($pacientes as $pac){
+                if ($pac['id'] == $id){
+                    return $this->listaPaciente($pac);
                 }
-                $data = json_decode($response, true);
-                if ($data) {
-                    return $this->listaPaciente($data);
-                }
-                return null;
-            } catch (Exception $e) {
-                echo "<p>Erro ao buscar paciente por ID: </p> <p>{$e->getMessage()}</p>";
-                return null;
             }
-        }
+
+            return new Paciente();
+        }*/
     }
 ?>

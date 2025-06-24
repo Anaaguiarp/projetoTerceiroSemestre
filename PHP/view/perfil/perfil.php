@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../dao/PacienteDao.php';
-
+/*
 $paciente = null;
 
 if (isset($_GET['editar'])) {
@@ -23,7 +23,7 @@ if (isset($_GET['editar'])) {
             'doencas' => $p->getDoenca()
         ];
     }
-}
+}*/
 ?>
 
 <!DOCTYPE html>
