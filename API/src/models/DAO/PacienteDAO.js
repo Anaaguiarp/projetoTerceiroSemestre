@@ -2,7 +2,7 @@ const { createConnection } = require('./db');
 
 async function getPacientes(){
     const connection = await createConnection();
-    const [rows] = await connection.query("SELECT * FROM paciente ORDER BY nome");
+    const [rows] = await connection.query("SELECT * FROM paciente");
 
     return rows;
 };

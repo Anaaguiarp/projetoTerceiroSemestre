@@ -5,14 +5,14 @@
     require __DIR__ . '/../dao/PacienteDaoSql.php';
     require __DIR__ . '/../dao/PacienteDao.php';
 
-    $pacienteDao = new PacienteDaoSql();
+    $pacienteDao = new PacienteDao();
 
-    if (isset($_GET['id'])){
+    /*if (isset($_GET['id'])){
         $id = $_GET['id'];
         $pacienteDao->excluir($id);
         header('Location: ../view/listagem/listagemUsuarios.php');
         exit();
-    }
+    }*/
 
     if(isset($_POST['cadastrar'])){
         $paciente = new Paciente();
@@ -98,7 +98,7 @@
     }
 
     function listarSQL() {
-        $pacienteDao = new PacienteDaoSql();
+        $pacienteDao = new PacienteDao();
         $lista = $pacienteDao->read();
         foreach ($lista as $pac) {
             echo 
@@ -116,10 +116,14 @@
                 <td> {$pac->getTipoSanguineo()}</td>
                 <td>
                     <div class='d-flex flex-column align-items-center gap-1'>
-                        <a href='../cadastroPaciente/cadastro.php?editar={$pac->getId()}' class='btn btn-warning btn-sm mb-2 text-white w-100'>Editar</a>
+                        <a href='../perfil/perfil.php?editar={$pac->getId()}' class='btn btn-warning btn-sm mb-2 text-white w-100'>Editar</a>
+
                         <form action='../../controller/pacienteController.php' method='POST' onsubmit=\"return confirm('Tem certeza que deseja excluir?')\">
+
                             <input type='hidden' name='id' value='{$pac->getId()}'> <!--Pega o id do paciente para excluir -->
+
                             <input type='hidden' name='_method' value='DELETE'> <!-- Esse é o campo oculto pra fazer a simulação do DELETE -->
+
                             <button type='submit' class='btn btn-danger btn-sm w-100'>Excluir</button>
                         </form>
                     </div>

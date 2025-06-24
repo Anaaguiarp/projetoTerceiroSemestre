@@ -32,14 +32,13 @@
 
                         if (estado.sigla == estadoSelecionado) {
                             option.selected = true;
-                            carregarCidades(estado.sigla); // Carrega as cidades do estado já salvo
+                            carregarCidades(estado.sigla); // carrega as cidades do estado já salvo
                         }
 
                         selectEstado.appendChild(option);
                     });
                 });
 
-            // Quando muda o estado
             selectEstado.addEventListener('change', () => {
                 const estadoSigla = selectEstado.value;
                 carregarCidades(estadoSigla);

@@ -203,7 +203,7 @@ app.get('/editarpaciente/:id', async (req, res) => {
 });
 
 // UPDATE
-app.post('/editarpaciente/:id', async (req, res) => {
+app.put('/editarpaciente/:id', async (req, res) => {
     const {id} = req.params;
 
     const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;

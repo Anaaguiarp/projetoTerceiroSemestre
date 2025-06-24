@@ -19,7 +19,7 @@
             $options = [
                 "http" => [
                     "header" => "Content-Type: application/json\r\n",
-                    "method" => "POST",
+                    "method" => "PUT",
                     "content" => json_encode($dados)
                 ]
             ];
@@ -33,7 +33,8 @@
             $url = "http://localhost:3001/api/pacientes";
             $result = file_get_contents($url);
             $pacList = array();
-            $lista = json_decode($result, true);
+            $listaCompleta = json_decode($result, true);
+            $lista = $listaCompleta['pacientes']; 
             foreach($lista as $pac):
                 $pacList[] = $this->listaPaciente($pac);
             endforeach;
