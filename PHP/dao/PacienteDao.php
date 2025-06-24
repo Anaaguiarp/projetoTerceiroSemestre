@@ -110,7 +110,7 @@
         }
     
         public function buscarPorId($id){
-            $url = "http://localhost:3001/api/pacientes/" . urlencode($id);
+            $url = "http://localhost:3001/api/paciente/" . urlencode($id);
             try {
                 $response = @file_get_contents($url);
                 if ($response === FALSE) {

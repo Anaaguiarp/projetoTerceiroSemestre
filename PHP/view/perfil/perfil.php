@@ -1,116 +1,100 @@
+<?php
+require_once __DIR__ . '/../../dao/PacienteDao.php';
+
+$paciente = null;
+
+if (isset($_GET['editar'])) {
+    $id = $_GET['editar'];
+    $dao = new PacienteDao();
+    $p = $dao->buscarPorId($id);
+
+    if ($p) {
+        $paciente = [
+            'id' => $p->getId(),
+            'nome' => $p->getNome(),
+            'nome_social' => $p->getNomeSocial(),
+            'email' => $p->getEmail(),
+            'data_nascimento' => $p->getDataNascimento(),
+            'estado' => $p->getEstado(),
+            'cidade' => $p->getCidade(),
+            'genero' => $p->getGenero(),
+            'tipo_sanguineo' => $p->getTipoSanguineo(),
+            'medicacao' => $p->getMedicacao(),
+            'doencas' => $p->getDoenca()
+        ];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Perfil</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="perfil.css">
-        <link rel="stylesheet" href="../global.css">
-    </head>
-    <body>
-        <div class="container-fluid p-0">
-            <header><?php require '../header/header.php' ?></header>
-            <main>
-                <h1 class="my-5 text-center">Informações Pessoais</h1>
-                <div class="info-pessoal">
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">Nome Completo:</p>
-                        <p class="dado">
-                            <?php echo !empty($paciente['nome']) ? htmlspecialchars($paciente['nome']) : 'Nome não informado';
-                            ?>
-                        </p>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">Nome Social:</p>
-                        <p class="dado">
-                            <?php echo !empty($paciente['nome_social']) ? htmlspecialchars($paciente['nome_social']) : 'Não informado';
-                            ?>
-                        </p>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">E-mail:</p>
-                        <p class="dado">
-                            <?php echo !empty($paciente['email']) ? htmlspecialchars($paciente['email']) : 'Email não informado';
-                            ?>
-                        </p>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">Data de Nascimento:</p>
-                        <p class="dado">
-                            <?php echo !empty($paciente['data_nascimento']) ? htmlspecialchars($paciente['data_nascimento']) : 'Não informado';
-                            ?>
-                        </p>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <div>
-                            <p class="tipo-dado">Estado</p>
-                            <p class="dado">
-                                <?php echo !empty($paciente['estado']) ? htmlspecialchars($paciente['estado']) : 'Estado não informado';
-                                ?>
-                            </p>
-                        </div>
-                        <div>
-                            <p class="tipo-dado">Cidade</p>
-                            <p class="dado">
-                                <?php echo !empty($paciente['cidade']) ? htmlspecialchars($paciente['cidade']) : 'Cidade não informada';
-                                ?>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">Gênero:</p>
-                        <p class="dado">
-                            <?php
-                                if($paciente['genero'] === 'F') {
-                                    echo 'Feminino';
-                                }elseif ($paciente['genero'] === 'M') {
-                                    echo 'Masculino';
-                                }elseif ($paciente['genero'] === 'O') {
-                                    echo 'Outro';
-                                }else {
-                                    echo 'Não informado';
-                                }
-                            ?>
-                        </p>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">Tipo Sanguíneo:</p>
-                        <p class="dado">
-                            <?php
-                                $tiposSanguineos = [
-                                    'A+' => 'A+',
-                                    'A-' => 'A-',
-                                    'B+' => 'B+',
-                                    'B-' => 'B-',
-                                    'AB+' => 'AB+',
-                                    'AB-' => 'AB-',
-                                    'O+' => 'O+',
-                                    'O-' => 'O-'
-                                ];
-                                echo $tiposSanguineos[$paciente['tipo_sanguineo']] ?? 'Não informado';
-                            ?>
-                        </p>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">Medicação:</p>
-                        <p class="dado">
-                            <?php echo !empty($paciente['medicacao']) ? htmlspecialchars($paciente['medicacao']) : 'Nenhuma medicação informada';
-                            ?>
-                        </p>
-                    </div>
-                    <div class="perfil-item mb-3">
-                        <p class="tipo-dado">Doenças:</p>
-                        <p class="dado">
-                            <?php echo !empty($paciente['doencas']) ? nl2br(htmlspecialchars($paciente['doencas'])) : 'Nenhuma doença ou alergia informada';?>
-                        </p>
-                    </div>
-                </div>
-            </main>
-            <footer><?php require '../footer/footer.php' ?></footer>
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="../global.css">
+</head>
+<body>
+    <div class="container p-4">
+        <h1 class="mb-4">Editar Perfil</h1>
+        <form method="POST" action="../../controller/pacienteController.php">
+            <input type="hidden" name="id" value="<?= $paciente['id'] ?>">
+            <input type="hidden" name="salvar-edicao" value="1">
+            <div class="mb-3">
+                <label>Nome Completo:</label>
+                <input type="text" name="nome" class="form-control" value="<?= htmlspecialchars($paciente['nome']) ?>">
+            </div>
+            <div class="mb-3">
+                <label>Nome Social:</label>
+                <input type="text" name="nome_social" class="form-control" value="<?= htmlspecialchars($paciente['nome_social']) ?>">
+            </div>
+            <div class="mb-3">
+                <label>Email:</label>
+                <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($paciente['email']) ?>">
+            </div>
+            <div class="mb-3">
+                <label>Data de Nascimento:</label>
+                <input type="date" name="data_nascimento" class="form-control" value="<?= htmlspecialchars($paciente['data_nascimento']) ?>">
+            </div>
+            <div class="mb-3">
+                <label>Estado:</label>
+                <input type="text" name="estado" class="form-control" value="<?= htmlspecialchars($paciente['estado']) ?>">
+            </div>
+            <div class="mb-3">
+                <label>Cidade:</label>
+                <input type="text" name="cidade" class="form-control" value="<?= htmlspecialchars($paciente['cidade']) ?>">
+            </div>
+            <div class="mb-3">
+                <label>Gênero:</label>
+                <select name="genero" class="form-select">
+                    <option value="F" <?= $paciente['genero'] === 'F' ? 'selected' : '' ?>>Feminino</option>
+                    <option value="M" <?= $paciente['genero'] === 'M' ? 'selected' : '' ?>>Masculino</option>
+                    <option value="O" <?= $paciente['genero'] === 'O' ? 'selected' : '' ?>>Outro</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Tipo Sanguíneo:</label>
+                <select name="tipo_sanguineo" class="form-select">
+                    <?php
+                        $tipos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+                        foreach ($tipos as $tipo) {
+                            $selected = $paciente['tipo_sanguineo'] === $tipo ? 'selected' : '';
+                            echo "<option value=\"$tipo\" $selected>$tipo</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Medicação:</label>
+                <textarea name="medicacao" class="form-control"><?= htmlspecialchars($paciente['medicacao']) ?></textarea>
+            </div>
+            <div class="mb-3">
+                <label>Doenças:</label>
+                <textarea name="doenca" class="form-control"><?= htmlspecialchars($paciente['doencas']) ?></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+    </div>
+</body>
 </html>
