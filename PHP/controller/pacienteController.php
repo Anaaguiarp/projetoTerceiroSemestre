@@ -70,11 +70,16 @@
     $paciente->setNome($_POST['nome']);
     $paciente->setNomeSocial($_POST['nome_social']);
     $paciente->setEmail($_POST['email']);
+    $paciente->setSenha($_POST['senha']);
+    $paciente->setDataNascimento($_POST['data_nascimento']);
+    $paciente->setGenero($_POST['genero']);
+    $paciente->setEstado($_POST['estado']);
+    $paciente->setCidade($_POST['cidade']);
     $paciente->setMedicacao($_POST['medicacao']);
     $paciente->setDoenca($_POST['doenca']);
     $paciente->setTipoSanguineo($_POST['tipo_sanguineo']);
 
-    $dao = new PacienteDao(); // esse chama sua API
+    $dao = new PacienteDao();
     $dao->editar($paciente);
 
     header("Location: ../view/listagem/listagemUsuarios.php");
