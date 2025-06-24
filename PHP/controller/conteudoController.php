@@ -29,7 +29,7 @@
         $conteudo = $conteudoDao->buscarPorId($idConteudo);
 
         if(!$conteudo->getId()){
-            header("Location: ../index.php?erro-nao_encontrado");
+            header("Location: ../../index.php?erro-nao_encontrado");
             exit();
         }
     }
@@ -50,77 +50,47 @@
         exit();
     }
 
-    function listar($categoria = null) {
+    function listarComoCards($categoria = null) {
         $conteudoDao = new ConteudoDao();
         $lista = $conteudoDao->read();
 
         foreach ($lista as $cont) {
-            // Se tiver filtro e a categoria não bater, pula esse conteúdo
             if ($categoria && strtolower($cont->getCategoria()) !== strtolower($categoria)) {
                 continue;
             }
 
-            echo "<tr class='conteudo " . strtolower($cont->getCategoria()) . "'>";
-                    if (isset($_SESSION['administrador'])){
-                        echo  "<td>{$cont->getId()}</td>";
-                    }
-                    echo "
-                    <td>{$cont->getTitulo()}</td>
-                    <td>{$cont->getDescricao()}</td>
-                    <td>{$cont->getTexto()}</td>
-                    <td>{$cont->getData()}</td>
-                    <td>{$cont->getNomeAutor()}</td>";
-                    if (isset($_SESSION['administrador'])) {
-                        echo "<td>
-                                <a href='conteudo.php?editar={$cont->getId()}'>Editar</a>
-                                <a href='../../controller/conteudoController.php?excluir={$cont->getId()}'>Excluir</a>
-                            </td>";
-                    }
-            echo "</tr>";
-        }
-    }
+            $titulo = htmlspecialchars($cont->getTitulo());
+            $descricao = htmlspecialchars($cont->getDescricao());
+            $data = date("d/m/Y", strtotime($cont->getData()));
+            $id = $cont->getId();
+            ?>
 
-    function listarComoCards($categoria = null) {
-    $conteudoDao = new ConteudoDao();
-    $lista = $conteudoDao->read();
-
-    foreach ($lista as $cont) {
-        if ($categoria && strtolower($cont->getCategoria()) !== strtolower($categoria)) {
-            continue;
-        }
-
-        $titulo = htmlspecialchars($cont->getTitulo());
-        $descricao = htmlspecialchars($cont->getDescricao());
-        $data = date("d/m/Y", strtotime($cont->getData()));
-        $id = $cont->getId();
-        ?>
-
-        <div class='col'>
-            <div class='card h-100 shadow-sm border-0'>
-                <div class='card-body'>
-                    <a href='post.php?id=<?= $id ?>' class='text-decoration-none text-dark'>
-                        <h5 class='card-title'><?= $titulo ?></h5>
-                        <h6 class='card-subtitle mb-2 text-muted'><?= $data ?></h6>
-                        <p class='card-text'><?= $descricao ?></p>
-                    </a>
-                </div>
-
-                <?php if (isset($_SESSION['administrador'])): ?>
-                    <div class='card-footer bg-transparent border-0 d-flex justify-content-between'>
-                        <a href='conteudo.php?editar=<?= $id ?>' class='btn btn-sm btn-outline-primary'>
-                            <i class='bi bi-pencil-square'></i> Editar
-                        </a>
-                        <a href='../../controller/conteudoController.php?excluir=<?= $id ?>' class='btn btn-sm btn-outline-danger'>
-                            <i class='bi bi-trash'></i> Excluir
+            <div class='col'>
+                <div class='card h-100 shadow-sm border-0'>
+                    <div class='card-body'>
+                        <a href='post.php?id=<?= $id ?>' class='text-decoration-none text-dark'>
+                            <h5 class='card-title'><?= $titulo ?></h5>
+                            <h6 class='card-subtitle mb-2 text-muted'><?= $data ?></h6>
+                            <p class='card-text'><?= $descricao ?></p>
                         </a>
                     </div>
-                <?php endif; ?>
-            </div>
-        </div>
 
-        <?php
+                    <?php if (isset($_SESSION['administrador'])): ?>
+                        <div class='card-footer bg-transparent border-0 d-flex justify-content-between'>
+                            <a href='conteudo.php?editar=<?= $id ?>' class='btn btn-sm btn-outline-primary'>
+                                <i class='bi bi-pencil-square'></i> Editar
+                            </a>
+                            <a href='../../controller/conteudoController.php?excluir=<?= $id ?>' class='btn btn-sm btn-outline-danger'>
+                                <i class='bi bi-trash'></i> Excluir
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <?php
+        }
     }
-}
 
     if (isset($_GET['excluir'])) {
         $id = $_GET['excluir'];
