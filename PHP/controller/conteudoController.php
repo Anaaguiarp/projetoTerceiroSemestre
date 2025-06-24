@@ -1,5 +1,4 @@
 <?php
-    require __DIR__ . '/../dao/ConnectionFactory.php';
     require __DIR__ . '/../dao/ConteudoDao.php';
     require __DIR__ . '/../model/Conteudo.php';
 
