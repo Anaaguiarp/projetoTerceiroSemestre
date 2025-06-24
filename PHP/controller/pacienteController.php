@@ -70,7 +70,7 @@
     $paciente->setNome($_POST['nome']);
     $paciente->setNomeSocial($_POST['nome_social']);
     $paciente->setEmail($_POST['email']);
-    $paciente->setSenha($_POST['senha']);
+    $paciente->setSenha($_POST['senha'] ?? '');
     $paciente->setDataNascimento($_POST['data_nascimento']);
     $paciente->setGenero($_POST['genero']);
     $paciente->setEstado($_POST['estado']);

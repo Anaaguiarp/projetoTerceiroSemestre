@@ -60,7 +60,7 @@
         }
         
         public function editar(Paciente $pac){
-            $url = "http://localhost:3001/api/pacientes/".$pac->getId();
+            $url = "http://localhost:3001/api/paciente/".$pac->getId();
             $dados = [
                 "nome" => $pac->getNome(),
                 "nome_social" => $pac->getNomeSocial(),
@@ -109,8 +109,8 @@
             return $result ? json_decode($result, true) : false;
         }
     
-        /*public function buscarPorId($id){
-            $url = "http://localhost:3001/api/paciente/";
+        public function buscarPorId($id){
+            $url = "http://localhost:3001/api/paciente/$id";
             $response = @file_get_contents($url);
             $dados = json_decode($response, true);
             $pacientes = $dados['pacientes'];
@@ -122,6 +122,6 @@
             }
 
             return new Paciente();
-        }*/
+        }
     }
 ?>
