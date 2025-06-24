@@ -9,7 +9,7 @@ async function getPacientes(){
 
 async function insertPaciente(nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo) {
     const connection = await createConnection();
-    if (nome && email && senha && data_nascimento && genero && estado && cidade && medicacao && doenca && tipo_sanguineo) {
+    if (nome && email && senha && data_nascimento && genero && estado && cidade && tipo_sanguineo) {
 
         const [result] = await connection.query(`
             INSERT INTO paciente(
@@ -19,6 +19,7 @@ async function insertPaciente(nome, nome_social, email, senha, data_nascimento, 
             [nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo]);
 
         if(result.affectedRows > 0){
+            console.log("Inserindo no banco:", nome, email);
             return true;
         }
 

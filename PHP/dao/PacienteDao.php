@@ -19,7 +19,7 @@
             $options = [
                 "http" => [
                     "header" => "Content-Type: application/json\r\n",
-                    "method" => "PUT",
+                    "method" => "POST",
                     "content" => json_encode($dados)
                 ]
             ];

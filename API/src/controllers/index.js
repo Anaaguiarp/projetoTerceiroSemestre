@@ -180,6 +180,7 @@ app.post('/paciente', async (req, res) => {
 
 app.post("/api/paciente", async (req, res) => {
     const {nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo} = req.body;
+    console.log("Dados recebidos: ", req.body);
     const result = await insertPaciente(nome, nome_social, email, senha, data_nascimento, genero, estado, cidade, medicacao, doenca, tipo_sanguineo);
     if(result){
         return res.status(202).json({success: true});
