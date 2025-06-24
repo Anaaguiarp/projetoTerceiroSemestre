@@ -60,7 +60,7 @@
         }
         
         public function editar(Paciente $pac){
-            $url = "http://localhost:3001/api/paciente/".$pac->getId();
+            $url = "http://localhost:3001/api/pacientes/".$pac->getId();
             $dados = [
                 "nome" => $pac->getNome(),
                 "nome_social" => $pac->getNomeSocial(),
