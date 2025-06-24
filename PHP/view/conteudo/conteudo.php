@@ -17,6 +17,7 @@
             <div class="col-lg-6 col-md-8 col-sm-10">
                 <h1 class="text-center mb-4">Adicionar Conteúdo</h1>
                 <form action="../../controller/conteudoController.php" method="POST">
+                    <input type="hidden" name="admin_nome" value="<?= $_SESSION['admin_nome'] ?>">
                     <input type="hidden" name="id" value="<?= isset($conteudo) && $conteudo->getId() ? $conteudo->getId() : '' ?>" >
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Título:</label>
@@ -42,7 +43,7 @@
                     </div>
                     <div class="d-grid">
                         <?php if(isset($conteudo) && $conteudo->getId()): ?>
-                            <button type="submit" name="salvar-edicao" class="btn btn-primary">Salvar Edição</button>
+                            <button type="submit" name="salvar-edicao" class="btn text-white" style="background-color: #542e16;">Salvar Edição</button>
                         <?php else: ?>
                             <button type="submit" name="publicar" class="btn btn-success">Publicar</button>
                         <?php endif; ?>

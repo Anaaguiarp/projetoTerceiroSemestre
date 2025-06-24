@@ -61,6 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'registro_profissional' => $administrador->getRegistroProfissional(),
             'especialidade' => $administrador->getEspecialidade()
         ];
+
+        $_SESSION['admin_nome'] = $administrador->getNome(); // para o conteúdo receber um nome
+
         $_SESSION['sucesso'] = 'Login realizado com sucesso!';
         header('Location: ../view/listagem/listagemUsuarios.php');
         exit();

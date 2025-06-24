@@ -6,6 +6,7 @@
         private $texto;
         private $categoria;
         private $data;
+        private $nome_autor;
 
         public function getId(){
             return $this->id;
@@ -53,6 +54,14 @@
 
         public function setData($data){
             $this->data = $data;
+        }
+
+        public function getNomeAutor(){
+            return $this->nome_autor;
+        }
+
+        public function setNomeAutor($nome_autor){
+            $this->nome_autor = $nome_autor;
         }
 
         public function __toString(){

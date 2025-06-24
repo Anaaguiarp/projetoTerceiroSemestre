@@ -6,13 +6,13 @@ async function getConteudos() {
     return rows;
 }
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-async function insertConteudo(titulo, descricao, texto, categoria, data) {
+async function insertConteudo(titulo, descricao, texto, categoria, data, admin_nome) {
     const connection = await createConnection();
-    if (titulo && descricao && texto && categoria && data) {
+    if (titulo && descricao && texto && categoria && data && admin_nome) {
         const [result] = await connection.query(
-            `INSERT INTO conteudo (titulo, descricao, texto, categoria, data)
-             VALUES (?, ?, ?, ?, ?)`,
-            [titulo, descricao, texto, categoria, data]
+            `INSERT INTO conteudo (titulo, descricao, texto, categoria, data, admin_nome)
+             VALUES (?, ?, ?, ?, ?, ?)`,
+            [titulo, descricao, texto, categoria, data, admin_nome]
         );
 
        if(result.affectedRows > 0){

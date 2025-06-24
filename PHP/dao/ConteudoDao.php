@@ -11,6 +11,7 @@
                 "texto" => $cont->getTexto(),
                 "categoria" => $cont->getCategoria(),
                 "data" => $cont->getData(),
+                "admin_nome" => $cont->getNomeAutor()
             ];
 
             $options = [
@@ -48,6 +49,7 @@
             $conteudo->setTexto(htmlspecialchars($row['texto']));
             $conteudo->setCategoria(htmlspecialchars($row['categoria']));
             $conteudo->setData(htmlspecialchars($row['data']));
+            $conteudo->setNomeAutor(htmlspecialchars($row['admin_nome']));
             return $conteudo;
         }
         

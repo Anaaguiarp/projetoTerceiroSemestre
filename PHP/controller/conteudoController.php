@@ -3,6 +3,10 @@
     require __DIR__ . '/../dao/ConteudoDao.php';
     require __DIR__ . '/../model/Conteudo.php';
 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
     $conteudoDao = new ConteudoDao();
 
     if(isset($_POST['publicar'])){
@@ -12,8 +16,13 @@
         $conteudo->setTexto($_POST['texto']);
         $conteudo->setCategoria($_POST['categoria']);
         $conteudo->setData(date('Y-m-d')); 
-        $conteudoDao->inserir($conteudo);
-        header("Location: ../view/conteudo/listaConteudos.php");
+        $conteudo->setNomeAutor($_POST['admin_nome']);
+        if ($conteudoDao->inserir($conteudo)) {
+            header("Location: ../view/conteudo/listaConteudos.php");
+            exit();
+        } else {
+            echo "Erro ao publicar o conteúdo.";
+        }
     }
 
     if(isset($_GET['editar'])){
@@ -53,20 +62,21 @@
             }
 
             echo "<tr class='conteudo " . strtolower($cont->getCategoria()) . "'>";
-                    /* if (isset($_SESSION['admin'])){ */
+                    if (isset($_SESSION['administrador'])){
                         echo  "<td>{$cont->getId()}</td>";
-                    /* } */
+                    }
                     echo "
                     <td>{$cont->getTitulo()}</td>
                     <td>{$cont->getDescricao()}</td>
                     <td>{$cont->getTexto()}</td>
-                    <td>{$cont->getData()}</td>";
-                    /* if (isset($_SESSION['admin'])) { */
+                    <td>{$cont->getData()}</td>
+                    <td>{$cont->getNomeAutor()}</td>";
+                    if (isset($_SESSION['administrador'])) {
                         echo "<td>
                                 <a href='conteudo.php?editar={$cont->getId()}'>Editar</a>
                                 <a href='../../controller/conteudoController.php?excluir={$cont->getId()}'>Excluir</a>
                             </td>";
-                    /* } */
+                    }
             echo "</tr>";
         }
     }

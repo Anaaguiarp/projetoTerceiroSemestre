@@ -286,9 +286,9 @@ app.get('/novoconteudo', (req, res) => {
 
 // CREATE
 app.post('/conteudos', async (req, res) => {
-    const {titulo, descricao, texto, categoria} = req.body;
+    const {titulo, descricao, texto, categoria, admin_nome} = req.body;
     const data = new Date().toISOString().split('T')[0];
-    const sucesso = await insertConteudo(titulo, descricao, texto, categoria, data);
+    const sucesso = await insertConteudo(titulo, descricao, texto, categoria, data, admin_nome);
 
     if (sucesso) {
         res.redirect('/conteudos');
@@ -299,8 +299,8 @@ app.post('/conteudos', async (req, res) => {
 
 // Inserindo pela API
 app.post("/api/conteudos", async (req, res) => {
-    const {titulo, descricao, texto, categoria, data} = req.body;
-    const result = await insertConteudo(titulo, descricao, texto, categoria, data);
+    const {titulo, descricao, texto, categoria, data, admin_nome} = req.body;
+    const result = await insertConteudo(titulo, descricao, texto, categoria, data, admin_nome);
     if(result){
         return res.status(202).json({success: true});
     }
