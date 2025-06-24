@@ -93,14 +93,12 @@
         }
 
         public function deletar($id) {
-            $url = "http://localhost:3001/api/pacientes";
-            $dados = ["id" => $id];
-            
+            $url = "http://localhost:3001/api/paciente/$id";
+
             $options = [
                 "http" => [
-                    "header"  => "Content-Type: application/json\r\n",
-                    "method"  => "DELETE",
-                    "content" => json_encode($dados)
+                    "method" => "DELETE",
+                    "header" => "Content-Type: application/json\r\n"
                 ]
             ];
 

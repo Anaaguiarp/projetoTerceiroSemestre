@@ -7,6 +7,7 @@ const app = express();
 app.set("view engine", "ejs"); 
 app.set("views", "./src/views");
 
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -242,8 +243,9 @@ app.get('/removerpaciente/:id', async (req, res) => {
     }
 });
 
-app.delete("/api/paciente", async (req, res) => {
-    const {id} = req.body;
+app.delete("/api/paciente/:id", async (req, res) => {
+    const {id} = req.params;
+    //console.log(`Requisição DELETE recebida para o ID: ${id}`); //Para testar o DELETE do paciente
     const result = await deletePaciente(id);
     if(result){
         return res.status(200).json({success: true});
@@ -251,7 +253,7 @@ app.delete("/api/paciente", async (req, res) => {
     return res.status(404).json({success: false});
 });
 
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ CONTENUDO ☆
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- ☆ CONTEÚDO ☆
 
 // READ
 app.get("/conteudos", async (req, res) => {
