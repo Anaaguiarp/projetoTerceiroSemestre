@@ -1,4 +1,4 @@
-# Projeto Integrado (em andamento) 👩‍💻
+# Projeto Acadêmico - PaliVida  (em andamento) 👩‍💻
 Este projeto marca a integração prática de todos os conhecimentos adquiridos ao longo do 3º semestre do curso, unindo as disciplinas de Desenvolvimento de Sistemas, Desenvolvimento de Software e Tópicos Especiais de Sistemas.
 
 Seu principal objetivo é proporcionar aos alunos uma experiência próxima à realidade do mercado, desenvolvendo um sistema completo que simula os desafios enfrentados no dia a dia de um(a) desenvolvedor(a). Ao longo do processo, os estudantes são estimulados a aplicar conceitos de arquitetura de software, programação orientada a objetos, integração entre tecnologias, boas práticas de codificação e organização de projetos.
@@ -31,11 +31,34 @@ projeto/
 └── sql/                           # Script de criação do banco de dados
 ```
 
-## Tecnologias Utilizadas ⚙️
--> 🔧 **Node.js** (Express)  
--> 🐘 **PHP**  
--> 🌐 **HTML5**  
--> 🎨 **CSS3**  
--> 🎯 **Bootstrap**  
--> ✨ **JavaScript**  
--> 🗄️ **MySQL**
+## Tecnologias Utilizadas
+ * **Node.js** (Express)  
+ * **PHP**  
+ * **HTML5**  
+ * **CSS3**  
+ * **Bootstrap**  
+ * **JavaScript**  
+ * **MySQL**
+
+---
+
+## Telas do Projeto
+
+### Tela Inicial
+<img src="./assets/img/Home.jpeg" alt="Tela inicial">
+<img src="./assets/img/Home2.jpeg" alt="Tela inicial">
+
+### Tela de Login
+<img src="./assets/img/Login.jpeg" alt="Tela de Login">
+
+### Tela de Cadastro do Paciente
+<img src="./assets/img/Cadastro-Paciente.jpg" alt="Tela de Cadastro do Paciente">
+
+### Listagem de Usuários
+<img src="./assets/img/Lista-Usuarios.jpeg" alt="Listagem de Usuários">
+
+### Listagem de Conteúdo
+<img src="./assets/img/Lista-Conteudo.jpg" alt="Listagem de Conteúdo">
+
+### Listagem de Administradores
+<img src="./assets/img/Lista-Administradores.jpg" alt="Listagem de Administradores">
